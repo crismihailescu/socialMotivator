@@ -25,7 +25,6 @@ Project task requirements:
 		User Pages/Restrictions for companies/users:
 			Companies can post activities
 			Users can see and choose activities + post proof of completeness + see points
-
 	3-7 "standard" requirements (will most likely complete)
 		Validation on sign up page
 		Keep track of number of people doing an activity
@@ -33,7 +32,6 @@ Project task requirements:
 		Leaderboard
 		Create groups/club system for the users
 		Carousel with recommended activities
-
 	2-3 stretch requirements (plan to complete at least 1!)
 		Searching certain types of activities and viewing a shortened list based on the search
 		Reward - notify issues that they have received the reward
@@ -44,7 +42,6 @@ Minimal requirement breakdown:
 		CSS for page
 		Actually rendering the textfields for signup(username/password)
 		Navigation away and to the page
-
 	Posting Activities:
 		Navigation to and away
 		CSS for page
