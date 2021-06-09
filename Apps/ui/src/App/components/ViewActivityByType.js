@@ -26,7 +26,7 @@ function ViewActivityByType(props) {
             {/* {props.activities.filter(d => d.type === { selectedActivity }).map((item) => ( */}
             {props.activities.filter(d => d.type === 'Outdoor').map((item) => (
                 <li key={item.title}>
-                    <Activity activityTitle={item.title} activityType={item.type} />
+                    <Activity activityTitle={item.title} activityType={item.type} activityImg={item.image}/>
                 </li>
             ))}
         </ul>
