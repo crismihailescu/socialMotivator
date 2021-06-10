@@ -12,6 +12,11 @@ const useStyles = makeStyles({
 });
 
 function Card(props) {
+    // Props:
+    // name - name of the Card (required)
+    // open - whether the Card is rendered or not (required)
+    // img - image to be rendered (required)
+    // description - optional
     const classes = useStyles();
     return (<Dialog aria-labelledby={props.name} open={props.open} className={classes.root}>
         <DialogTitle id="card-title">
