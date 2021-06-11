@@ -11,7 +11,6 @@ function ViewActivityByType(props) {
     }
 
     return <div className='activityByTypeWrapper'>
-        <h2>View activity by type</h2>
         <h2>Select from activity types: </h2>
 
         <select value={selectedActivity} onChange={handleSelectionChange}>
