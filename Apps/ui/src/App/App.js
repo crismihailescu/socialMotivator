@@ -8,7 +8,6 @@ import {
 } from "react-router-dom";
 import SignUp from '../SignUp/signup';
 import Home from '../Home/home';
-import Carousel from '../Home/Carousel'
 
 function App() {
   return (

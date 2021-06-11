@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import ViewActivityByType from '../App/components/ViewActivityByType';
-import AddActivity from '../App/components/AddActivity';
-import Carousel from './Carousel'
+import Activity from '../App/components/Activity';
+import Carousel from '../App/components/Carousel';
 
 const initialActivities = [
   {
@@ -55,7 +55,7 @@ function Home() {
   return (
     <div>
       home
-      <AddActivity name={name} type={type} handleAddActivity={addActivity} onNameChange={handleNameChange} onTypeChange={handleTypeChange}/>
+      <Activity name={name} type={type} handleAddActivity={addActivity} onNameChange={handleNameChange} onTypeChange={handleTypeChange}/>
       <ViewActivityByType activities={initialActivities} />
         <div style={{ maxWidth: 1200, marginLeft: 'auto', marginRight: 'auto', marginTop: 64}}>
             <Carousel show={3}>
@@ -103,5 +103,6 @@ function Home() {
         </div>
     </div>
   );
+}
 
 export default Home;
