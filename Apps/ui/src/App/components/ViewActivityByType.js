@@ -1,5 +1,6 @@
 import Activity from './Activity';
 import { useState } from 'react';
+//import '../styles/Activity.css';
 
 function ViewActivityByType(props) {
 
@@ -9,7 +10,7 @@ function ViewActivityByType(props) {
         setSelectedActivity(event.target.value);
     }
 
-    return <div>
+    return <div className='activityByTypeWrapper'>
         <h2>View activity by type</h2>
         <h2>Select from activity types: </h2>
 
@@ -22,9 +23,8 @@ function ViewActivityByType(props) {
 
         <h1>{selectedActivity}</h1>
 
-        <ul>
-            {/* {props.activities.filter(d => d.type === { selectedActivity }).map((item) => ( */}
-            {props.activities.filter(d => d.type === 'Outdoor').map((item) => (
+        <ul className='activityByTypeList'>
+            {props.activities.filter(d => d.type ===  selectedActivity ).map((item) => (
                 <li key={item.title}>
                     <Activity activityTitle={item.title} activityType={item.type} activityImg={item.image}/>
                 </li>
