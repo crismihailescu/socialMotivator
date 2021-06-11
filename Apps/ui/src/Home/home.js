@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import ViewActivityByType from '../App/components/ViewActivityByType';
 import AddActivity from '../App/components/AddActivity';
+import Carousel from './Carousel'
 
 const initialActivities = [
   {
@@ -56,8 +57,51 @@ function Home() {
       home
       <AddActivity name={name} type={type} handleAddActivity={addActivity} onNameChange={handleNameChange} onTypeChange={handleTypeChange}/>
       <ViewActivityByType activities={initialActivities} />
+        <div style={{ maxWidth: 1200, marginLeft: 'auto', marginRight: 'auto', marginTop: 64}}>
+            <Carousel show={3}>
+            <div>
+                <div style={{padding: 8}}>
+                    <img src="https://via.placeholder.com/300x300" alt="placeholder" style={{width: '100%'}} />
+                </div>
+            </div>
+            <div>
+                <div style={{padding: 8}}>
+                    <img src="https://via.placeholder.com/300x300" alt="placeholder" style={{width: '100%'}} />
+                </div>
+            </div>
+            <div>
+                <div style={{padding: 8}}>
+                    <img src="https://via.placeholder.com/300x300" alt="placeholder" style={{width: '100%'}} />
+                </div>
+            </div>
+            <div>
+                <div style={{padding: 8}}>
+                    <img src="https://via.placeholder.com/300x300" alt="placeholder" style={{width: '100%'}} />
+                </div>
+            </div>
+            <div>
+                <div style={{padding: 8}}>
+                    <img src="https://via.placeholder.com/300x300" alt="placeholder" style={{width: '100%'}} />
+                </div>
+            </div>
+            <div>
+                <div style={{padding: 8}}>
+                    <img src="https://via.placeholder.com/300x300" alt="placeholder" style={{width: '100%'}} />
+                </div>
+            </div>
+            <div>
+                <div style={{padding: 8}}>
+                    <img src="https://via.placeholder.com/300x300" alt="placeholder" style={{width: '100%'}} />
+                </div>
+            </div>
+            <div>
+                <div style={{padding: 8}}>
+                    <img src="https://via.placeholder.com/300x300" alt="placeholder" style={{width: '100%'}} />
+                </div>
+            </div>
+            </Carousel>
+        </div>
     </div>
   );
-}
 
 export default Home;
