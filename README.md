@@ -54,3 +54,6 @@ Minimal requirement breakdown:
 		Render table to view posted activities
 
 Please see the sketches at roughSketches.png
+
+Referenced Works:
+For carousel component: https://dev.to/rakumairu/simple-react-carousel-24m0
