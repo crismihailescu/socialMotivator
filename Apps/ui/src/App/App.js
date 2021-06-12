@@ -8,11 +8,13 @@ import {
 } from "react-router-dom";
 import SignUp from '../SignUp/signup';
 import Home from '../Home/home';
+import Nav from './components/Nav';
 
 function App() {
   return (
     <Router>
       <div>
+      {/* <div>
         <nav>
           <ul>
             <li>
@@ -22,7 +24,9 @@ function App() {
               <Link to="/SignUp">About</Link>
             </li>
           </ul>
-        </nav>
+        </nav> */}
+
+        <Nav/>
 
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}

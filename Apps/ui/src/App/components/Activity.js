@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
+import Enlist from '../components/Enlist'
 
 const activityStyles = makeStyles({
     activity: {
@@ -27,6 +28,7 @@ function Activity(props) {
             <div className={classes.bottomLeft}>Activity title: {props.activityTitle}</div>
             <h4 className={classes.topLeft}>Activity type: {props.activityType}</h4>
         </div>
+        <Enlist></Enlist>
     </div>
 }
 

@@ -52,8 +52,7 @@ function Home() {
   }
 
   return (
-    <div>
-        home  
+    <div> 
         <AddActivity name={name} type={type} handleAddActivity={addActivity} onNameChange={handleNameChange} onTypeChange={handleTypeChange}/>
         <ViewActivityByType activities={initialActivities} />
         {/* <div style={{ maxWidth: 1200, marginLeft: 'auto', marginRight: 'auto', marginTop: 64}}> */}
