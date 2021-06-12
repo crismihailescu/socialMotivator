@@ -4,13 +4,13 @@ function AddActivity(props) {
       return <div>
 
         <div className='form-container'>
-            <div class='add-activity-form'>
+            <div className='add-activity-form'>
                 <div className='add-activity-row'>
-                    <label for='name'>Activity name:</label>
+                    <label htmlFor='name'>Activity name:</label>
                     <input value={props.name} id='name' type='text' onChange={props.onNameChange}/>
                 </div>
                 <div className='add-activity-row'>
-                    <label for='type'>Activity type:</label>
+                    <label htmlFor='type'>Activity type:</label>
                     <select value={props.type} onChange={props.onTypeChange}>
                         <option value='Outdoor'>Outdoor</option>
                         <option value='Indoor'>Indoor</option>

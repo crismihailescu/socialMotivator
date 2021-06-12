@@ -1,6 +1,6 @@
 import Activity from './Activity';
 import { useState } from 'react';
-//import '../styles/Activity.css';
+import '../styles/Activity.css';
 
 function ViewActivityByType(props) {
 

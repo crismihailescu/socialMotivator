@@ -1,7 +1,7 @@
 // Tutorial Referenced: https://dev.to/rakumairu/simple-react-carousel-24m0
 
 import {React, useState, useEffect} from 'react'
-import './carousel.css'
+import '../styles/carousel.css'
 
 function Carousel(props) {
 

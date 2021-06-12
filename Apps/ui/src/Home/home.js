@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import ViewActivityByType from '../App/components/ViewActivityByType';
-import Activity from '../App/components/Activity';
+import AddActivity from '../App/components/AddActivity';
 import Carousel from '../App/components/Carousel';
 
 const initialActivities = [
@@ -31,7 +31,6 @@ const initialActivities = [
   // },
 ];
 
-
 function Home() {
   const [activities, setList] = useState(initialActivities);
   const [name, setName] = useState('');
@@ -54,51 +53,51 @@ function Home() {
 
   return (
     <div>
-      home
-      <Activity name={name} type={type} handleAddActivity={addActivity} onNameChange={handleNameChange} onTypeChange={handleTypeChange}/>
-      <ViewActivityByType activities={initialActivities} />
+        home  
+        <AddActivity name={name} type={type} handleAddActivity={addActivity} onNameChange={handleNameChange} onTypeChange={handleTypeChange}/>
+        <ViewActivityByType activities={initialActivities} />
         <div style={{ maxWidth: 1200, marginLeft: 'auto', marginRight: 'auto', marginTop: 64}}>
             <Carousel show={3}>
-            <div>
-                <div style={{padding: 8}}>
-                    <img src="https://via.placeholder.com/300x300" alt="placeholder" style={{width: '100%'}} />
+                <div>
+                    <div style={{padding: 8}}>
+                        <img src={default_img} alt="placeholder" style={{width: '360px', height: "360px"}} />
+                    </div>
                 </div>
-            </div>
-            <div>
-                <div style={{padding: 8}}>
-                    <img src="https://via.placeholder.com/300x300" alt="placeholder" style={{width: '100%'}} />
+                <div>
+                    <div style={{padding: 8}}>
+                        <img src={default_img} alt="placeholder" style={{width: '360px', height: "360px"}} />
+                    </div>
                 </div>
-            </div>
-            <div>
-                <div style={{padding: 8}}>
-                    <img src="https://via.placeholder.com/300x300" alt="placeholder" style={{width: '100%'}} />
+                <div>
+                    <div style={{padding: 8}}>
+                        <img src={default_img} alt="placeholder" style={{width: '360px', height: "360px"}} />
+                    </div>
                 </div>
-            </div>
-            <div>
-                <div style={{padding: 8}}>
-                    <img src="https://via.placeholder.com/300x300" alt="placeholder" style={{width: '100%'}} />
+                <div>
+                    <div style={{padding: 8}}>
+                        <img src={default_img} alt="placeholder" style={{width: '360px', height: "360px"}} />
+                    </div>
                 </div>
-            </div>
-            <div>
-                <div style={{padding: 8}}>
-                    <img src="https://via.placeholder.com/300x300" alt="placeholder" style={{width: '100%'}} />
+                <div>
+                    <div style={{padding: 8}}>
+                        <img src={default_img} alt="placeholder" style={{width: '360px', height: "360px"}} />
+                    </div>
                 </div>
-            </div>
-            <div>
-                <div style={{padding: 8}}>
-                    <img src="https://via.placeholder.com/300x300" alt="placeholder" style={{width: '100%'}} />
+                <div>
+                    <div style={{padding: 8}}>
+                        <img src={default_img} alt="placeholder" style={{width: '360px', height: "360px"}} />
+                    </div>
                 </div>
-            </div>
-            <div>
-                <div style={{padding: 8}}>
-                    <img src="https://via.placeholder.com/300x300" alt="placeholder" style={{width: '100%'}} />
+                <div>
+                    <div style={{padding: 8}}>
+                        <img src={default_img} alt="placeholder" style={{width: '360px', height: "360px"}} />
+                    </div>
                 </div>
-            </div>
-            <div>
-                <div style={{padding: 8}}>
-                    <img src="https://via.placeholder.com/300x300" alt="placeholder" style={{width: '100%'}} />
+                <div>
+                    <div style={{padding: 8}}>
+                        <img src={default_img} alt="placeholder" style={{width: '360px', height: "360px"}} />
+                    </div>
                 </div>
-            </div>
             </Carousel>
         </div>
     </div>
