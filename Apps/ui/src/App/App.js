@@ -9,6 +9,7 @@ import {
 import SignUp from '../SignUp/signup';
 import Home from '../Home/home';
 import Nav from './components/Nav';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -38,6 +39,8 @@ function App() {
             <Home />
           </Route>
         </Switch>
+
+        <Footer />
       </div>
     </Router>
   );
