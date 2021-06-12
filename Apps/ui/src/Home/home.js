@@ -2,6 +2,7 @@ import { useState } from 'react';
 import ViewActivityByType from '../App/components/ViewActivityByType';
 import AddActivity from '../App/components/AddActivity';
 import Carousel from '../App/components/Carousel';
+import Footer from '../App/components/Footer';
 
 const initialActivities = [
   {
@@ -99,6 +100,7 @@ function Home() {
                 </div>
             </Carousel> */}
         {/* </div> */}
+        <Footer />
     </div>
   );
 }
