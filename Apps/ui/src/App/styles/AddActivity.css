@@ -1,0 +1,31 @@
+.form-container {
+    display: flex;
+    justify-content: center;
+}
+
+.add-activity-form {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    background-color: #F6F7F8;
+    border: 1px solid #999;
+    padding: 13px;
+}
+
+.add-activity-row {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.add-activity-row label {
+    width: 120px;
+}
+
+.add-activity-row input, select {
+    flex: 1;
+}
+
+.form-btns {
+    display: flex;
+    justify-content: center;
+}
