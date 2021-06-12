@@ -19,16 +19,16 @@ const initialActivities = [
     type: 'Indoor',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Hand_holding_a_red_fundraising_box.jpg/330px-Hand_holding_a_red_fundraising_box.jpg',
   },
-  // {
-  //   title: 'Park Cleanup2',
-  //   type: 'Outdoor',
-  //   image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Veale_Gardens.JPG/330px-Veale_Gardens.JPG', 
-  // },
-  // {
-  //   title: 'Beach Cleanup2',
-  //   type: 'Outdoor',
-  //   image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/YBF_2010_-_Bikini_Bar_perjantaina.jpg/330px-YBF_2010_-_Bikini_Bar_perjantaina.jpg', 
-  // },
+  {
+    title: 'Park Cleanup2',
+    type: 'Outdoor',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Veale_Gardens.JPG/330px-Veale_Gardens.JPG', 
+  },
+  {
+    title: 'Beach Cleanup2',
+    type: 'Outdoor',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/YBF_2010_-_Bikini_Bar_perjantaina.jpg/330px-YBF_2010_-_Bikini_Bar_perjantaina.jpg', 
+  },
 ];
 
 function Home() {
@@ -56,8 +56,8 @@ function Home() {
         home  
         <AddActivity name={name} type={type} handleAddActivity={addActivity} onNameChange={handleNameChange} onTypeChange={handleTypeChange}/>
         <ViewActivityByType activities={initialActivities} />
-        <div style={{ maxWidth: 1200, marginLeft: 'auto', marginRight: 'auto', marginTop: 64}}>
-            <Carousel show={3}>
+        {/* <div style={{ maxWidth: 1200, marginLeft: 'auto', marginRight: 'auto', marginTop: 64}}> */}
+            {/* <Carousel show={3}>
                 <div>
                     <div style={{padding: 8}}>
                         <img src={default_img} alt="placeholder" style={{width: '360px', height: "360px"}} />
@@ -98,8 +98,8 @@ function Home() {
                         <img src={default_img} alt="placeholder" style={{width: '360px', height: "360px"}} />
                     </div>
                 </div>
-            </Carousel>
-        </div>
+            </Carousel> */}
+        {/* </div> */}
     </div>
   );
 }
