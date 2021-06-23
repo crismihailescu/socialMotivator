@@ -57,50 +57,6 @@ function Home() {
       <div className='home-body'>
         <AddActivity name={name} type={type} handleAddActivity={addActivity} onNameChange={handleNameChange} onTypeChange={handleTypeChange} />
         <ViewActivityByType activities={initialActivities} />
-        {/* <div style={{ maxWidth: 1200, marginLeft: 'auto', marginRight: 'auto', marginTop: 64}}> */}
-        {/* <Carousel show={3}>
-                <div>
-                    <div style={{padding: 8}}>
-                        <img src={default_img} alt="placeholder" style={{width: '360px', height: "360px"}} />
-                    </div>
-                </div>
-                <div>
-                    <div style={{padding: 8}}>
-                        <img src={default_img} alt="placeholder" style={{width: '360px', height: "360px"}} />
-                    </div>
-                </div>
-                <div>
-                    <div style={{padding: 8}}>
-                        <img src={default_img} alt="placeholder" style={{width: '360px', height: "360px"}} />
-                    </div>
-                </div>
-                <div>
-                    <div style={{padding: 8}}>
-                        <img src={default_img} alt="placeholder" style={{width: '360px', height: "360px"}} />
-                    </div>
-                </div>
-                <div>
-                    <div style={{padding: 8}}>
-                        <img src={default_img} alt="placeholder" style={{width: '360px', height: "360px"}} />
-                    </div>
-                </div>
-                <div>
-                    <div style={{padding: 8}}>
-                        <img src={default_img} alt="placeholder" style={{width: '360px', height: "360px"}} />
-                    </div>
-                </div>
-                <div>
-                    <div style={{padding: 8}}>
-                        <img src={default_img} alt="placeholder" style={{width: '360px', height: "360px"}} />
-                    </div>
-                </div>
-                <div>
-                    <div style={{padding: 8}}>
-                        <img src={default_img} alt="placeholder" style={{width: '360px', height: "360px"}} />
-                    </div>
-                </div>
-            </Carousel> */}
-        {/* </div> */}
       </div>
     </div>
   );
