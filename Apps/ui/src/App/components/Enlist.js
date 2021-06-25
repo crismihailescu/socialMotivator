@@ -65,7 +65,7 @@ const useStyles = makeStyles({
     activityImg: {
         maxHeight: 500,
         maxWidth: 375,
-        objectFit: 'cover',
+        objectFit: 'down-scale',
     }
 })
 
