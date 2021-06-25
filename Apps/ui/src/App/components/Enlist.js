@@ -24,8 +24,9 @@ const useStyles = makeStyles({
     },
     dialogContent: {
         background: 'linear-gradient(#228b22, #70483c)',
-        height: 'auto',
-        width: 'auto',
+        display: 'inline-block',
+        height: 500,
+        width: 400,
         textAlign: 'center',
         objectFit: 'contain'
     },
@@ -63,9 +64,9 @@ const useStyles = makeStyles({
 
     },
     activityImg: {
-        maxHeight: 500,
+        maxHeight: 450,
         maxWidth: 375,
-        objectFit: 'down-scale',
+        objectFit: 'contain',
     }
 })
 
@@ -73,6 +74,7 @@ const useStyles = makeStyles({
 function Enlist(props) {
 
 const dialogStyle = useStyles();
+
 
 const slides = [props.picture[0], 'https://upload.wikimedia.org/wikipedia/commons/d/d5/Zackenberg.4.jpg']
 
@@ -113,9 +115,11 @@ const Reset = () => {
                 <Button className = {dialogStyle.closeBtn} onClick = {Close}>X</Button>
                 <DialogContent className = {dialogStyle.dialogContent}>
                     <Typography className = {dialogStyle.title}>{props.name}</Typography>
+                    <>
                    <img className = {dialogStyle.activityImg} src = {pic} onMouseEnter = {Choose} onMouseLeave = {Reset}></img>
                     <br/>
                     <br/>
+                    </>
                     <Typography className = {dialogStyle.description}>This is where the description would go</Typography>
                     <br/>
                     <Button onClick = {Join} className = {dialogStyle.joinBtn}>Join</Button>
