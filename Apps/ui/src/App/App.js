@@ -10,6 +10,7 @@ import SignUp from '../SignUp/signup';
 import Home from '../Home/home';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
+import UserDashboard from '../UserDashboard/UserDashboard';
 
 function App() {
   return (
@@ -34,6 +35,9 @@ function App() {
         <Switch>
           <Route path="/SignUp">
             <SignUp />
+          </Route>
+          <Route path="/UserDashboard">
+            <UserDashboard />
           </Route>
           <Route path="/">
             <Home />
