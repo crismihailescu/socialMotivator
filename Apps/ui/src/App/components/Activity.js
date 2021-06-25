@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
+import { getThemeProps } from '@material-ui/styles';
 import Enlist from '../components/Enlist'
 
 const activityStyles = makeStyles({
@@ -28,7 +29,7 @@ function Activity(props) {
             <div className={classes.bottomLeft}>Activity title: {props.activityTitle}</div>
             <h4 className={classes.topLeft}>Activity type: {props.activityType}</h4>
         </div>
-        <Enlist></Enlist>
+        <Enlist picture= {[props.activityImg]} name = {props.activityTitle} type = {props.activityType}></Enlist>
     </div>
 }
 
