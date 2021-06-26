@@ -1,0 +1,28 @@
+.dashboard-container {
+    display: flex;
+    justify-content: center;
+}
+
+.dashboard {
+    display: flex;
+    width: 80%;
+    background-color: #ededed;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user-settings {
+    display: flex;
+    background-color: #bbb;
+    align-self: flex-end;
+}
+
+.dialog {
+    background-color: #999999;
+}
+
+.past-events {
+    margin-top: 15px;
+    padding-bottom: 100px;
+}
+

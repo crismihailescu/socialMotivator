@@ -82,6 +82,9 @@ function Nav() {
                 {/* <Link to = '/leaderboard'>
                     <li>Leaderboard</li>
                 </Link> */}
+                <Link to = '/UserDashboard' className = "Link">
+                    <li>My Account</li>
+                </Link>
             </ul>
         </nav>
     );
