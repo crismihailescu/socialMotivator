@@ -3,6 +3,8 @@
     bottom: 0;
     display: flex;
     justify-content: center;
-    background-color: burlywood;
+    background-color: #4c8bf5;
     width: 100%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
 }

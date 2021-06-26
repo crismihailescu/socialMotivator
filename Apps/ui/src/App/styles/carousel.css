@@ -29,7 +29,7 @@
 }
 
 .carousel-content > * {
-    width: 100%;
+    width: 1vm;
     flex-shrink: 0;
     flex-grow: 1;
 }
@@ -39,7 +39,7 @@
 }
 
 .carousel-content.show-3 > * {
-    width: calc(100% / 3);
+    width: calc(97% / 3);
 }
 
 .carousel-content.show-4 > * {
@@ -49,19 +49,20 @@
 .left-arrow, .right-arrow {
     position: absolute;
     z-index: 1;
-    top: 50%;
+    top: 45%;
     transform: translateY(-50%);
     width: 48px;
     height: 48px;
     border-radius: 24px;
-    background-color: white;
-    border: 1px solid #ddd;
+    background-color: black;
+    border: 1px solid white;
+    box-shadow: 0px 2px 0px 0px black;
 }
 
 .left-arrow {
-    left: 24px;
+    left: 15px;
 }
 
 .right-arrow {
-    right: 24px;
+    right: 8px;
 }

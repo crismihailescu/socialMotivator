@@ -5,38 +5,34 @@ import Carousel from '../components/Carousel'
 
 function ViewActivityByType(props) {
 
-    const [selectedActivity, setSelectedActivity] = useState('Outdoor');
+    let activityTypeList = createTypeList(props.activities);
 
-    function handleSelectionChange(event) {
-        setSelectedActivity(event.target.value);
+    function createTypeList(activities) {
+        let typeList = []
+        for (let activity of activities) {
+            if (!typeList.includes(activity.type)) {
+                typeList.push(activity.type)
+            }
+        }
+        return typeList
     }
 
     return <div className='activityByTypeWrapper'>
-        <h2>Select from activity types: </h2>
 
-        <select value={selectedActivity} onChange={handleSelectionChange}>
-            <option value='Outdoor'>Outdoor</option>
-            <option value='Indoor'>Indoor</option>
-            <option value='Group'>Group</option>
-            <option value='Solo'>Solo</option>
-        </select>
-
-        <h1>{selectedActivity}</h1>
-        <Carousel show={3}>
-        {/* <ul className='activityByTypeList'> */}
-            {props.activities.filter(d => d.type ===  selectedActivity ).map((item) => (
-                // <li key={item.title}>
-                //     <Activity activityTitle={item.title} activityType={item.type} activityImg={item.image}/>
-                // </li>
-                
-                <div>
-                    <div style={{padding: 8}}>
-                        <Activity activityTitle={item.title} activityType={item.type} activityImg={item.image}/>
-                    </div>
-                </div>
+        <div>
+            {activityTypeList.map((activityType) => (
+            <div>
+                <h1>{activityType}</h1>
+                <Carousel show={3}>
+                    {props.activities.filter(d => d.type ===  activityType ).map((item) => (
+                            <div style={{padding: 8}}>
+                                <Activity activityTitle={item.title} activityType={item.type} activityImg={item.image} activityLocation={item.location} activityDesc={item.desc}/>
+                            </div>
+                    ))}
+                </Carousel>
+            </div>
             ))}
-        {/* </ul> */}
-        </Carousel>
+        </div>
 
     </div>
 }
