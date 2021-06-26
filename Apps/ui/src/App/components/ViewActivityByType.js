@@ -6,7 +6,6 @@ import Carousel from '../components/Carousel'
 function ViewActivityByType(props) {
 
     let activityTypeList = createTypeList(props.activities);
-    const [selectedActivity, setSelectedActivity] = useState(props.activities);
 
     function createTypeList(activities) {
         let typeList = []

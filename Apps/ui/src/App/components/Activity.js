@@ -18,17 +18,36 @@ const activityStyles = makeStyles({
         top: 0,
         left: 16,
     },
+    sideBySize: {
+        width: '50%',
+        margin : 0,
+        float : 'left',
+    },
+    sideBySize2: {
+        width: '50%',
+        margin : 0,
+        float : 'left',
+        right: 335,
+    },
+    sideWrapper: {
+        width: '100%',
+        margin : 0,
+        // display: 'inline-block',
+        // verticalAlign: 'middle',
+    },
 });
 
 function Activity(props) {
     const classes = activityStyles();
     return <div>
         <div className={classes.activity}>
-            <img  alt="Render" style={{width: '300px', height: '300px'}} src={props.activityImg} />
-            <div className={classes.bottomLeft}>Activity title: {props.activityTitle}</div>
-            <h4 className={classes.topLeft}>Activity type: {props.activityType}</h4>
+            <img  alt="Render" style={{width: '100%', height: '300px', objectFit: 'cover'}} src={props.activityImg} />
+            <div className={classes.bottomLeft}></div>
         </div>
-        <Enlist></Enlist>
+        <div className={classes.sideWrapper}>
+            <h4 className={classes.sideBySize}>{props.activityTitle}</h4>
+            <Enlist className={classes.sideBySize2}/>
+        </div>
     </div>
 }
 
