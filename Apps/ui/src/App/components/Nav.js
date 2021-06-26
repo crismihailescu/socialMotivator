@@ -82,7 +82,7 @@ function Nav() {
                 {/* <Link to = '/leaderboard'>
                     <li>Leaderboard</li>
                 </Link> */}
-                <Link to = '/UserDashboard' className = "Link">
+                <Link to = '/UserDashboard' className = {largerThanPhone ? navStyle.LinkDesktop : navStyle.LinkMobile} onClick = {reset}>
                     <li>My Account</li>
                 </Link>
             </ul>

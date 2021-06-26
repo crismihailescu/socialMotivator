@@ -111,6 +111,7 @@ function Home() {
       <div className='home-body'>
         <AddActivity name={name} type={type} handleAddActivity={addActivity} onNameChange={handleNameChange} onTypeChange={handleTypeChange} />
         <ViewActivityByType activities={activities} />
+        <div className='whitespace'/>
       </div>
     </div>
   );
