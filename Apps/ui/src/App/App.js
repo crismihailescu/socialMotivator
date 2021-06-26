@@ -11,6 +11,7 @@ import SignIn from '../UserInput/signin';
 import Home from '../Home/home';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
+import UserDashboard from '../UserDashboard/UserDashboard';
 import { useSelector } from 'react-redux';
 
 function App() {
@@ -40,6 +41,9 @@ function App() {
           </Route>
           <Route path="/SignUp">
             <SignUp />
+          </Route>
+          <Route path="/UserDashboard">
+            <UserDashboard />
           </Route>
           <Route path="/">
             <Home />
