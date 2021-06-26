@@ -107,7 +107,7 @@ function Enlist(props) {
     return (
         <div className={dialogStyle.main}>
             <Button className={dialogStyle.openBtn} onClick={Open}>
-                Join
+                Sign Up
             </Button>
             <Dialog open={open} onClose={Close} className={dialogStyle.dialog}>
                 <Button className={dialogStyle.closeBtn} onClick={Close}>X</Button>
@@ -118,7 +118,7 @@ function Enlist(props) {
                         <br />
                         <br />
                     </>
-                    <Typography className={dialogStyle.description}>This is where the description would go</Typography>
+                    <Typography className={dialogStyle.description}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum fermentum fermentum ex eget fringilla. Etiam elementum nisl vel interdum condimentum. In fringilla posuere consequat. Praesent vitae lectus lorem. Ut ullamcorper, urna sit amet vehicula dignissim, lectus nisi euismod diam, sed consectetur lacus odio ut purus.</Typography>
                     <br />
                     <Button onClick={Join} className={dialogStyle.joinBtn}>Join</Button>
                 </DialogContent>

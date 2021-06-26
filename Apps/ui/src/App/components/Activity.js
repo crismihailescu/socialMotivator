@@ -20,21 +20,13 @@ const activityStyles = makeStyles({
         left: 16,
     },
     sideBySize: {
-        width: '50%',
-        margin : 0,
+        width: '40%',
+        margin : 8,
         float : 'left',
     },
+    // Move button to align on right side
     sideBySize2: {
-        width: '50%',
         margin : 0,
-        float : 'left',
-        right: 335,
-    },
-    sideWrapper: {
-        width: '100%',
-        margin : 0,
-        // display: 'inline-block',
-        // verticalAlign: 'middle',
     },
 });
 
@@ -43,7 +35,7 @@ function Activity(props) {
     return <div>
         <div className={classes.activity}>
             <img  alt="Render" style={{width: '100%', height: '300px', objectFit: 'cover'}} src={props.activityImg} />
-            <div className={classes.bottomLeft}></div>
+            <h3 className={classes.topLeft}>{props.activityLocation}</h3>
         </div>
         <div className={classes.sideWrapper}>
             <h4 className={classes.sideBySize}>{props.activityTitle}</h4>
