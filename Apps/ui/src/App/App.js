@@ -6,17 +6,20 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import SignUp from '../SignUp/signup';
+import SignUp from '../UserInput/signup';
+import SignIn from '../UserInput/signin';
 import Home from '../Home/home';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
 import UserDashboard from '../UserDashboard/UserDashboard';
+import { useSelector } from 'react-redux';
 
 function App() {
+  const user = useSelector(state => state.userInfo);
   return (
     <Router>
       <div>
-      {/* <div>
+        {/* <div>
         <nav>
           <ul>
             <li>
@@ -28,11 +31,14 @@ function App() {
           </ul>
         </nav> */}
 
-        <Nav/>
+        <Nav />
 
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
+          <Route path="/SignIn">
+            <SignIn />
+          </Route>
           <Route path="/SignUp">
             <SignUp />
           </Route>
