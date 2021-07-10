@@ -44,6 +44,7 @@ export const signUpSchema =
                 /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
             ),
         email: yup.string().email().required(),
+        type: yup.string(),
     })
 
 

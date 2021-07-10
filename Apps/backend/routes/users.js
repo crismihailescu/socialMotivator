@@ -26,12 +26,13 @@ router.get('/', async function (req, res, next) {
 
 /* GET one user. */
 
-router.get('/:username', async function (req, res, next) {
+router.get('/:username/:password', async function (req, res, next) {
   const username = req.params.username;
+  const password = req.params.password;
   const client = new MongoClient(uri, { useUnifiedTopology: true, useNewUrlParser: true });
   try {
     await client.connect();
-    const result = await client.db('CATS').collection('users').findOne({ username: username });
+    const result = await client.db('CATS').collection('users').findOne({ username: username, password: password });
     if (result) { res.send(result) } else { res.send(NOT_FOUND) };
   } finally {
     client.close()
@@ -40,9 +41,10 @@ router.get('/:username', async function (req, res, next) {
 
 /* sign up user. */
 
-router.post('/:username/:email', async function (req, res, next) {
-  const username = req.params.username;
-  const email = req.params.email;
+router.post('/', async function (req, res, next) {
+  let body = req.body;
+  const username = body.username;
+  const email = body.email;
   const client = new MongoClient(uri, { useUnifiedTopology: true, useNewUrlParser: true });
   try {
     await client.connect();
@@ -51,8 +53,9 @@ router.post('/:username/:email', async function (req, res, next) {
     if (username1 || email1) {
       res.send(DUPLICATE);
     } else {
-      await client.db('CATS').collection('users').insertOne(req.body);
-      res.send(INSERTED);
+      const id = await client.db('CATS').collection('users').insertOne(body);
+      body['_id'] = id;
+      res.send(body);
     }
   } finally {
     client.close()
