@@ -4,7 +4,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-
+import MapBox from './MapBox'
 
 function Enlist(props) {
 
@@ -18,7 +18,7 @@ function Enlist(props) {
             background: 'linear-gradient(#228b22, #70483c)',
             height: 'auto',
             maxHeight: 750,
-            maxwidth: 600,
+            maxwidth: 2000,
             width: 'auto',
             margin: 'auto',
             position: 'relative',
@@ -26,8 +26,8 @@ function Enlist(props) {
         dialogContent: {
             background: 'linear-gradient(#228b22, #70483c)',
             display: 'inline-block',
-            height: 500,
-            width: 400,
+            height: 1200,
+            width: 1800,
             textAlign: 'center',
             objectFit: 'contain'
         },
@@ -71,8 +71,15 @@ function Enlist(props) {
         }
     })
 
-    const dialogStyle = useStyles();
+    const mapStyles = makeStyles({
+        sizing: {
+          width: '100%',
 
+      }
+      })
+
+    const dialogStyle = useStyles();
+    const mapStyling = mapStyles();
 
     const slides = [props.picture[0], 'https://upload.wikimedia.org/wikipedia/commons/d/d5/Zackenberg.4.jpg']
 
@@ -120,12 +127,13 @@ function Enlist(props) {
                     </>
                     <Typography className={dialogStyle.description}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum fermentum fermentum ex eget fringilla. Etiam elementum nisl vel interdum condimentum. In fringilla posuere consequat. Praesent vitae lectus lorem. Ut ullamcorper, urna sit amet vehicula dignissim, lectus nisi euismod diam, sed consectetur lacus odio ut purus.</Typography>
                     <br />
+                    <MapBox className={mapStyling.sizing}/>
+                    <br />
                     <Button onClick={Join} className={dialogStyle.joinBtn}>Join</Button>
                 </DialogContent>
             </Dialog>
         </div>
-    )
-
+    );
 }
 
 export default Enlist;

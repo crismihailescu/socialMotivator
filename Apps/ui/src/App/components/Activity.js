@@ -1,5 +1,4 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { getThemeProps } from '@material-ui/styles';
 import Enlist from '../components/Enlist'
 
 const activityStyles = makeStyles({
@@ -32,7 +31,8 @@ const activityStyles = makeStyles({
 
 function Activity(props) {
     const classes = activityStyles();
-    return <div>
+    return (
+    <div>
         <div className={classes.activity}>
             <img  alt="Render" style={{width: '100%', height: '300px', objectFit: 'cover'}} src={props.activityImg} />
             <h3 className={classes.topLeft}>{props.activityLocation}</h3>
@@ -42,6 +42,7 @@ function Activity(props) {
             <Enlist className={classes.sideBySize2} picture= {[props.activityImg]} name = {props.activityTitle} type = {props.activityType}></Enlist>
         </div>
     </div>
+    );
 }
 
 export default Activity;
