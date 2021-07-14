@@ -120,28 +120,10 @@ const initialActivities = [
 
 function Home() {
     const [activities, setList] = useState(initialActivities);
-    const [name, setName] = useState('');
-    const [type, setType] = useState('');
-    const default_img = 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Larix_decidua_Aletschwald.jpg/330px-Larix_decidua_Aletschwald.jpg';
-
-    function addActivity() {
-        const newList = activities.concat({ name, type, default_img });
-        setList(newList);
-        console.log(newList);
-    }
-
-    function handleNameChange(event) {
-        setName(event.target.value);
-    }
-
-    function handleTypeChange(event) {
-        setType(event.target.value);
-    }
 
   return (
     <div className='home-container' >
       <div className='home-body'>
-        <AddActivity name={name} type={type} handleAddActivity={addActivity} onNameChange={handleNameChange} onTypeChange={handleTypeChange} />
         <ViewActivityByType activities={activities} />
         <div className='whitespace'/>
       </div>
