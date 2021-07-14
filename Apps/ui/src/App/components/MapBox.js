@@ -13,7 +13,6 @@ Geocode.enableDebug();
 const MapBox = (props) => {
   const mapContainerRef = useRef(null);
 
-  // initialize map when component mounts
   useEffect(() => {
 
   let currLat;
@@ -31,13 +30,12 @@ const MapBox = (props) => {
     console.log("Map latlon: " + currLat, currLon)
     map = new mapboxgl.Map({
       container: mapContainerRef.current,
-      // See style options here: https://docs.mapbox.com/api/maps/#styles
+      // Other style options: https://docs.mapbox.com/api/maps/#styles
       style: 'mapbox://styles/mapbox/streets-v11',
       center: [currLon, currLat],
       zoom: 12.5,
     });
 
-    // Create a default Marker and add it to the map.
     var marker1 = new mapboxgl.Marker()
     .setLngLat([currLon, currLat])
     .addTo(map);
@@ -47,10 +45,6 @@ const MapBox = (props) => {
     }
   )
 
-    // add navigation control (the +/- zoom buttons)
-    // map.addControl(new mapboxgl.NavigationControl(), 'bottom-right');
-
-    // clean up on unmount
     return () => map.remove();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -65,4 +59,4 @@ const MapBox = (props) => {
 
 export default MapBox;
 
-// Used this tutorial for the MapBox: https://dev.to/laney/react-mapbox-beginner-tutorial-2e35 and https://www.npmjs.com/package/react-geocode/v/0.2.2 for Geocoding
+// Used this tutorial for the MapBox: https://dev.to/laney/react-mapbox-beginner-tutorial-2e35, https://docs.mapbox.com/mapbox-gl-js/example/add-a-marker/, and https://www.npmjs.com/package/react-geocode/v/0.2.2 for Geocoding
