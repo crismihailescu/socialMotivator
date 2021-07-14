@@ -1,33 +1,68 @@
-import * as React from 'react';
-import {useState} from 'react';
-import {render} from 'react-dom';
-import MapGL from 'react-map-gl';
+import React, { useRef, useEffect } from 'react';
+import mapboxgl from 'mapbox-gl';
+import Geocode from "react-geocode";
 
-const MAPBOX_TOKEN = 'pk.eyJ1IjoiY3JpczEyd2U0IiwiYSI6ImNrcjF0YWE4ZTEwcm4yc3J4bHg3aGg5M28ifQ.0gL0Gp5H7E5vkabdVehgmw'; // Set your mapbox token here
+import '../styles/MapBox.css';
 
-function Root() {
+mapboxgl.accessToken = 'pk.eyJ1IjoiY3JpczEyd2U0IiwiYSI6ImNrcjF0YWE4ZTEwcm4yc3J4bHg3aGg5M28ifQ.0gL0Gp5H7E5vkabdVehgmw';
 
-  const [viewport, setViewport] = useState({
-    latitude: 37.8,
-    longitude: -122.4,
-    zoom: 14,
-    bearing: 0,
-    pitch: 0
-  });
+Geocode.setApiKey("AIzaSyDn-Zlc6aC9cHq8z1CxxSKMdbqd_4-bmDQ");
+Geocode.setLanguage("en");
+Geocode.enableDebug();
+
+const MapBox = (props) => {
+  const mapContainerRef = useRef(null);
+
+  // initialize map when component mounts
+  useEffect(() => {
+
+  let currLat;
+  let currLon;
+  let map;
+
+  Geocode.fromAddress(props.location).then(
+    response => {
+      console.log("Running goecode")
+    const { lat, lng } = response.results[0].geometry.location;
+    currLat = lat;
+    currLon = lng;
+    console.log("Lat & lon: " + currLat, currLon);
+
+    console.log("Map latlon: " + currLat, currLon)
+    map = new mapboxgl.Map({
+      container: mapContainerRef.current,
+      // See style options here: https://docs.mapbox.com/api/maps/#styles
+      style: 'mapbox://styles/mapbox/streets-v11',
+      center: [currLon, currLat],
+      zoom: 12.5,
+    });
+
+    // Create a default Marker and add it to the map.
+    var marker1 = new mapboxgl.Marker()
+    .setLngLat([currLon, currLat])
+    .addTo(map);
+    },
+    error => {
+      console.error("Geocode error: " + error);
+    }
+  )
+
+    // add navigation control (the +/- zoom buttons)
+    // map.addControl(new mapboxgl.NavigationControl(), 'bottom-right');
+
+    // clean up on unmount
+    return () => map.remove();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <MapGL
-      {...viewport}
-      width="100vw"
-      height="100vh"
-      mapStyle="mapbox://styles/mapbox/dark-v9"
-      onViewportChange={setViewport}
-      mapboxApiAccessToken={MAPBOX_TOKEN}
-    />
+    <>
+      <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+      <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+      <div className="map-container" ref={mapContainerRef} />
+    </>
   );
-}
+};
 
-document.body.style.margin = 0;
-render(<Root />, document.body.appendChild(document.createElement('div')));
+export default MapBox;
 
-export default Root;
+// Used this tutorial for the MapBox: https://dev.to/laney/react-mapbox-beginner-tutorial-2e35 and https://www.npmjs.com/package/react-geocode/v/0.2.2 for Geocoding

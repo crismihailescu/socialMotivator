@@ -17,8 +17,8 @@ function Enlist(props) {
         dialog: {
             background: 'linear-gradient(#228b22, #70483c)',
             height: 'auto',
-            maxHeight: 750,
-            maxwidth: 2000,
+            maxHeight: 1050,
+            maxwidth: 900,
             width: 'auto',
             margin: 'auto',
             position: 'relative',
@@ -26,8 +26,8 @@ function Enlist(props) {
         dialogContent: {
             background: 'linear-gradient(#228b22, #70483c)',
             display: 'inline-block',
-            height: 1200,
-            width: 1800,
+            height: 500,
+            width: 500,
             textAlign: 'center',
             objectFit: 'contain'
         },
@@ -73,8 +73,8 @@ function Enlist(props) {
 
     const mapStyles = makeStyles({
         sizing: {
-          width: '100%',
-
+          width: '100px',
+          height: '100px',
       }
       })
 
@@ -127,7 +127,7 @@ function Enlist(props) {
                     </>
                     <Typography className={dialogStyle.description}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum fermentum fermentum ex eget fringilla. Etiam elementum nisl vel interdum condimentum. In fringilla posuere consequat. Praesent vitae lectus lorem. Ut ullamcorper, urna sit amet vehicula dignissim, lectus nisi euismod diam, sed consectetur lacus odio ut purus.</Typography>
                     <br />
-                    <MapBox className={mapStyling.sizing}/>
+                    <MapBox className={mapStyling.sizing} location={props.location} />
                     <br />
                     <Button onClick={Join} className={dialogStyle.joinBtn}>Join</Button>
                 </DialogContent>

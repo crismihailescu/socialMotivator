@@ -39,7 +39,7 @@ function Activity(props) {
         </div>
         <div className={classes.sideWrapper}>
             <h4 className={classes.sideBySize}>{props.activityTitle}</h4>
-            <Enlist className={classes.sideBySize2} picture= {[props.activityImg]} name = {props.activityTitle} type = {props.activityType}></Enlist>
+            <Enlist className={classes.sideBySize2} picture= {[props.activityImg]} name = {props.activityTitle} type = {props.activityType} location = {props.activityLocation}></Enlist>
         </div>
     </div>
     );
