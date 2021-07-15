@@ -32,24 +32,13 @@ export const useYupValidationResolver = (validationSchema) =>
         [validationSchema]
     );
 
-export const signUpSchema =
+export const Schema =
     yup.object({
-        firstname: yup.string().required(),
-        lastname: yup.string().required(),
-        username: yup.string().required(),
         password: yup
             .string()
             .required()
             .matches(
                 /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
             ),
-        email: yup.string().email().required(),
-        type: yup.string(),
-    })
-
-
-export const signInSchema =
-    yup.object({
-        username: yup.string().required(),
-        password: yup.string().required(),
+        email: yup.string().email().required()
     })

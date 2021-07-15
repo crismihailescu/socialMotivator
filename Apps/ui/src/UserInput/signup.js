@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch } from 'react-redux';
-import { Box, TextField, Typography, Button, Paper } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import { Box, TextField, Typography, Button, Paper, Select, MenuItem } from '@material-ui/core';
+import { Link, withRouter } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { useYupValidationResolver, signUpSchema } from './Schema';
 
@@ -24,7 +24,13 @@ const useStyles = makeStyles({
         color: '#2196f3',
     },
     textField: {
-        marginTop: 40,
+        marginTop: 20,
+        width: '80%',
+        marginRight: 40,
+        marginLeft: 40,
+    },
+    textField2: {
+        marginTop: 10,
         width: '80%',
         marginRight: 40,
         marginLeft: 40,
@@ -32,15 +38,11 @@ const useStyles = makeStyles({
 });
 
 
-function SignUp() {
+function SignUp(props) {
     const resolver = useYupValidationResolver(signUpSchema);
 
     const classes = useStyles();
-    const { handleSubmit, formState: { errors }, register } = useForm({ resolver });
-
-    const Submit = () => {
-        console.log("Submitted");
-    }
+    const { handleSubmit, formState: { errors }, register, getValues } = useForm({ resolver });
     const dispatch = useDispatch();
     return (
         <Box>
@@ -75,7 +77,7 @@ function SignUp() {
                     id='username'
                     label='Username'
                     variant='outlined'
-                    className={classes.textField}
+                    className={errors.username ? classes.textField2 : classes.textField}
                     display='div'
                     InputLabelProps={{
                         shrink: true,
@@ -88,7 +90,7 @@ function SignUp() {
                 <TextField
                     id='password'
                     label='Password'
-                    className={classes.textField}
+                    className={errors.password ? classes.textField2 : classes.textField}
                     variant='outlined'
                     InputLabelProps={{
                         shrink: true,
@@ -102,7 +104,7 @@ function SignUp() {
                     id='email'
                     label='Email'
                     variant='outlined'
-                    className={classes.textField}
+                    className={errors.email ? classes.textField2 : classes.textField}
                     InputLabelProps={{
                         shrink: true,
                     }}
@@ -111,6 +113,21 @@ function SignUp() {
                     error={errors && errors.email}
                     helperText={errors && errors.email ? 'Valid Email Required' : ''}
                 />
+                <Select
+                    id='type'
+                    label='Type'
+                    variant='outlined'
+                    className={classes.textField}
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                    autoFocus
+                    {...register('type')}
+                    defaultValue={'User'}
+                >
+                    <MenuItem value={'User'}>User</MenuItem>
+                    <MenuItem value={'Company'}>Company</MenuItem>
+                </Select>
                 <Box mx={5} mb={2}>
                     <Typography variant='body2'>
                         Already have an account? Click
@@ -121,7 +138,7 @@ function SignUp() {
                     </Typography>
                 </Box>
                 <Box display="flex" flexDirection="row-reverse" mx={5} mb={4}>
-                    <Button variant='outlined' className={classes.button} onClick={handleSubmit(() => Submit())}>
+                    <Button variant='outlined' className={classes.button} onClick={handleSubmit(() => dispatch({ type: 'SIGN_UP', body: getValues(), history: props.history }))}>
                         Sign Up
                     </Button>
                 </Box>
@@ -131,4 +148,4 @@ function SignUp() {
 
 }
 
-export default SignUp;
+export default withRouter(SignUp);
