@@ -10,6 +10,16 @@ const userInfoReducer = (state = {}, action) => {
             return state;
         case 'SIGN_UP_FAIL':
             return state;
+        case 'SIGN_OUT':
+            state = {};
+            return state;
+        case 'UPDATE_SUCCESS':
+            console.log("triggered");
+            state = action.user;
+            return state;
+        case 'UPDATE_FAIL':
+            console.log("triggered");
+            return state;
         default:
             return state;
     }

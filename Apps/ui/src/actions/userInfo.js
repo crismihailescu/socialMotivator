@@ -38,3 +38,29 @@ export const signUpFailure = () => {
         type: 'SIGN_UP_FAIL'
     }
 }
+
+export const signOut = () => {
+    return {
+        type: 'SIGN_OUT'
+    }
+}
+
+export const updateUser = (body) => {
+    return {
+        type: 'UPDATE_USER',
+        body
+    }
+}
+
+export const updateSuccess = (user) => {
+    return {
+        type: 'SIGN_UP_SUCCESS',
+        user
+    }
+}
+
+export const updateFailure = () => {
+    return {
+        type: 'SIGN_UP_FAIL'
+    }
+}

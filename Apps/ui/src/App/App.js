@@ -10,12 +10,12 @@ import SignUp from '../UserInput/signup';
 import SignIn from '../UserInput/signin';
 import Home from '../Home/home';
 import Nav from './components/Nav';
+import Group from '../Groups/group';
+import GroupView from '../Groups/groupView';
 import Footer from './components/Footer';
 import UserDashboard from '../UserDashboard/UserDashboard';
-import { useSelector } from 'react-redux';
 
 function App() {
-  const user = useSelector(state => state.userInfo);
   return (
     <Router>
       <div>
@@ -44,6 +44,12 @@ function App() {
           </Route>
           <Route path="/UserDashboard">
             <UserDashboard />
+          </Route>
+          <Route path="/Groups/:name">
+            <GroupView />
+          </Route>
+          <Route path="/Groups">
+            <Group />
           </Route>
           <Route path="/">
             <Home />
