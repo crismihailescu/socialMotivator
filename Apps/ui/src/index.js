@@ -3,16 +3,23 @@ import ReactDOM from 'react-dom';
 import App from './App/App';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import userInfoReducer from './reducers/userInfo';
+import createSagaMiddleware from "redux-saga";
+import { rootSaga } from './saga/root';
+import groupsReducer from './reducers/groups';
 
 const AppReducer = combineReducers({
   userInfo: userInfoReducer,
-
+  group: groupsReducer,
 })
 
-const store = createStore(AppReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const sagaMiddleware = createSagaMiddleware();
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(AppReducer, composeEnhancer(applyMiddleware(sagaMiddleware)));
+sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
   <React.StrictMode>
