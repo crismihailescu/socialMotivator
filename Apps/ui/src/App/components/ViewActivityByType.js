@@ -25,7 +25,7 @@ function ViewActivityByType(props) {
                 <Carousel show={3}>
                     {props.activities.filter(d => d.type ===  activityType ).map((item) => (
                             <div style={{padding: 8}}>
-                                <Activity activityTitle={item.title} activityType={item.type} activityImg={item.image} activityLocation={item.location} activityDesc={item.desc}/>
+                                <Activity activityTitle={item.title} activityType={item.type} activityImg={item.image} activityLocation={item.location} activityDesc={item.desc} location={item.location} start = {item.start} duration = {item.duration}/>
                             </div>
                     ))}
                 </Carousel>

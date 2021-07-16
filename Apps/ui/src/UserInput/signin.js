@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch } from 'react-redux';
 import { Box, TextField, Typography, Button, Paper } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { useYupValidationResolver, signInSchema } from './Schema';
 
@@ -32,15 +32,12 @@ const useStyles = makeStyles({
 });
 
 
-function SignIn() {
+function SignIn(props) {
     const resolver = useYupValidationResolver(signInSchema);
 
     const classes = useStyles();
-    const { handleSubmit, formState: { errors }, register } = useForm({ resolver });
+    const { handleSubmit, formState: { errors }, register, getValues } = useForm({ resolver });
 
-    const Submit = () => {
-        console.log("Submitted");
-    }
     const dispatch = useDispatch();
     return (
         <Box>
@@ -82,7 +79,7 @@ function SignIn() {
                     </Typography>
                 </Box>
                 <Box display="flex" flexDirection="row-reverse" mx={5} mb={4}>
-                    <Button variant='outlined' className={classes.button} onClick={handleSubmit(() => Submit())}>
+                    <Button variant='outlined' className={classes.button} onClick={handleSubmit(() => dispatch({ type: 'SIGN_IN', username: getValues('username'), password: getValues('password'), history: props.history }))}>
                         Sign In
                     </Button>
                 </Box>
@@ -92,4 +89,4 @@ function SignIn() {
 
 }
 
-export default SignIn;
+export default withRouter(SignIn);
