@@ -11,7 +11,7 @@ const initialActivities = [
     desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum fermentum fermentum ex eget fringilla. Etiam elementum nisl vel interdum condimentum. In fringilla posuere consequat. Praesent vitae lectus lorem. Ut ullamcorper, urna sit amet vehicula dignissim, lectus nisi euismod diam, sed consectetur lacus odio ut purus.',
     location: 'East Vancouver',
     start: [2021, 8, 14, 10, 30],
-    duration: {hours: 3, minutes: 0},
+    duration: { hours: 3, minutes: 0 },
   },
   {
     title: 'Waikiki Beach Cleanup',
@@ -20,7 +20,7 @@ const initialActivities = [
     desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum fermentum fermentum ex eget fringilla. Etiam elementum nisl vel interdum condimentum. In fringilla posuere consequat. Praesent vitae lectus lorem. Ut ullamcorper, urna sit amet vehicula dignissim, lectus nisi euismod diam, sed consectetur lacus odio ut purus.',
     location: 'Anmore',
     start: [2021, 8, 14, 10, 30],
-    duration: {hours: 3, minutes: 0},
+    duration: { hours: 3, minutes: 0 },
   },
   {
     title: 'Fundraising',
@@ -29,7 +29,7 @@ const initialActivities = [
     desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum fermentum fermentum ex eget fringilla. Etiam elementum nisl vel interdum condimentum. In fringilla posuere consequat. Praesent vitae lectus lorem. Ut ullamcorper, urna sit amet vehicula dignissim, lectus nisi euismod diam, sed consectetur lacus odio ut purus.',
     location: 'Port Moody',
     start: [2021, 8, 14, 10, 30],
-    duration: {hours: 3, minutes: 0},
+    duration: { hours: 3, minutes: 0 },
   },
   {
     title: 'Soup Kitchen',
@@ -38,7 +38,7 @@ const initialActivities = [
     desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum fermentum fermentum ex eget fringilla. Etiam elementum nisl vel interdum condimentum. In fringilla posuere consequat. Praesent vitae lectus lorem. Ut ullamcorper, urna sit amet vehicula dignissim, lectus nisi euismod diam, sed consectetur lacus odio ut purus.',
     location: 'Kelowna',
     start: [2021, 8, 14, 10, 30],
-    duration: {hours: 3, minutes: 0},
+    duration: { hours: 3, minutes: 0 },
   },
   {
     title: 'Volunteer Driver',
@@ -47,7 +47,7 @@ const initialActivities = [
     desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum fermentum fermentum ex eget fringilla. Etiam elementum nisl vel interdum condimentum. In fringilla posuere consequat. Praesent vitae lectus lorem. Ut ullamcorper, urna sit amet vehicula dignissim, lectus nisi euismod diam, sed consectetur lacus odio ut purus.',
     location: 'Port Coquitlam',
     start: [2021, 8, 14, 10, 30],
-    duration: {hours: 3, minutes: 0},
+    duration: { hours: 3, minutes: 0 },
   },
   {
     title: 'School Dance',
@@ -56,7 +56,7 @@ const initialActivities = [
     desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum fermentum fermentum ex eget fringilla. Etiam elementum nisl vel interdum condimentum. In fringilla posuere consequat. Praesent vitae lectus lorem. Ut ullamcorper, urna sit amet vehicula dignissim, lectus nisi euismod diam, sed consectetur lacus odio ut purus.',
     location: 'North Vancouver',
     start: [2021, 8, 14, 10, 30],
-    duration: {hours: 3, minutes: 0},
+    duration: { hours: 3, minutes: 0 },
   },
   {
     title: 'Retirement Party',
@@ -65,7 +65,7 @@ const initialActivities = [
     desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum fermentum fermentum ex eget fringilla. Etiam elementum nisl vel interdum condimentum. In fringilla posuere consequat. Praesent vitae lectus lorem. Ut ullamcorper, urna sit amet vehicula dignissim, lectus nisi euismod diam, sed consectetur lacus odio ut purus.',
     location: 'Hope',
     start: [2021, 8, 14, 10, 30],
-    duration: {hours: 3, minutes: 0},
+    duration: { hours: 3, minutes: 0 },
   },
   {
     title: 'Childcare',
@@ -74,7 +74,7 @@ const initialActivities = [
     desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum fermentum fermentum ex eget fringilla. Etiam elementum nisl vel interdum condimentum. In fringilla posuere consequat. Praesent vitae lectus lorem. Ut ullamcorper, urna sit amet vehicula dignissim, lectus nisi euismod diam, sed consectetur lacus odio ut purus.',
     location: 'Lake Cowichan',
     start: [2021, 8, 14, 10, 30],
-    duration: {hours: 3, minutes: 0},
+    duration: { hours: 3, minutes: 0 },
   },
   {
     title: 'Miller Park Cleanup',
@@ -83,7 +83,7 @@ const initialActivities = [
     desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum fermentum fermentum ex eget fringilla. Etiam elementum nisl vel interdum condimentum. In fringilla posuere consequat. Praesent vitae lectus lorem. Ut ullamcorper, urna sit amet vehicula dignissim, lectus nisi euismod diam, sed consectetur lacus odio ut purus.',
     location: 'Coquitlam',
     start: [2021, 8, 14, 10, 30],
-    duration: {hours: 3, minutes: 0},
+    duration: { hours: 3, minutes: 0 },
   },
   {
     title: 'Queens Beach Cleanup',
@@ -92,7 +92,7 @@ const initialActivities = [
     desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum fermentum fermentum ex eget fringilla. Etiam elementum nisl vel interdum condimentum. In fringilla posuere consequat. Praesent vitae lectus lorem. Ut ullamcorper, urna sit amet vehicula dignissim, lectus nisi euismod diam, sed consectetur lacus odio ut purus.',
     location: 'Burnaby',
     start: [2021, 8, 14, 10, 30],
-    duration: {hours: 3, minutes: 0},
+    duration: { hours: 3, minutes: 0 },
   },
   {
     title: 'Paladin Beach Cleanup',
@@ -101,7 +101,7 @@ const initialActivities = [
     desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum fermentum fermentum ex eget fringilla. Etiam elementum nisl vel interdum condimentum. In fringilla posuere consequat. Praesent vitae lectus lorem. Ut ullamcorper, urna sit amet vehicula dignissim, lectus nisi euismod diam, sed consectetur lacus odio ut purus.',
     location: 'Vancouver',
     start: [2021, 8, 14, 10, 30],
-    duration: {hours: 3, minutes: 0},
+    duration: { hours: 3, minutes: 0 },
   },
   {
     title: 'Blue Mountain Park Cleanup',
@@ -110,7 +110,7 @@ const initialActivities = [
     desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum fermentum fermentum ex eget fringilla. Etiam elementum nisl vel interdum condimentum. In fringilla posuere consequat. Praesent vitae lectus lorem. Ut ullamcorper, urna sit amet vehicula dignissim, lectus nisi euismod diam, sed consectetur lacus odio ut purus.',
     location: 'Vancouver',
     start: [2021, 8, 14, 10, 30],
-    duration: {hours: 3, minutes: 0},
+    duration: { hours: 3, minutes: 0 },
   },
   {
     title: 'White Pine Beach Cleanup',
@@ -119,7 +119,7 @@ const initialActivities = [
     desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum fermentum fermentum ex eget fringilla. Etiam elementum nisl vel interdum condimentum. In fringilla posuere consequat. Praesent vitae lectus lorem. Ut ullamcorper, urna sit amet vehicula dignissim, lectus nisi euismod diam, sed consectetur lacus odio ut purus.',
     location: 'Vancouver',
     start: [2021, 8, 14, 10, 30],
-    duration: {hours: 3, minutes: 0},
+    duration: { hours: 3, minutes: 0 },
   },
   {
     title: 'School Field Trip',
@@ -128,7 +128,7 @@ const initialActivities = [
     desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum fermentum fermentum ex eget fringilla. Etiam elementum nisl vel interdum condimentum. In fringilla posuere consequat. Praesent vitae lectus lorem. Ut ullamcorper, urna sit amet vehicula dignissim, lectus nisi euismod diam, sed consectetur lacus odio ut purus.',
     location: 'Annmore',
     start: [2021, 8, 14, 10, 30],
-    duration: {hours: 3, minutes: 0},
+    duration: { hours: 3, minutes: 0 },
   },
   {
     title: 'Youth Education',
@@ -137,7 +137,7 @@ const initialActivities = [
     desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum fermentum fermentum ex eget fringilla. Etiam elementum nisl vel interdum condimentum. In fringilla posuere consequat. Praesent vitae lectus lorem. Ut ullamcorper, urna sit amet vehicula dignissim, lectus nisi euismod diam, sed consectetur lacus odio ut purus.',
     location: 'Vancouver',
     start: [2021, 8, 14, 10, 30],
-    duration: {hours: 3, minutes: 0},
+    duration: { hours: 3, minutes: 0 },
   },
   {
     title: 'Event Photographer',
@@ -146,36 +146,36 @@ const initialActivities = [
     desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum fermentum fermentum ex eget fringilla. Etiam elementum nisl vel interdum condimentum. In fringilla posuere consequat. Praesent vitae lectus lorem. Ut ullamcorper, urna sit amet vehicula dignissim, lectus nisi euismod diam, sed consectetur lacus odio ut purus.',
     location: 'Vancouver',
     start: [2021, 8, 14, 10, 30],
-    duration: {hours: 3, minutes: 0},
+    duration: { hours: 3, minutes: 0 },
   },
 ];
 
 function Home() {
-    const [activities, setList] = useState(initialActivities);
-    const [name, setName] = useState('');
-    const [type, setType] = useState('');
-    const default_img = 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Larix_decidua_Aletschwald.jpg/330px-Larix_decidua_Aletschwald.jpg';
+  const [activities, setList] = useState(initialActivities);
+  const [name, setName] = useState('');
+  const [type, setType] = useState('');
+  const default_img = 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Larix_decidua_Aletschwald.jpg/330px-Larix_decidua_Aletschwald.jpg';
 
-    function addActivity() {
-        const newList = activities.concat({ name, type, default_img });
-        setList(newList);
-        console.log(newList);
-    }
+  function addActivity() {
+    const newList = activities.concat({ name, type, default_img });
+    setList(newList);
+    console.log(newList);
+  }
 
-    function handleNameChange(event) {
-        setName(event.target.value);
-    }
+  function handleNameChange(event) {
+    setName(event.target.value);
+  }
 
-    function handleTypeChange(event) {
-        setType(event.target.value);
-    }
+  function handleTypeChange(event) {
+    setType(event.target.value);
+  }
 
   return (
     <div className='home-container' >
       <div className='home-body'>
-        <AddActivity name={name} type={type}  handleAddActivity={addActivity} onNameChange={handleNameChange} onTypeChange={handleTypeChange} />
+        <AddActivity name={name} type={type} handleAddActivity={addActivity} onNameChange={handleNameChange} onTypeChange={handleTypeChange} />
         <ViewActivityByType activities={activities} />
-        <div className='whitespace'/>
+        <div className='whitespace' />
       </div>
     </div>
   );

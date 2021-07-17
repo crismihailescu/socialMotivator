@@ -1,5 +1,4 @@
 import Activity from './Activity';
-import { useState } from 'react';
 import '../styles/ActivityByType.css';
 import Carousel from '../components/Carousel'
 
