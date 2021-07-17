@@ -3,6 +3,8 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useSelector } from 'react-redux';
 import { object } from 'yup/lib/locale';
+import Carousel from '../App/components/Carousel'
+import Activity from '../App/components/Activity'
 
 const useStyles = makeStyles({
     root: {
@@ -16,25 +18,31 @@ const useStyles = makeStyles({
     },
     card: {
         position: 'relative',
-        width: '80vw',
+        width: '100%',
         height: '20vh',
         marginBottom: 20,
     },
     overlay: {
         position: 'absolute',
         top: '10vh',
-        left: '20px',
-        color: 'black',
-        backgroundColor: 'white',
-        fontSize: '30px'
+        left: '100px',
+        color: 'white',
+        fontSize: '40px',
+        fontWeight: 'bold',
+
     },
     members: {
         marginLeft: 170,
+        fontSize: '20px',
     },
     event: {
         marginLeft: 170,
         marginTop: 50,
         marginBottom: 20,
+    },
+    carousel: {
+        marginLeft: 163,
+        marginRight: 100,
     }
 });
 
@@ -70,6 +78,15 @@ function GroupView() {
             <Typography variant='h6' className={classes.event}>
                 Signed-Up Events
             </Typography>
+            <div className={classes.carousel}>
+                <Carousel show={3} >
+                    {group.events.map((item) => (
+                                    <div style={{padding: 8}}>
+                                        <Activity activityTitle={item.title} activityType={item.type} activityImg={item.image} activityLocation={item.location} activityDesc={item.desc}/>
+                                    </div>
+                            ))}
+                </Carousel>
+            </div>
         </>);
 }
 
