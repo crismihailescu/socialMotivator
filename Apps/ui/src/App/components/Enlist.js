@@ -4,10 +4,17 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import MapBox from './MapBox'
 
 
 function Enlist(props) {
-
+    const ics = require('ics');
+    const event = {
+        start: props.start,
+        duration: props.duration,
+        location: props.location,
+        title: props.name,
+    }
     const useStyles = makeStyles({
         main: {
             textAlign: 'center',
@@ -17,8 +24,8 @@ function Enlist(props) {
         dialog: {
             background: 'linear-gradient(#228b22, #70483c)',
             height: 'auto',
-            maxHeight: 750,
-            maxwidth: 600,
+            maxHeight: 1050,
+            maxwidth: 900,
             width: 'auto',
             margin: 'auto',
             position: 'relative',
@@ -27,7 +34,7 @@ function Enlist(props) {
             background: 'linear-gradient(#228b22, #70483c)',
             display: 'inline-block',
             height: 500,
-            width: 400,
+            width: 500,
             textAlign: 'center',
             objectFit: 'contain'
         },
@@ -68,16 +75,35 @@ function Enlist(props) {
             maxHeight: 450,
             maxWidth: 375,
             objectFit: 'contain',
+        },
+        calendarBtn: {
+            margin: 'auto',
+            variant: 'outlined',
+            background: '#4CAF50',
+            fontFamily: 'verdana',
+            color: 'white',
+            textAlign: 'right',
+        },
+        link: {
+            textDecoration: 'none'
+        }
+    })
+
+    const mapStyles = makeStyles({
+        sizing: {
+            width: '100px',
+            height: '100px',
         }
     })
 
     const dialogStyle = useStyles();
-
+    const mapStyling = mapStyles();
 
     const slides = [props.picture[0], 'https://upload.wikimedia.org/wikipedia/commons/d/d5/Zackenberg.4.jpg']
 
     const [open, setOpen] = React.useState(false);
     const [pic, setPic] = React.useState(props.picture[0]);
+    const [calEvent, setCalEvent] = React.useState('');
 
     const Open = () => {
         setOpen(true);
@@ -92,21 +118,22 @@ function Enlist(props) {
         console.log("eventually this will pass the joined activities back up");
     }
 
-    const Choose = () => {
-        // if (props.picture.length > 1) {
-        //     setPic(props.picture[1]);
-        // }
-        // console.log('eneter');
-        setPic(slides[1]);
-    }
 
-    const Reset = () => {
-        setPic(slides[0]);
+    const createCalEvent = () => {
+        ics.createEvent(event, (err, value) => {
+            if (err) {
+                console.log(err)
+            }
+            let file = new Blob([value]);
+            let newUrl = URL.createObjectURL(file);
+            setCalEvent(newUrl);
+            console.log(props.title);
+        })
     }
 
     return (
         <div className={dialogStyle.main}>
-            <Button className={dialogStyle.openBtn} onClick={Open}>
+            <Button className={dialogStyle.openBtn} onClick={() => { Open(); createCalEvent(); }}>
                 Sign Up
             </Button>
             <Dialog open={open} onClose={Close} className={dialogStyle.dialog}>
@@ -114,18 +141,24 @@ function Enlist(props) {
                 <DialogContent className={dialogStyle.dialogContent}>
                     <Typography className={dialogStyle.title}>{props.name}</Typography>
                     <>
-                        <img className={dialogStyle.activityImg} src={pic} onMouseEnter={Choose} onMouseLeave={Reset}></img>
+                        <img className={dialogStyle.activityImg} src={pic}></img>
                         <br />
                         <br />
                     </>
                     <Typography className={dialogStyle.description}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum fermentum fermentum ex eget fringilla. Etiam elementum nisl vel interdum condimentum. In fringilla posuere consequat. Praesent vitae lectus lorem. Ut ullamcorper, urna sit amet vehicula dignissim, lectus nisi euismod diam, sed consectetur lacus odio ut purus.</Typography>
                     <br />
+                    <MapBox className={mapStyling.sizing} location={props.location} />
+                    <br />
                     <Button onClick={Join} className={dialogStyle.joinBtn}>Join</Button>
+                    <br />
+                    <br />
+                    <a className={dialogStyle.link} href={calEvent} download={`${props.name}.ics`}>
+                        <Button className={dialogStyle.calendarBtn}>Add to calendar</Button>
+                    </a>
                 </DialogContent>
             </Dialog>
         </div>
-    )
-
+    );
 }
 
 export default Enlist;
