@@ -94,7 +94,11 @@ function Nav() {
                 {/* <Link to = '/leaderboard'>
                     <li>Leaderboard</li>
                 </Link> */}
-                {Object.keys(user).length !== 0 && <Link to='/UserDashboard' className={largerThanPhone ? navStyle.LinkDesktop : navStyle.LinkMobile} onClick={reset}>
+                {Object.keys(user).length !== 0 && user.type == 'User' && <Link to='/UserDashboard' className={largerThanPhone ? navStyle.LinkDesktop : navStyle.LinkMobile} onClick={reset}>
+                    <li>My Account</li>
+                </Link>
+                }
+                {Object.keys(user).length !== 0 && user.type == 'Company' && <Link to='/OrganizationDashboard' className={largerThanPhone ? navStyle.LinkDesktop : navStyle.LinkMobile} onClick={reset}>
                     <li>My Account</li>
                 </Link>
                 }
