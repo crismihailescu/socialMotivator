@@ -1,27 +1,14 @@
-import { useState } from 'react';
-import { Checkbox, FormControlLabel } from '@material-ui/core';
+import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import '../App/styles/UserDashboard.css';
-import SettingsIcon from '@material-ui/icons/Settings';
-import Dialog from '@material-ui/core/Dialog';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import { blue } from '@material-ui/core/colors';
-import TextField from '@material-ui/core/TextField';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
-import Carousel from '../App/components/Carousel'
-import Activity from '../App/components/Activity';
-import { useDispatch, useSelector } from 'react-redux';
-import { useForm } from 'react-hook-form';
-import { useYupValidationResolver } from '../UserInput/Schema';
-import { Schema } from './Schema';
+import AccountSettings from './AccountSettings.js';
+
 
 //Source: gridList modelled from example @ https://material-ui.com/components/grid-list/
 
@@ -111,44 +98,15 @@ const userPastActivities = [
 ];
 
 function UserDashboard() {
-    const dispatch = useDispatch();
     const user = useSelector(state => state.userInfo);
     const classes = useStyles();
-    const resolver = useYupValidationResolver(Schema);
-    const { handleSubmit, formState: { errors }, register, getValues } = useForm({ resolver, defaultValues: { email: user.email, password: user.password }, });
-
-    //TODO: these values will be retrieved, not set here
-    const [showPw, setShowPw] = useState(false);
-    const [values, setValues] = useState({
-        username: user.username,
-        firstname: user.firstname,
-        lastname: user.lastname
-    });
-
-    const handleChange = (prop) => (event) => {
-        setValues({ ...values, [prop]: event.target.value });
-    };
-
-    const [settingsOpen, setSettingsOpen] = useState(false);
-
-    function handleSettingsOpen() {
-        setSettingsOpen(true);
-    }
-
-    function handleSettingsClose() {
-        setSettingsOpen(false);
-    }
-
 
     return <div className='dashboard-container'>
         <div className='dashboard'>
             <div className='user-settings'>
-                <Button onClick={handleSettingsOpen}>
-                    < SettingsIcon />
-                </Button>
-
+                <AccountSettings />
             </div>
-            <h1>Hello, {values.username}.</h1>
+            <h1>Hello, {user.firstname}.</h1>
 
             <div >
                 <p>Your upcoming events: </p>
@@ -173,7 +131,6 @@ function UserDashboard() {
                         ))}
                     </GridList>
                 </div>
-
             </div>
 
 
@@ -200,78 +157,9 @@ function UserDashboard() {
                         ))}
                     </GridList>
                 </div>
-
             </div>
 
         </div>
-
-        <Dialog open={settingsOpen} onBackdropClick={handleSettingsClose} className={classes.root}>
-            <DialogTitle>Settings</DialogTitle>
-            <DialogContent className={classes.dialogContent}>
-                <TextField
-                    id="firstname"
-                    label="First Name"
-                    type="firstname"
-                    value={values.firstname}
-                    variant="outlined"
-                    className={classes.textField}
-                    onChange={handleChange('firstname')}
-                />
-                <TextField
-                    id="lastname"
-                    label="Last Name"
-                    type="lastname"
-                    value={values.lastname}
-                    variant="outlined"
-                    className={classes.textField}
-                    onChange={handleChange('lastname')}
-                />
-                <TextField
-                    id="username"
-                    label="Username"
-                    type="username"
-                    value={values.username}
-                    variant="outlined"
-                    className={classes.textField}
-                    onChange={handleChange('username')}
-                />
-                <TextField
-                    id="email"
-                    label="Email"
-                    type="email"
-                    defaultValue={user.email}
-                    variant="outlined"
-                    className={classes.textField}
-                    {...register('email')}
-                    error={errors && errors.password}
-                    helperText={errors && errors.password ? 'Valid Email Required' : ''}
-                />
-                <TextField
-                    id="password"
-                    label="Password"
-                    type={showPw ? "text" : "password"}
-                    variant="outlined"
-                    className={classes.textField}
-                    defaultValue={user.password}
-                    {...register('password')}
-                    error={errors && errors.password}
-                    helperText={errors && errors.password ? 'Must Contain 8 Characters, 1 Uppercase, 1 Lowercase, 1 Number and 1 special case character' : ''}
-                />
-                <FormControlLabel
-                    control={<Checkbox checked={showPw} onChange={() => setShowPw(!showPw)} />}
-                    label="Show Password"
-                />
-            </DialogContent>
-            <Button className={classes.button} onClick={handleSubmit(() => {
-                dispatch({
-                    type: 'UPDATE_USER', body: {
-                        ...user, password: getValues('password'),
-                        firstname: values.firstname, lastname: values.lastname, username: values.username, email: getValues('email')
-                    }
-                })
-                setSettingsOpen(false);
-            })}>Update</Button>
-        </Dialog>
 
     </div>
 }

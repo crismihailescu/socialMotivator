@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import AddActivity from '../App/components/AddActivity';
 import { makeStyles } from '@material-ui/core/styles';
 import '../App/styles/UserDashboard.css';
@@ -8,7 +9,7 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
-import { useDispatch, useSelector } from 'react-redux';
+import AccountSettings from './AccountSettings.js';
 
 const orgUpcomingActivities = [
     {
@@ -84,16 +85,6 @@ function OrganizationDashboard() {
     const default_img = 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Larix_decidua_Aletschwald.jpg/330px-Larix_decidua_Aletschwald.jpg';
 
 
-    const [values, setValues] = useState({
-        username: user.username,
-        firstname: user.firstname,
-        lastname: user.lastname
-    });
-
-    const handleChange = (prop) => (event) => {
-        setValues({ ...values, [prop]: event.target.value });
-    };
-
     function addActivity() {
         const newList = activities.concat({ name, type, default_img });
         setList(newList);
@@ -110,8 +101,11 @@ function OrganizationDashboard() {
 
     return <div className='dashboard-container'>
         <div className='dashboard'>
-            <h1>Hello, {values.username}.</h1>
-            
+            <div className='user-settings'>
+                <AccountSettings />
+            </div>
+            <h1>Hello, {user.firstname}.</h1>
+
             <AddActivity name={name} type={type} handleAddActivity={addActivity} onNameChange={handleNameChange} onTypeChange={handleTypeChange} />
 
             <div >
@@ -169,7 +163,6 @@ function OrganizationDashboard() {
 
         </div>
 
-        {/* <AddActivity name={name} type={type} handleAddActivity={addActivity} onNameChange={handleNameChange} onTypeChange={handleTypeChange} /> */}
     </div>
 }
 

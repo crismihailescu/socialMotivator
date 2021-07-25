@@ -13,8 +13,8 @@ import Nav from './components/Nav';
 import Group from '../Groups/group';
 import GroupView from '../Groups/groupView';
 import Footer from './components/Footer';
-import UserDashboard from '../UserDashboard/UserDashboard';
-import OrganizationDashboard from '../OrganizationDashboard/OrganizationDashboard';
+import UserDashboard from '../Dashboards/UserDashboard';
+import OrganizationDashboard from '../Dashboards/OrganizationDashboard';
 
 function App() {
   return (
