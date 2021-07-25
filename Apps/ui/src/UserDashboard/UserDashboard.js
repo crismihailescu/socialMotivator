@@ -22,6 +22,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { useYupValidationResolver } from '../UserInput/Schema';
 import { Schema } from './Schema';
+import CustomSnackbar from '../App/components/Snackbar';
 
 //Source: gridList modelled from example @ https://material-ui.com/components/grid-list/
 
@@ -115,19 +116,10 @@ function UserDashboard() {
     const user = useSelector(state => state.userInfo);
     const classes = useStyles();
     const resolver = useYupValidationResolver(Schema);
-    const { handleSubmit, formState: { errors }, register, getValues } = useForm({ resolver, defaultValues: { email: user.email, password: user.password }, });
+    const { handleSubmit, formState: { errors }, register, getValues, setValue } = useForm({ resolver, defaultValues: { email: user.email, password: user.password, firstname: user.firstname, lastname: user.lastname, username: user.username } });
 
     //TODO: these values will be retrieved, not set here
     const [showPw, setShowPw] = useState(false);
-    const [values, setValues] = useState({
-        username: user.username,
-        firstname: user.firstname,
-        lastname: user.lastname
-    });
-
-    const handleChange = (prop) => (event) => {
-        setValues({ ...values, [prop]: event.target.value });
-    };
 
     const [settingsOpen, setSettingsOpen] = useState(false);
 
@@ -138,8 +130,6 @@ function UserDashboard() {
     function handleSettingsClose() {
         setSettingsOpen(false);
     }
-
-
     return <div className='dashboard-container'>
         <div className='dashboard'>
             <div className='user-settings'>
@@ -148,7 +138,7 @@ function UserDashboard() {
                 </Button>
 
             </div>
-            <h1>Hello, {values.username}.</h1>
+            <h1>Hello, {user.username}.</h1>
 
             <div >
                 <p>Your upcoming events: </p>
@@ -212,28 +202,37 @@ function UserDashboard() {
                     id="firstname"
                     label="First Name"
                     type="firstname"
-                    value={values.firstname}
                     variant="outlined"
+                    defaultValue={user.firstname}
                     className={classes.textField}
-                    onChange={handleChange('firstname')}
+                    {...register('firstname')}
+                    onChange={(event) => { setValue('firstname', event.target.value); user.firstname = event.target.value }}
+                    error={errors && errors.firstname}
+                    helperText={errors && errors.firstname ? 'Firstname cannot be empty' : ''}
                 />
                 <TextField
                     id="lastname"
                     label="Last Name"
                     type="lastname"
-                    value={values.lastname}
                     variant="outlined"
+                    defaultValue={user.lastname}
                     className={classes.textField}
-                    onChange={handleChange('lastname')}
+                    {...register('lastname')}
+                    onChange={(event) => { setValue('lastname', event.target.value); user.lastname = event.target.value }}
+                    error={errors && errors.lastname}
+                    helperText={errors && errors.lastname ? 'Lastname cannot be empty' : ''}
                 />
                 <TextField
                     id="username"
                     label="Username"
                     type="username"
-                    value={values.username}
                     variant="outlined"
+                    defaultValue={user.username}
                     className={classes.textField}
-                    onChange={handleChange('username')}
+                    {...register('username')}
+                    onChange={(event) => { setValue('username', event.target.value); user.username = event.target.value }}
+                    error={errors && errors.username}
+                    helperText={errors && errors.username ? 'Username cannot be empty' : ''}
                 />
                 <TextField
                     id="email"
@@ -243,8 +242,9 @@ function UserDashboard() {
                     variant="outlined"
                     className={classes.textField}
                     {...register('email')}
-                    error={errors && errors.password}
-                    helperText={errors && errors.password ? 'Valid Email Required' : ''}
+                    onChange={(event) => { setValue('email', event.target.value); user.email = event.target.value }}
+                    error={errors && errors.email}
+                    helperText={errors && errors.email ? 'Valid Email Required' : ''}
                 />
                 <TextField
                     id="password"
@@ -254,6 +254,7 @@ function UserDashboard() {
                     className={classes.textField}
                     defaultValue={user.password}
                     {...register('password')}
+                    onChange={(event) => { setValue('password', event.target.value); user.password = event.target.value }}
                     error={errors && errors.password}
                     helperText={errors && errors.password ? 'Must Contain 8 Characters, 1 Uppercase, 1 Lowercase, 1 Number and 1 special case character' : ''}
                 />
@@ -265,14 +266,14 @@ function UserDashboard() {
             <Button className={classes.button} onClick={handleSubmit(() => {
                 dispatch({
                     type: 'UPDATE_USER', body: {
-                        ...user, password: getValues('password'),
-                        firstname: values.firstname, lastname: values.lastname, username: values.username, email: getValues('email')
+                        ...user,
+                        password: getValues('password'),
+                        firstname: getValues('firstname'), lastname: getValues('lastname'), username: getValues('username'), email: getValues('email')
                     }
                 })
-                setSettingsOpen(false);
             })}>Update</Button>
         </Dialog>
-
+        <CustomSnackbar />
     </div>
 }
 

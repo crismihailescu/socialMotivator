@@ -9,10 +9,12 @@ import userInfoReducer from './reducers/userInfo';
 import createSagaMiddleware from "redux-saga";
 import { rootSaga } from './saga/root';
 import groupsReducer from './reducers/groups';
+import snackbarReducer from './reducers/snackbar';
 
 const AppReducer = combineReducers({
   userInfo: userInfoReducer,
   group: groupsReducer,
+  snackbar: snackbarReducer,
 })
 
 const sagaMiddleware = createSagaMiddleware();

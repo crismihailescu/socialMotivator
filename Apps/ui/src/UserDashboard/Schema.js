@@ -40,5 +40,8 @@ export const Schema =
             .matches(
                 /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
             ),
-        email: yup.string().email().required()
+        email: yup.string().email().required(),
+        firstname: yup.string().required(),
+        lastname: yup.string().required(),
+        username: yup.string().required(),
     })
