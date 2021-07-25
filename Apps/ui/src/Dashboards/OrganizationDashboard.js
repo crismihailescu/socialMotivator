@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import AddActivity from '../App/components/AddActivity';
 import { makeStyles } from '@material-ui/core/styles';
 import '../App/styles/UserDashboard.css';

@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import '../App/styles/UserDashboard.css';
 import GridList from '@material-ui/core/GridList';
