@@ -7,7 +7,6 @@ const NOT_FOUND = 404;
 
 
 export function* add(action) {
-    console.log("reached line 10 of saga/activities.js");
     try {
         let result;
         yield fetch('http://localhost:3001/activities/', {
@@ -16,9 +15,8 @@ export function* add(action) {
                 'Content-type': 'application/json',
             },
             body: JSON.stringify(action.body)
-        }).then(res => res.text()).then(res => result = JSON.parse(res));
+        }).then(res => res.text()).then(res => result = res);
         yield put(addActivity(result));
-        action.history.push('/');
     } catch (err) {
         console.log(err);
     }

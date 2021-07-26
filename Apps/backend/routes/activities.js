@@ -38,7 +38,8 @@ router.get('/:activity', async function (req, res, next) {
 
 // Add activity
 router.post('/', async function (req, res, next) {
-    const activityName = req.body.activity;
+    const activityName = req.body;
+    // console.log(activityName);
     const client = new MongoClient(uri, {useUnifiedTopology: true, useNewUrlParser: true });
     try {
         await client.connect();
