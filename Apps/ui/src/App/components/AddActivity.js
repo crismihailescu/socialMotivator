@@ -29,7 +29,6 @@ function AddActivity(props) {
                     <button className='form-btn' id='add-button' onClick={() => {
                         console.log("reached line 31/aa.js");
                         dispatch({
-            
                             type: 'ADD_ACTIVITY', body: {
                                 title: "test"
                             }
