@@ -27,10 +27,11 @@ function AddActivity(props) {
                 </div>
                 <div className='form-btns'>
                     <button className='form-btn' id='add-button' onClick={() => {
-                        console.log("reached line 31/aa.js");
                         dispatch({
                             type: 'ADD_ACTIVITY', body: {
-                                title: "test"
+                                title: props.name,
+                                type: props.type,
+                                image: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpixfeeds.com%2Fimages%2F22%2F529257%2F1200-535200953-retirement-party-in-office.jpg&f=1&nofb=1',
                             }
                         })
                     }}>Enter</button>

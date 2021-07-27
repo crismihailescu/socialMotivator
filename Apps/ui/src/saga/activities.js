@@ -7,6 +7,7 @@ const NOT_FOUND = 404;
 
 
 export function* add(action) {
+    console.log("reached line 10 ./saga/activities")
     try {
         let result;
         yield fetch('http://localhost:3001/activities/', {

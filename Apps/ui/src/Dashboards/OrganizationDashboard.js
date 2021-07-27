@@ -81,7 +81,7 @@ function OrganizationDashboard() {
 
     const [activities, setList] = useState(orgUpcomingActivities);
     const [name, setName] = useState('');
-    const [type, setType] = useState('');
+    const [type, setType] = useState('outdoors');
     const default_img = 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Larix_decidua_Aletschwald.jpg/330px-Larix_decidua_Aletschwald.jpg';
 
 

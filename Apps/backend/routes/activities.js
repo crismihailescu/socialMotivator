@@ -39,14 +39,16 @@ router.get('/:activity', async function (req, res, next) {
 // Add activity
 router.post('/', async function (req, res, next) {
     const activityName = req.body;
-    // console.log(activityName);
+    console.log("reached line 42 ./routes/activities");
     const client = new MongoClient(uri, {useUnifiedTopology: true, useNewUrlParser: true });
     try {
         await client.connect();
+        console.log("reached line 46 ./routes/activities")
         const result = await client.db('CATS').collection('activities').insertOne(activityName);
         res.send(result);
     } finally {
         client.close();
+        console.log("client closed");
     }
 });
 
