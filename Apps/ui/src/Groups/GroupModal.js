@@ -25,18 +25,18 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       backgroundColor: 'white',
       color: '#4c8bf5',
-  },
+    },
     fontSize: 18,
     fontWeight: 'bold',
     borderRadius: '6px',
-},
+  },
 }));
 
-function TransitionsModal(props) {
+function TransitionsModal() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
-  const handleOpen = () => {
+  const handleOpen = async () => {
     setOpen(true);
   };
 

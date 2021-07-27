@@ -10,13 +10,13 @@ const INSERTED = 201;
 const NOT_FOUND = 404;
 
 // DEBUG=backend:* npm start to run server
-/* GET all groups of one user. */
+/* GET all groups  */
 
-router.get('/:username', async function (req, res, next) {
+router.get('/', async function (req, res, next) {
     const client = new MongoClient(uri, { useUnifiedTopology: true, useNewUrlParser: true });
     try {
         await client.connect();
-        const groups = await client.db('CATS').collection('groups').find({ 'members': { $elemMatch: { 'username': { $in: [`${req.params.username}`] } } } });
+        const groups = await client.db('CATS').collection('groups').find();
         let result = [];
         await groups.forEach(group => result.push(group));
         res.send(result);
@@ -34,8 +34,8 @@ router.post('/', async function (req, res, next) {
     const client = new MongoClient(uri, { useUnifiedTopology: true, useNewUrlParser: true });
     try {
         await client.connect();
-        const name = await client.db('CATS').collection('groups').findOne({ name: name });
-        if (name) {
+        const group = await client.db('CATS').collection('groups').findOne({ name: name });
+        if (group) {
             res.sendStatus(DUPLICATE);
         } else {
             await client.db('CATS').collection('groups').insertOne(body);

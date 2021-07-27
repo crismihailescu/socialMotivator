@@ -82,6 +82,8 @@ router.put('/', async function (req, res, next) {
     } else {
       await client.db('CATS').collection('users').updateOne({ "_id": ObjectId(id.toString()) },
         { $set: { "username": username, "email": email, "password": body.password, "firstname": body.firstname, "lastname": body.lastname } }, { upsert: true });
+      await client.db('CATS').collection('groups').updateMany({ "members._id": id },
+        { "$set": { "members.$.username": username, "members.$.firstname": body.firstname, "members.$.lastname": body.lastname } });
       res.send(OK);
     }
   } finally {
