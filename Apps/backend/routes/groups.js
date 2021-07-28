@@ -21,6 +21,7 @@ router.get('/:username', async function (req, res, next) {
         let result = [];
         await groups.forEach(group => result.push(group));
         res.send(result);
+        console.log(result);
     } finally {
         client.close()
     }
