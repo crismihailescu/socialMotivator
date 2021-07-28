@@ -13,6 +13,7 @@ const NOT_FOUND = 404;
 /* GET all groups of one user. */
 
 router.get('/:username', async function (req, res, next) {
+    console.log("reached line 16 of /routes/groups");
     const client = new MongoClient(uri, { useUnifiedTopology: true, useNewUrlParser: true });
     try {
         await client.connect();
@@ -24,6 +25,7 @@ router.get('/:username', async function (req, res, next) {
         client.close()
     }
 });
+
 
 
 /* add group. */

@@ -1,11 +1,12 @@
 import { Box, Button, Grid, Paper, Typography, Avatar } from '@material-ui/core';
 import AvatarGroup from '@material-ui/lab/AvatarGroup';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { chooseGroup } from '../actions/groups';
 import GroupModal from './GroupModal'
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles({
     gridContainer: {
@@ -146,6 +147,17 @@ const groups = [{
 function Group(props) {
 
     const dispatch = useDispatch();
+    const groupers = useSelector(state => state.group);
+    const user = useSelector(state => state.userInfo);
+
+    useEffect(() => {
+        dispatch({
+            type: 'GET_GROUPS',
+            username: user.username,
+        })
+        console.log(groupers);
+
+    })
 
     const classes = useStyles();
     return (<>

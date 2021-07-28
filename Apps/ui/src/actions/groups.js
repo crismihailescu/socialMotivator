@@ -4,3 +4,17 @@ export const chooseGroup = (group) => {
         group
     }
 }
+
+export const getGroups = (group) => {
+    return {
+        type: "GET_GROUPS",
+        group
+    }
+}
+
+export const getGroupSuccess = (group) => {
+    return {
+        type: "GET_GROUPS_SUCCESS",
+        group
+    }
+}

@@ -18,7 +18,6 @@ router.get('/', async function(req, res, next) {
         let result = [];
         await activities.forEach(activity => result.push(activity));
         res.send(result);
-        console.log(result);
     } finally {
         client.close()
     }
