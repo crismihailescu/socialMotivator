@@ -1,28 +1,24 @@
-import { useState } from 'react';
-import { Checkbox, FormControlLabel } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import '../App/styles/UserDashboard.css';
-import SettingsIcon from '@material-ui/icons/Settings';
-import Dialog from '@material-ui/core/Dialog';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import { blue } from '@material-ui/core/colors';
-import TextField from '@material-ui/core/TextField';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
-import Carousel from '../App/components/Carousel'
-import Activity from '../App/components/Activity';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { useYupValidationResolver } from '../UserInput/Schema';
 import { Schema } from './Schema';
 import CustomSnackbar from '../App/components/Snackbar';
+import AccountSettings from './AccountSettings.js';
+import { useState } from 'react';
+import Dialog from '@material-ui/core/Dialog';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Button from '@material-ui/core/Button';
+import { Checkbox, FormControlLabel, TextField } from '@material-ui/core';
+
 
 //Source: gridList modelled from example @ https://material-ui.com/components/grid-list/
 
@@ -112,8 +108,8 @@ const userPastActivities = [
 ];
 
 function UserDashboard() {
-    const dispatch = useDispatch();
     const user = useSelector(state => state.userInfo);
+    const dispatch = useDispatch();
     const classes = useStyles();
     const resolver = useYupValidationResolver(Schema);
     const { handleSubmit, formState: { errors }, register, getValues, setValue } = useForm({ resolver, defaultValues: { email: user.email, password: user.password, firstname: user.firstname, lastname: user.lastname, username: user.username } });
@@ -130,15 +126,13 @@ function UserDashboard() {
     function handleSettingsClose() {
         setSettingsOpen(false);
     }
+
     return <div className='dashboard-container'>
         <div className='dashboard'>
             <div className='user-settings'>
-                <Button onClick={handleSettingsOpen}>
-                    < SettingsIcon />
-                </Button>
-
+                <AccountSettings />
             </div>
-            <h1>Hello, {user.username}.</h1>
+            <h1>Hello, {user.firstname}.</h1>
 
             <div >
                 <p>Your upcoming events: </p>
@@ -163,7 +157,6 @@ function UserDashboard() {
                         ))}
                     </GridList>
                 </div>
-
             </div>
 
 
@@ -190,9 +183,7 @@ function UserDashboard() {
                         ))}
                     </GridList>
                 </div>
-
             </div>
-
         </div>
 
         <Dialog open={settingsOpen} onBackdropClick={handleSettingsClose} className={classes.root}>

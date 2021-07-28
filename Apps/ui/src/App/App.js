@@ -13,7 +13,8 @@ import Nav from './components/Nav';
 import Group from '../Groups/group';
 import GroupView from '../Groups/groupView';
 import Footer from './components/Footer';
-import UserDashboard from '../UserDashboard/UserDashboard';
+import UserDashboard from '../Dashboards/UserDashboard';
+import OrganizationDashboard from '../Dashboards/OrganizationDashboard';
 
 function App() {
   return (
@@ -44,6 +45,9 @@ function App() {
           </Route>
           <Route path="/UserDashboard">
             <UserDashboard />
+          </Route>
+          <Route path="/OrganizationDashboard">
+            <OrganizationDashboard />
           </Route>
           <Route path="/Groups/:name">
             <GroupView />
