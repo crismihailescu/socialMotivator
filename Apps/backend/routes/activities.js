@@ -14,27 +14,28 @@ router.get('/', async function(req, res, next) {
     const client = new MongoClient(uri, {useUnifiedTopology: true, useNewUrlParser: true});
     try {
         await client.connect();
-        const activities = await client.db('CATS').collection('activites').find();
+        const activities = await client.db('CATS').collection('activities').find();
         let result = [];
         await activities.forEach(activity => result.push(activity));
         res.send(result);
+        console.log(result);
     } finally {
         client.close()
     }
 });
 
-// Get one
-router.get('/:activity', async function (req, res, next) {
-    const activityName = req.params.activity;
-    const client = new MongoClient(uri, { useUnifiedTopology: true, useNewUrlParser: true });
-    try {
-        await client.connect();
-        const result = await client.db('CATS').collection('users').findOne({activity: activityName});
-        if (result) { res.send(result) } else {res.send(NOT_FOUND) };
-    } finally {
-        client.close();
-    }
-});
+// // Get one
+// router.get('/:activity', async function (req, res, next) {
+//     const activityName = req.params.activity;
+//     const client = new MongoClient(uri, { useUnifiedTopology: true, useNewUrlParser: true });
+//     try {
+//         await client.connect();
+//         const result = await client.db('CATS').collection('users').findOne({activity: activityName});
+//         if (result) { res.send(result) } else {res.send(NOT_FOUND) };
+//     } finally {
+//         client.close();
+//     }
+// });
 
 // Add activity
 router.post('/', async function (req, res, next) {

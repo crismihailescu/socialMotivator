@@ -1,5 +1,5 @@
 import { put } from "redux-saga/effects";
-import { addActivity } from "../actions/activities";
+import { addActivity, addActivitySuccess, getActivitySuccess } from "../actions/activities";
 
 const DUPLICATE = 409;
 const INSERTED = 201;
@@ -17,8 +17,25 @@ export function* add(action) {
             },
             body: JSON.stringify(action.body)
         }).then(res => res.text()).then(res => result = res);
-        yield put(addActivity(result));
+        yield put(addActivitySuccess(result));
     } catch (err) {
+        console.log(err);
+    }
+}
+
+export function* get(action) {
+    console.log("reached line 27 ./saga/activities");
+    try {
+        let result;
+        yield fetch('http://localhost:3001/activities', {
+            method: 'GET',
+            headers: {
+                'Content-type': 'application/json',
+            },
+            body: JSON.stringify(action.body)
+        }).then(res => res.text()).then(res => result = res);
+        yield put(getActivitySuccess(result));
+    } catch(err) {
         console.log(err);
     }
 }

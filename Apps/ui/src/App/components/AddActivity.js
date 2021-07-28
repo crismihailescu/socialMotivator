@@ -27,6 +27,7 @@ function AddActivity(props) {
                 </div>
                 <div className='form-btns'>
                     <button className='form-btn' id='add-button' onClick={() => {
+                        props.handleAddActivity();
                         dispatch({
                             type: 'ADD_ACTIVITY', body: {
                                 title: props.name,
