@@ -4,6 +4,7 @@ import { Box, TextField, Typography, Button, Paper, Select, MenuItem } from '@ma
 import { Link, withRouter } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { useYupValidationResolver, signUpSchema } from './Schema';
+import CustomSnackbar from '../App/components/Snackbar';
 
 const useStyles = makeStyles({
     paper: {
@@ -143,6 +144,7 @@ function SignUp(props) {
                     </Button>
                 </Box>
             </Paper>
+            <CustomSnackbar />
         </Box>
     );
 

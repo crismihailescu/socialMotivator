@@ -79,13 +79,14 @@ function GroupView() {
                 Signed-Up Events
             </Typography>
             <div className={classes.carousel}>
-                <Carousel show={3} >
+                {group.events && <Carousel show={3} >
                     {group.events.map((item) => (
-                                    <div style={{padding: 8}}>
-                                        <Activity activityTitle={item.title} activityType={item.type} activityImg={item.image} activityLocation={item.location} activityDesc={item.desc}/>
-                                    </div>
-                            ))}
+                        <div style={{ padding: 8 }}>
+                            <Activity activityTitle={item.title} activityType={item.type} activityImg={item.image} activityLocation={item.location} activityDesc={item.desc} />
+                        </div>
+                    ))}
                 </Carousel>
+                }
             </div>
         </>);
 }
