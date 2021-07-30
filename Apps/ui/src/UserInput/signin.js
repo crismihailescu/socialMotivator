@@ -4,6 +4,7 @@ import { Box, TextField, Typography, Button, Paper } from '@material-ui/core';
 import { Link, withRouter } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { useYupValidationResolver, signInSchema } from './Schema';
+import CustomSnackbar from '../App/components/Snackbar';
 
 const useStyles = makeStyles({
     paper: {
@@ -84,6 +85,7 @@ function SignIn(props) {
                     </Button>
                 </Box>
             </Paper>
+            <CustomSnackbar />
         </Box>
     );
 

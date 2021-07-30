@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
-import GroupForm from './GroupForm'
+import AddActivityForm from './AddActivityForm'
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -47,7 +47,7 @@ function TransitionsModal() {
   return (
     <div>
       <button type="button" onClick={handleOpen} className={classes.button}>
-        Create Group
+        Add Activity
       </button>
       <Modal
         aria-labelledby="transition-modal-title"
@@ -63,7 +63,7 @@ function TransitionsModal() {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <GroupForm />
+            <AddActivityForm />
           </div>
         </Fade>
       </Modal>
@@ -72,5 +72,3 @@ function TransitionsModal() {
 }
 
 export default TransitionsModal;
-
-// Reference: https://material-ui.com/components/modal/

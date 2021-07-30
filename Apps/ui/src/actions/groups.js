@@ -5,16 +5,23 @@ export const chooseGroup = (group) => {
     }
 }
 
-export const getGroups = (group) => {
+
+export const addGroup = (body) => {
     return {
-        type: "GET_GROUPS",
-        group
+        type: 'ADD_GROUP',
+        body
     }
 }
 
-export const getGroupSuccess = (group) => {
+export const getGroup = () => {
     return {
-        type: "GET_GROUPS_SUCCESS",
-        group
+        type: 'GET_GROUP'
+    }
+}
+
+export const getGroupSuccess = (groups) => {
+    return {
+        type: 'GET_GROUP_SUCCESS',
+        groups
     }
 }
