@@ -20,7 +20,7 @@ const AppReducer = combineReducers({
   group: groupsReducer,
   snackbar: snackbarReducer,
   users: usersReducer,
-  allGroups: allGroupsReducer
+  allGroups: allGroupsReducer,
   activities: activitiesReducer,
 
 })

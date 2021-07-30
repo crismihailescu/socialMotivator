@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { chooseGroup, getGroup } from '../actions/groups';
 import { getUsers } from '../actions/users';
 import GroupModal from './GroupModal'
-import { useSelector } from 'react-redux';
+
 
 const useStyles = makeStyles({
     gridContainer: {

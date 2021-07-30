@@ -4,6 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Select, Box, MenuItem, Grid, TextField } from '@material-ui/core';
 import { openSnackbar } from '../actions/snackbar';
 import CustomSnackbar from '../App/components/Snackbar';
+import { addGroup } from '../saga/group';
+import { add } from '../saga/activities';
+import { getThemeProps } from '@material-ui/styles';
 
 const useStyles = makeStyles((theme) => ({
     formContainer: {
@@ -72,24 +75,24 @@ const useStyles = makeStyles((theme) => ({
 
 function AddActivityForm() {
     const classes = useStyles();
-    //const currentUser = useSelector(state => state.userInfo);
+    const currentUser = useSelector(state => state.userInfo);
     const acts = useSelector(state => state.activities)
     
-    //const [selectedUsers, setSelectedUsers] = useState([currentUser.username]);
-    //const users = useSelector(state => state.users);
+    const [selectedUsers, setSelectedUsers] = useState([currentUser.username]);
+    const users = useSelector(state => state.users);
     const dispatch = useDispatch();
 
     const [activities, setList] = useState([]);
     const [other, setOther] = useState([]);
     const [name, setName] = useState('');
-    const [date, setDate] = useState('');
+    const [date, setDate] = useState([]);
     const [location, setLocation] = useState('');
     const [url, setURL] = useState('');
-    const [type, setType] = useState('outdoors');
+    const [type, setType] = useState('Outdoor');
     const default_img = 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Larix_decidua_Aletschwald.jpg/330px-Larix_decidua_Aletschwald.jpg';
 
     const handleChange = (event) => {
-        //setSelectedUsers(event.target.value);
+        setSelectedUsers(event.target.value);
     };
 
 
@@ -102,11 +105,11 @@ function AddActivityForm() {
                     </div>
                     <div className='add-activity-row'>
                         <label htmlFor='name'>Activity name:</label>
-                        <input value={name} id='name' type='text' />
+                        <input value={name} id='name' type='text' onChange={(event) => setName(event.target.value)}/>
                     </div>
                     <div className='add-activity-row'>
                         <label htmlFor='type'>Activity type:</label>
-                        <select value={type} >
+                        <select value={type} onChange = {(event) => setType(event.target.value)}>
                             <option value='Outdoor'>Outdoor</option>
                             <option value='Indoor'>Indoor</option>
                             <option value='Group'>Group</option>
@@ -115,11 +118,11 @@ function AddActivityForm() {
                     </div>
                     <div className='add-activity-row'>
                         <label htmlFor='url'>Image URL:</label>
-                        <input value={url} id='url' type='text' />
+                        <input value={url} id='url' type='text' onChange = {(event) => setURL(event.target.value)}/>
                     </div>
                     <div className='add-activity-row'>
                         <label htmlFor='date'>Activity date:</label>
-                        <form className={classes.container} noValidate>
+                        <form className={classes.container} noValidate onChange = {(event) => setDate(event.target.value)}>
                             <TextField
                                 id="date"
                                 type="date"
@@ -134,25 +137,33 @@ function AddActivityForm() {
                     </div>
                     <div className='add-activity-row'>
                         <label htmlFor='location'>Activity location:</label>
-                        <input value={location} id='location' type='text' />
+                        <input value={location} id='location' type='text' onChange = {(event) => setLocation(event.target.value)}/>
                     </div>
 
                     <div className={classes.formBtns}>
                         <button className={classes.submitBtn} id='addButton' onClick={() => {
-                            // if (name === '' || url === '' || selectedUsers.length < 3) {
-                            //     dispatch(openSnackbar('All fields must be filled and there must be minimum 3 users in a group', 'error'));
-                            // } else {
-                            //     const getMembers = () => {
-                            //         const members = [];
-                            //         const filtered = users.filter(value => selectedUsers.includes(value.username));
-                            //         for (let key of filtered) {
-                            //             members.push({ firstname: key.firstname, lastname: key.lastname, username: key.username, _id: key._id })
-                            //         }
-                            //         return members;
-                            //     }
-                            //     dispatch(addGroup({ name, url, members: getMembers() }));
-                            // }
-                        }}>Submit</button>
+
+                            let dateFormat = [];
+                            if (date.length >= 9) {
+                            dateFormat.push(parseInt(date.substr(0,4)));
+                            dateFormat.push(parseInt(date.substr(5,6)));
+                            dateFormat.push(parseInt(date.substr(8,9)));
+                            dateFormat.push(10);
+                            dateFormat.push(30);}
+                                dispatch({
+                                    type: 'ADD_ACTIVITY', body: {
+                                        title: name,
+                                        type: type,
+                                        image: url,
+                                        desc: "Lorem",
+                                        location: location,
+                                        start: dateFormat,
+                                        duration: {hours: 3, minutes: 0}
+                                    }
+                                });
+                                
+                            }
+                        }>Submit</button>
                     </div>
                 </div>
             </div>

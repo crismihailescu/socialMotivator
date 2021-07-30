@@ -4,7 +4,7 @@ import { addGroup, getGroup } from "./group";
 import { getUsers, signIn, signUp, updateUser } from "./user";
 import { add, get } from "./activities";
 import { getGroupsPlease } from "./groups";
-import { signIn, signUp, updateUser } from "./userInfo";
+
 
 
 export function* rootSaga() {
