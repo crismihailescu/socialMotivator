@@ -84,19 +84,23 @@ function OrganizationDashboard() {
     const dispatch = useDispatch();
 
     const [activities, setList] = useState([]);
+    const [ready, setReady] = useState(false);
     const [other, setOther] = useState([]);
     const [name, setName] = useState('');
     const [type, setType] = useState('outdoors');
     const default_img = 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Larix_decidua_Aletschwald.jpg/330px-Larix_decidua_Aletschwald.jpg';
 
 
+
     useEffect(() => {
-        dispatch({
-            type: 'GET_ACTIVITY'
-        });
-        setOther(acts);
-        // console.log(JSON.parse(other));
-    })
+        async function setNewList() {
+            dispatch({
+                type: 'GET_ACTIVITY'
+            });
+        }
+        setNewList().then(setOther(acts)).then(setList(other) && setReady(true) && console.log(ready));      
+    }, []);
+
 
     function addActivity() {
         const newList = activities.concat({ name, type, default_img });
@@ -112,7 +116,10 @@ function OrganizationDashboard() {
         setType(event.target.value);
     }
 
-    return <div className='dashboard-container'>
+
+
+    return ready && 
+    <div className='dashboard-container'>
         <div className='dashboard'>
             <div className='user-settings'>
                 <AccountSettings />

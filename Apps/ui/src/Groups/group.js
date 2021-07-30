@@ -155,8 +155,6 @@ function Group(props) {
             type: 'GET_GROUPS',
             username: user.username,
         })
-        console.log(groupers);
-
     })
 
     const classes = useStyles();

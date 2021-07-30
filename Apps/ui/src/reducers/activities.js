@@ -1,4 +1,4 @@
-const activitiesReducer = (state = {}, action) => {
+const activitiesReducer = (state = "[]", action) => {
     switch (action.type) {
         case 'ADD_ACTIVITY_SUCCESS': 
             state = action.activity;
