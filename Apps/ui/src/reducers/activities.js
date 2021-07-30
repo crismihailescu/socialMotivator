@@ -1,7 +1,7 @@
 const activitiesReducer = (state = "[]", action) => {
     switch (action.type) {
         case 'ADD_ACTIVITY_SUCCESS': 
-            state = action.activity;
+            state = state;
             return state;
         case 'GET_ACTIVITY_SUCCESS':
             state = action.activity;
