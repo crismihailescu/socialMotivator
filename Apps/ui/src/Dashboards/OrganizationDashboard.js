@@ -1,14 +1,11 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import AddActivity from '../App/components/AddActivity';
+import AddActivityModal from './AddActivityModal';
 import { makeStyles } from '@material-ui/core/styles';
-import '../App/styles/UserDashboard.css';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import IconButton from '@material-ui/core/IconButton';
+import { Box, GridList, GridListTile, GridListTileBar, ListSubheader, IconButton } from '@material-ui/core';
 import InfoIcon from '@material-ui/icons/Info';
+import '../App/styles/UserDashboard.css';
 import AccountSettings from './AccountSettings.js';
 
 const orgUpcomingActivities = [
@@ -73,6 +70,10 @@ const useStyles = makeStyles((theme) => ({
     icon: {
         color: 'rgba(255, 255, 255, 0.54)',
     },
+    addActivity: {
+        display: 'flex',
+        flexDirection: 'row-reverse'
+    },
 }));
 
 function OrganizationDashboard() {
@@ -105,6 +106,10 @@ function OrganizationDashboard() {
                 <AccountSettings />
             </div>
             <h1>Hello, {user.firstname}.</h1>
+
+            <div className='add-activity-btn'>
+                <AddActivityModal />
+            </div>
 
             <AddActivity name={name} type={type} handleAddActivity={addActivity} onNameChange={handleNameChange} onTypeChange={handleTypeChange} />
 
