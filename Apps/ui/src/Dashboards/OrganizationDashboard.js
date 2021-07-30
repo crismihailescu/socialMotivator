@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import AddActivity from '../App/components/AddActivity';
 import AddActivityModal from './AddActivityModal';
@@ -7,6 +7,8 @@ import { Box, GridList, GridListTile, GridListTileBar, ListSubheader, IconButton
 import InfoIcon from '@material-ui/icons/Info';
 import '../App/styles/UserDashboard.css';
 import AccountSettings from './AccountSettings.js';
+import { getActivities } from '../actions/activities';
+import { useDispatch } from 'react-redux';
 
 const orgUpcomingActivities = [
     {
@@ -78,12 +80,23 @@ const useStyles = makeStyles((theme) => ({
 
 function OrganizationDashboard() {
     const user = useSelector(state => state.userInfo);
+    const acts = useSelector(state => state.activities)
     const classes = useStyles();
+    const dispatch = useDispatch();
 
-    const [activities, setList] = useState(orgUpcomingActivities);
+    const [activities, setList] = useState([{"default": "default"}]);
+    const [other, setOther] = useState([]);
     const [name, setName] = useState('');
-    const [type, setType] = useState('');
+    const [type, setType] = useState('outdoors');
     const default_img = 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Larix_decidua_Aletschwald.jpg/330px-Larix_decidua_Aletschwald.jpg';
+    let newList
+
+
+    useEffect(() => {
+      newList = JSON.parse(acts);
+      console.log(newList);
+      setList(newList);
+    }, [])
 
 
     function addActivity() {
@@ -99,6 +112,8 @@ function OrganizationDashboard() {
     function handleTypeChange(event) {
         setType(event.target.value);
     }
+
+
 
     return <div className='dashboard-container'>
         <div className='dashboard'>
@@ -120,7 +135,7 @@ function OrganizationDashboard() {
                         <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
                             <ListSubheader component="div"></ListSubheader>
                         </GridListTile>
-                        {orgUpcomingActivities.map((tile) => (
+                        {activities.map((tile) => (
                             <GridListTile key={tile.title}>
                                 <img src={tile.image} alt={tile.title} />
                                 <GridListTileBar

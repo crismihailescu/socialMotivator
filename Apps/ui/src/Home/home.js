@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import ViewActivityByType from '../App/components/ViewActivityByType';
 import AddActivity from '../App/components/AddActivity';
+import { useDispatch } from 'react-redux';
 import '../App/styles/Home.css';
 
 const initialActivities = [
@@ -151,10 +153,22 @@ const initialActivities = [
 ];
 
 function Home() {
-  const [activities, setList] = useState(initialActivities);
+  const acts = useSelector(state => state.activities)
+  const dispatch = useDispatch();
+  const [other, setOther] = useState([]);
+  const [ready, setReady] = useState(false);
+  const [activities, setList] = useState([{"default": "default"}]);
   const [name, setName] = useState('');
   const [type, setType] = useState('');
   const default_img = 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Larix_decidua_Aletschwald.jpg/330px-Larix_decidua_Aletschwald.jpg';
+  let newList
+
+
+  useEffect(() => {
+    newList = JSON.parse(acts);
+    console.log(newList);
+    setList(newList);
+  }, [])
 
   function addActivity() {
     const newList = activities.concat({ name, type, default_img });
@@ -173,7 +187,7 @@ function Home() {
   return (
     <div className='home-container' >
       <div className='home-body'>
-        <ViewActivityByType activities={activities} />
+        <ViewActivityByType activities={activities} acts = {JSON.parse(acts)} />
         <div className='whitespace' />
       </div>
     </div>

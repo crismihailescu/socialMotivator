@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { chooseGroup, getGroup } from '../actions/groups';
 import { getUsers } from '../actions/users';
 import GroupModal from './GroupModal'
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles({
     gridContainer: {
@@ -68,6 +69,7 @@ const useStyles = makeStyles({
 function Group(props) {
 
     const dispatch = useDispatch();
+
     useEffect(() => {
         dispatch(getGroup());
         dispatch(getUsers());
@@ -76,6 +78,7 @@ function Group(props) {
     const allGroups = useSelector(state => state.allGroups);
     let groups = allGroups.filter(group => group.members.find(member => member.username = user.username) !== undefined);
     console.log(groups);
+
     const classes = useStyles();
     return (<>
         <Box mt={5} mr={5} mb={5} className={classes.createGroup}>
