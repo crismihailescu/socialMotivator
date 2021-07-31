@@ -13,6 +13,7 @@ function Enlist(props) {
         duration: props.duration,
         location: props.location,
         title: props.name,
+        description: props.description,
     }
     const useStyles = makeStyles({
         main: {
@@ -106,6 +107,7 @@ function Enlist(props) {
 
     const Open = () => {
         setOpen(true);
+        console.log(props.description);
     }
 
     const Close = () => {
@@ -144,7 +146,7 @@ function Enlist(props) {
                         <br />
                         <br />
                     </>
-                    <Typography className={dialogStyle.description}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum fermentum fermentum ex eget fringilla. Etiam elementum nisl vel interdum condimentum. In fringilla posuere consequat. Praesent vitae lectus lorem. Ut ullamcorper, urna sit amet vehicula dignissim, lectus nisi euismod diam, sed consectetur lacus odio ut purus.</Typography>
+                    <Typography className={dialogStyle.description}>{props.description}</Typography>
                     <br />
                     <MapBox className={mapStyling.sizing} location={props.location} />
                     <br />

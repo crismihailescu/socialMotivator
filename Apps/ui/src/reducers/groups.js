@@ -3,6 +3,9 @@ const groupsReducer = (state = {}, action) => {
         case 'CHOOSE_GROUP':
             state = action.group;
             return state;
+        case 'GET_GROUP_SUCCESS':
+            state = action.group;
+            return state;
         default:
             return state;
     }

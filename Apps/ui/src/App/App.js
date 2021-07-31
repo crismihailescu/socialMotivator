@@ -5,6 +5,9 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import SignUp from '../UserInput/signup';
 import SignIn from '../UserInput/signin';
 import Home from '../Home/home';
@@ -16,6 +19,20 @@ import UserDashboard from '../Dashboards/UserDashboard';
 import OrganizationDashboard from '../Dashboards/OrganizationDashboard';
 
 function App() {
+
+  const dispatch = useDispatch();
+  
+
+useEffect(() => {
+  async function setNewList() {
+    dispatch({
+        type: 'GET_ACTIVITY'
+    });
+}
+    setNewList();  
+}, []);
+
+
   return (
     <Router>
       <div>
