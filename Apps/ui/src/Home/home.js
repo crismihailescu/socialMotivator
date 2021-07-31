@@ -164,11 +164,6 @@ function Home() {
   const default_img = 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Larix_decidua_Aletschwald.jpg/330px-Larix_decidua_Aletschwald.jpg';
   let newList
 
-
-  useEffect(() => {
-    console.log(acts);
-  }, [])
-
   function addActivity() {
     const newList = activities.concat({ name, type, default_img });
     setList(newList);
@@ -186,8 +181,8 @@ function Home() {
   return (
     <div className='home-container' >
       <div className='home-body'>
-        <Search activities={initialActivities} />
-        <ViewActivityByType activities={activities} />
+        <Search activities={JSON.parse(acts)} />
+        <ViewActivityByType acts = {JSON.parse(acts)} />
         <div className='whitespace' />
       </div>
     </div>
