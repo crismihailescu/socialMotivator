@@ -23,24 +23,24 @@ Our project is a social-good motivation platform. It entails:
 Project task requirements:
 
 	3-5 minimal requirements (will definitely complete)
-		Home Page with guidelines and navigation to other pages
-		Sign Up Page
-		User Pages/Restrictions for companies/users:
+		DONE Home Page with guidelines and navigation to other pages
+		DONE Sign Up Page
+		DONE User Pages/Restrictions for companies/users:
 			Companies can post activities
 			Users can see and choose activities + post proof of completeness + see points
 			
 	3-7 "standard" requirements (will most likely complete)
-		Validation on sign up page
-		Keep track of number of people doing an activity
-		Sorting activities
+		DONE Validation on sign up page
+		DONE Keep track of number of people doing an activity
+		DONE Sorting activities
 		Leaderboard
-		Create groups/club system for the users
-		Carousel with recommended activities
+		DONE Create groups/club system for the users
+		(almost) DONE Carousel with recommended activities
 		
 	2-3 stretch requirements (plan to complete at least 1!)
-		Searching certain types of activities and viewing a shortened list based on the search
+		(almost) DONE Searching certain types of activities and viewing a shortened list based on the search
 		Reward - notify issues that they have received the reward
-		Calendar Event to help users
+		DONE Calendar Event to help users
 
 Minimal requirement breakdown:
 
