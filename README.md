@@ -1,5 +1,7 @@
 # socialMotivator
 
+Our project is an event management platform for increasing social engagement in local communities. It allows companies and charities to add events like beach cleanups or soup kitchen volunteering, and users can quickly and easily sign up alone or in a group. Companies can also add prizes they want to offer that are randomly gifted to participants for that event. 
+
 Our project is a social-good motivation platform. It entails:
 - Having companies volunteer social initiatives as prizes
 - People competing by doing good deeds to unlock those social initiatives
