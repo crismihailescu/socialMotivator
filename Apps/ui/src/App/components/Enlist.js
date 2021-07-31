@@ -6,7 +6,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import MapBox from './MapBox'
 
-
 function Enlist(props) {
     const ics = require('ics');
     const event = {
@@ -100,11 +99,11 @@ function Enlist(props) {
     const dialogStyle = useStyles();
     const mapStyling = mapStyles();
 
-    const slides = [props.picture[0], 'https://upload.wikimedia.org/wikipedia/commons/d/d5/Zackenberg.4.jpg']
+    // const slides = [props.picture[0], 'https://upload.wikimedia.org/wikipedia/commons/d/d5/Zackenberg.4.jpg']
 
-    const [open, setOpen] = React.useState(false);
-    const [pic, setPic] = React.useState(props.picture[0]);
-    const [calEvent, setCalEvent] = React.useState('');
+    const [open, setOpen] = useState(false);
+    const [pic, setPic] = useState(props.picture[0]);
+    const [calEvent, setCalEvent] = useState('');
 
     const Open = () => {
         setOpen(true);

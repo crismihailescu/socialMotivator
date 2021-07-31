@@ -4,7 +4,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';

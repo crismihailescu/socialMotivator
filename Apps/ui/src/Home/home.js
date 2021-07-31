@@ -4,6 +4,7 @@ import ViewActivityByType from '../App/components/ViewActivityByType';
 import AddActivity from '../App/components/AddActivity';
 import { useDispatch } from 'react-redux';
 import '../App/styles/Home.css';
+import Search from '../App/components/Search';
 
 const initialActivities = [
   {
@@ -185,7 +186,8 @@ function Home() {
   return (
     <div className='home-container' >
       <div className='home-body'>
-        <ViewActivityByType acts = {JSON.parse(acts)} />
+        <Search activities={initialActivities} />
+        <ViewActivityByType activities={activities} />
         <div className='whitespace' />
       </div>
     </div>
