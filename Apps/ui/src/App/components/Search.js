@@ -59,6 +59,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Search( {activities} ) {
     const [input, setInput] = useState('')
+    const [results, setResults] = useState([]);
 
     let searchResults;
     let body;
@@ -72,27 +73,17 @@ function Search( {activities} ) {
     search.addDocuments(activities);
 
     async function runSearch() {
-        searchResults = await search.search(input)
-
-        console.log("Final results:" + JSON.stringify(searchResults))
-
+        searchResults = search.search(input)
         body = (
-            await searchResults.map((value, index) => (
+            searchResults.map((value, index) => (
                 <div >
                     {console.log("Current search: " + JSON.stringify(value), index)}
                     <p>
                         Correct text showing!
                     </p>
-                    {/* <Activity 
-                        activityTitle={value.title} 
-                        activityType={value.type} 
-                        activityImg={value.image} 
-                        activityLocation={value.location} 
-                        activityDesc={value.desc} 
-                        location={value.location} 
-                        start={value.start} 
-                        duration={value.duration}/> */}
+                        {setResults(searchResults)}
                 </div>
+                
             ))
         )
 
@@ -111,6 +102,17 @@ function Search( {activities} ) {
 
     const classes = useStyles();
 
+    function format(intake) {
+        let resultsList = JSON.parse(intake);
+        let returnList = [];
+        for (let item of resultsList) {
+            returnList.push(<Activity activityTitle={item.title} activityType={item.type} activityImg={item.image} activityLocation={item.location} activityDesc={item.desc} location={item.location} start = {item.start} duration = {item.duration}></Activity>);
+            returnList.push(<br></br>)
+            returnList.push(<br></br>)
+        }
+        return returnList;
+    }
+
     return (
         <div className={classes.root}>
             <div >
@@ -128,10 +130,11 @@ function Search( {activities} ) {
                 >
                     <Fade in={open}>
                         <div className={classes.paper}>
-                            <h2>Test Text</h2> 
+                            <h2>Search results for {input}</h2> 
                             <Grid className={classes.activityGridContainer}>
-                                <p>Test2</p>
-                                { console.log("Second search: " + JSON.stringify(searchResults)) }
+                                <>
+                                {format(JSON.stringify(results))}
+                                </>
                                 { body }
                             </Grid>
                         </div>
@@ -143,7 +146,7 @@ function Search( {activities} ) {
                     label="Search Events" 
                     type="text"
                     id="searchBar"
-                    placeholder="Beach Cleanup"
+                    placeholder="e.g. Beach Cleanup"
                     name="s" 
                     onInput={e => setInput(e.target.value)}
                 />
