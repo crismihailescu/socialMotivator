@@ -32,7 +32,6 @@ function ViewActivityByType(props) {
             </div>
             ))}
         </div>
-
     </div>
 }
 

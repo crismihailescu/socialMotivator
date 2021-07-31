@@ -2,6 +2,7 @@ import { useState } from 'react';
 import ViewActivityByType from '../App/components/ViewActivityByType';
 import AddActivity from '../App/components/AddActivity';
 import '../App/styles/Home.css';
+import Search from '../App/components/Search';
 
 const initialActivities = [
   {
@@ -173,6 +174,7 @@ function Home() {
   return (
     <div className='home-container' >
       <div className='home-body'>
+        <Search activities={initialActivities} />
         <ViewActivityByType activities={activities} />
         <div className='whitespace' />
       </div>
