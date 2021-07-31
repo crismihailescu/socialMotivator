@@ -164,6 +164,7 @@ function AddActivityForm() {
                                 
                             }
                         }>Submit</button>
+                        <CustomSnackbar />
                     </div>
                 </div>
             </div>

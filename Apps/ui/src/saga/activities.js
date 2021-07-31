@@ -16,6 +16,7 @@ export function* add(action) {
             },
             body: JSON.stringify(action.body)
         }).then(res => res.text()).then(res => result = res);
+        console.log(result);
         yield put(addActivitySuccess(result));
     } catch (err) {
         console.log(err);

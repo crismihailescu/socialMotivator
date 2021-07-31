@@ -165,9 +165,7 @@ function Home() {
 
 
   useEffect(() => {
-    newList = JSON.parse(acts);
-    console.log(newList);
-    setList(newList);
+    console.log(acts);
   }, [])
 
   function addActivity() {
@@ -187,7 +185,7 @@ function Home() {
   return (
     <div className='home-container' >
       <div className='home-body'>
-        <ViewActivityByType activities={activities} acts = {JSON.parse(acts)} />
+        <ViewActivityByType acts = {JSON.parse(acts)} />
         <div className='whitespace' />
       </div>
     </div>

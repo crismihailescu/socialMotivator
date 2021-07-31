@@ -23,18 +23,6 @@ router.get('/', async function(req, res, next) {
     }
 });
 
-// // Get one
-// router.get('/:activity', async function (req, res, next) {
-//     const activityName = req.params.activity;
-//     const client = new MongoClient(uri, { useUnifiedTopology: true, useNewUrlParser: true });
-//     try {
-//         await client.connect();
-//         const result = await client.db('CATS').collection('users').findOne({activity: activityName});
-//         if (result) { res.send(result) } else {res.send(NOT_FOUND) };
-//     } finally {
-//         client.close();
-//     }
-// });
 
 // Add activity
 router.post('/', async function (req, res, next) {
@@ -44,7 +32,11 @@ router.post('/', async function (req, res, next) {
     try {
         await client.connect();
         console.log("reached line 46 ./routes/activities")
-        const result = await client.db('CATS').collection('activities').insertOne(activityName);
+        let result = await client.db('CATS').collection('activities').insertOne(activityName);
+        const activities = await client.db('CATS').collection('activities').find();
+        result = [];
+        await activities.forEach(activity => result.push(activity));
+        console.log(result);
         res.send(result);
     } finally {
         client.close();

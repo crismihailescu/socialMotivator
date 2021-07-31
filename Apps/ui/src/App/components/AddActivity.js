@@ -2,9 +2,13 @@ import '../styles/AddActivity.css';
 
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
+import { useSelector } from 'react-redux';
+
+
 
 function AddActivity(props) {
     const dispatch = useDispatch();
+    const acts = useSelector(state => state.activities);
     return <div>
 
         <div className='form-container'>
