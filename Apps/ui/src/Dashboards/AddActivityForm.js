@@ -84,6 +84,7 @@ function AddActivityForm() {
 
     const [activities, setList] = useState([]);
     const [other, setOther] = useState([]);
+    const [desc, setDesc] = useState('');
     const [name, setName] = useState('');
     const [date, setDate] = useState([]);
     const [location, setLocation] = useState('');
@@ -121,6 +122,10 @@ function AddActivityForm() {
                         <input value={url} id='url' type='text' onChange = {(event) => setURL(event.target.value)}/>
                     </div>
                     <div className='add-activity-row'>
+                        <label htmlFor='description'>Description:</label>
+                        <input value={desc} id='description' type='text' onChange = {(event) => setDesc(event.target.value)}/>
+                    </div>
+                    <div className='add-activity-row'>
                         <label htmlFor='date'>Activity date:</label>
                         <form className={classes.container} noValidate onChange = {(event) => setDate(event.target.value)}>
                             <TextField
@@ -155,7 +160,7 @@ function AddActivityForm() {
                                         title: name,
                                         type: type,
                                         image: url,
-                                        desc: "Lorem",
+                                        desc: desc,
                                         location: location,
                                         start: dateFormat,
                                         duration: {hours: 3, minutes: 0}

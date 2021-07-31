@@ -126,7 +126,7 @@ function OrganizationDashboard() {
                 <AddActivityModal />
             </div>
 
-            <AddActivity name={name} type={type} handleAddActivity={addActivity} onNameChange={handleNameChange} onTypeChange={handleTypeChange} />
+            {/* <AddActivity name={name} type={type} handleAddActivity={addActivity} onNameChange={handleNameChange} onTypeChange={handleTypeChange} /> */}
 
             <div >
                 <p>Your upcoming events: </p>
