@@ -4,7 +4,8 @@ import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Modal from '@material-ui/core/Modal';
-import Activity from './Activity'
+import Activity from './Activity';
+import ResultsBox from './ResultsBox';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import Grid from '@material-ui/core/Grid';
@@ -133,7 +134,15 @@ function Search( {activities} ) {
                             <h2>Search results for {input}</h2> 
                             <Grid className={classes.activityGridContainer}>
                                 <>
-                                {format(JSON.stringify(results))}
+                                {/* {format(JSON.stringify(results))} */}
+
+                                {(results).map((act) => ( 
+                                    <div style = {{padding: 8}}>
+                                        <ResultsBox activity = {act}></ResultsBox>
+                                    </div>
+                                ))}
+                                {/* <ResultsBox activities = {format(JSON.stringify(results))}></ResultsBox> */}
+
                                 </>
                                 { body }
                             </Grid>
