@@ -18,9 +18,12 @@ import Footer from './components/Footer';
 import UserDashboard from '../Dashboards/UserDashboard';
 import OrganizationDashboard from '../Dashboards/OrganizationDashboard';
 
+
 function App() {
 
   const dispatch = useDispatch();
+  const user = useSelector(state => state.userInfo);
+  const acts = useSelector(state => state.activities);
   
 
 useEffect(() => {
@@ -29,7 +32,7 @@ useEffect(() => {
         type: 'GET_ACTIVITY'
     });
 }
-    setNewList();  
+    setNewList()  
 }, []);
 
 

@@ -20,6 +20,9 @@ const userInfoReducer = (state = {}, action) => {
         case 'UPDATE_FAIL':
             console.log("triggered");
             return state;
+        case 'ENLIST_ACTIVITY_SUCCESS':
+            state = action.user;
+            return state;
         default:
             return state;
     }

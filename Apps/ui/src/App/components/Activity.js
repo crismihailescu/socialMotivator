@@ -6,6 +6,7 @@ const activityStyles = makeStyles({
         position: 'relative',
         textAlign: 'auto',
         color: 'white',
+        textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000',
     },
     bottomLeft: {
         position: 'absolute',
@@ -39,7 +40,7 @@ function Activity(props) {
         </div>
         <div className={classes.sideWrapper}>
             <h4 className={classes.sideBySize}>{props.activityTitle}</h4>
-            <Enlist className={classes.sideBySize2} picture= {[props.activityImg]} name = {props.activityTitle} type = {props.activityType} location = {props.activityLocation} start = {props.start} duration = {props.duration} description = {props.description}></Enlist>
+            <Enlist className={classes.sideBySize2} _id = {props._id} picture= {[props.activityImg]} name = {props.activityTitle} type = {props.activityType} location = {props.activityLocation} start = {props.start} duration = {props.duration} description = {props.description}></Enlist>
         </div>
     </div>
     );

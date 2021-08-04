@@ -5,6 +5,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import MapBox from './MapBox'
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 function Enlist(props) {
     const ics = require('ics');
@@ -104,6 +106,7 @@ function Enlist(props) {
     const [open, setOpen] = useState(false);
     const [pic, setPic] = useState(props.picture[0]);
     const [calEvent, setCalEvent] = useState('');
+    const dispatch = useDispatch();
 
     const Open = () => {
         setOpen(true);
@@ -116,7 +119,11 @@ function Enlist(props) {
 
 
     const Join = () => {
-        console.log("eventually this will pass the joined activities back up");
+              dispatch({
+                  type: 'ENLIST_ACTIVITY',
+                  body: `${props._id}`,
+              });
+              console.log('clicked join')
     }
 
 
@@ -128,7 +135,6 @@ function Enlist(props) {
             let file = new Blob([value]);
             let newUrl = URL.createObjectURL(file);
             setCalEvent(newUrl);
-            console.log(props.title);
         })
     }
 

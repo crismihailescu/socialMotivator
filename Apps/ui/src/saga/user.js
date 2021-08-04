@@ -73,3 +73,22 @@ export function* updateUser(action) {
         yield put(updateFailure());
     }
 }
+
+
+export function* enlistActivity(action) {
+    console.log(action.body);
+    try {
+        let result;
+        yield fetch('http://localhost:3001/users/enlist', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(action.body)
+        }).then(response => result = response.status);
+        console.log(result);
+    } catch (err) {
+        yield put(openSnackbar('Unknown Error', 'error'));
+        yield put(updateFailure());
+    }
+}

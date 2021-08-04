@@ -64,3 +64,17 @@ export const updateFailure = () => {
         type: 'SIGN_UP_FAIL'
     }
 }
+
+export const enlistActivity = (body) => {
+    return {
+        type: 'ENLIST_ACTIVITY',
+        body,
+    }
+}
+
+export const enlistActivitySuccess = (user) => {
+    return {
+        type: 'ENLIST_ACTIVITY_SUCCESS',
+        user
+    }
+}

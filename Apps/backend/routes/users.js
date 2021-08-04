@@ -45,6 +45,11 @@ router.get('/:username/:password', async function (req, res, next) {
 
 router.post('/', async function (req, res, next) {
   let body = req.body;
+  if (body.type === "User") {
+  body.history = [];
+  body.current = [];
+  body.participation = 0;
+  }
   let result;
   const username = body.username;
   const email = body.email;
@@ -89,6 +94,25 @@ router.put('/', async function (req, res, next) {
   } finally {
     client.close()
   }
+});
+
+
+router.put('/enlist', async function (req, res, next) {
+  let body = req.body;
+  res.header("Access-Control-Allow-Origin", '*');
+  console.log(body);
+  // const client = new MongoClient(uri, { useUnifiedTopology: true, useNewUrlParser: true });
+  // try {
+  //   await client.connect();
+  //   // await client.db('CATS').collection('users').updateOne({ "_id": ObjectId(id.toString()) },
+  //   //   { $set: { "username": username, "email": email, "password": body.password, "firstname": body.firstname, "lastname": body.lastname } }, { upsert: true });
+  //   // await client.db('CATS').collection('groups').updateMany({ "members._id": id },
+  //   //   { "$set": { "members.$.username": username, "members.$.firstname": body.firstname, "members.$.lastname": body.lastname } });
+  //     // res.send(OK);
+  //   }
+  //    finally {
+  //   client.close()
+  // }
 });
 
 module.exports = router;
