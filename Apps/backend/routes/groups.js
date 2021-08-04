@@ -13,6 +13,7 @@ const NOT_FOUND = 404;
 /* GET all groups  */
 
 router.get('/', async function (req, res, next) {
+
     const client = new MongoClient(uri, { useUnifiedTopology: true, useNewUrlParser: true });
     try {
         await client.connect();
@@ -20,10 +21,12 @@ router.get('/', async function (req, res, next) {
         let result = [];
         await groups.forEach(group => result.push(group));
         res.send(result);
+        console.log(result);
     } finally {
         client.close()
     }
 });
+
 
 
 /* add group. */

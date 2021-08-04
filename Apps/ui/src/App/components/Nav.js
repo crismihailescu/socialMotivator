@@ -74,9 +74,11 @@ function Nav() {
     return (
         <nav className={navStyle.Nav}>
             <div className={navStyle.Logo}><DirectionsRunIcon /><DirectionsRunIcon /><DirectionsRunIcon /></div>
+            <div className = {navStyle.NavLinksMobile}>
             {Object.keys(user).length !== 0 && <Box>
                 {`Hello ${user.username}`}
             </Box>}
+            </div>
             <div className={navStyle.Menu} onClick={openAction}>{open ? <CloseIcon /> : <MenuIcon />}</div>
             <ul className={largerThanPhone ? navStyle.NavLinksDesktop : navStyle.NavLinksMobile} >
                 <Link to='/' className={largerThanPhone ? navStyle.LinkDesktop : navStyle.LinkMobile} onClick={reset}>

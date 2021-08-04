@@ -6,7 +6,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import MapBox from './MapBox'
 
-
 function Enlist(props) {
     const ics = require('ics');
     const event = {
@@ -14,6 +13,7 @@ function Enlist(props) {
         duration: props.duration,
         location: props.location,
         title: props.name,
+        description: props.description,
     }
     const useStyles = makeStyles({
         main: {
@@ -99,14 +99,15 @@ function Enlist(props) {
     const dialogStyle = useStyles();
     const mapStyling = mapStyles();
 
-    const slides = [props.picture[0], 'https://upload.wikimedia.org/wikipedia/commons/d/d5/Zackenberg.4.jpg']
+    // const slides = [props.picture[0], 'https://upload.wikimedia.org/wikipedia/commons/d/d5/Zackenberg.4.jpg']
 
-    const [open, setOpen] = React.useState(false);
-    const [pic, setPic] = React.useState(props.picture[0]);
-    const [calEvent, setCalEvent] = React.useState('');
+    const [open, setOpen] = useState(false);
+    const [pic, setPic] = useState(props.picture[0]);
+    const [calEvent, setCalEvent] = useState('');
 
     const Open = () => {
         setOpen(true);
+        console.log(props.description);
     }
 
     const Close = () => {
@@ -145,7 +146,7 @@ function Enlist(props) {
                         <br />
                         <br />
                     </>
-                    <Typography className={dialogStyle.description}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum fermentum fermentum ex eget fringilla. Etiam elementum nisl vel interdum condimentum. In fringilla posuere consequat. Praesent vitae lectus lorem. Ut ullamcorper, urna sit amet vehicula dignissim, lectus nisi euismod diam, sed consectetur lacus odio ut purus.</Typography>
+                    <Typography className={dialogStyle.description}>{props.description}</Typography>
                     <br />
                     <MapBox className={mapStyling.sizing} location={props.location} />
                     <br />

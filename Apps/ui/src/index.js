@@ -12,13 +12,17 @@ import groupsReducer from './reducers/groups';
 import snackbarReducer from './reducers/snackbar';
 import usersReducer from './reducers/users';
 import allGroupsReducer from './reducers/allGroups';
+import activitiesReducer from './reducers/activities';
+
 
 const AppReducer = combineReducers({
   userInfo: userInfoReducer,
   group: groupsReducer,
   snackbar: snackbarReducer,
   users: usersReducer,
-  allGroups: allGroupsReducer
+  allGroups: allGroupsReducer,
+  activities: activitiesReducer,
+
 })
 
 const sagaMiddleware = createSagaMiddleware();
