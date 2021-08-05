@@ -31,6 +31,11 @@ useEffect(() => {
     dispatch({
         type: 'GET_ACTIVITY'
     });
+
+    dispatch({
+      type: 'GET_PASSED',
+      _id: `${user._id}`
+    });
 }
     setNewList()  
 }, []);

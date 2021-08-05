@@ -78,3 +78,17 @@ export const enlistActivitySuccess = (user) => {
         user
     }
 }
+
+export const removeActivity = (body) => {
+    return {
+        type: 'REMOVE_ACTIVITY',
+        body
+    }
+}
+
+export const removeActivitySuccess = (user) => {
+    return {
+        type: 'REMOVE_ACTIVITY_SUCCESS',
+        user
+    }
+}

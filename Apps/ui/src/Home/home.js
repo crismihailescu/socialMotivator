@@ -156,27 +156,6 @@ const initialActivities = [
 
 function Home() {
   const acts = useSelector(state => state.activities)
-  // const dispatch = useDispatch();
-  // const [other, setOther] = useState([]);
-  // const [ready, setReady] = useState(false);
-  // const [activities, setList] = useState([{"default": "default"}]);
-  // const [name, setName] = useState('');
-  // const [type, setType] = useState('');
-  // const default_img = 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Larix_decidua_Aletschwald.jpg/330px-Larix_decidua_Aletschwald.jpg';
-
-  // function addActivity() {
-  //   const newList = activities.concat({ name, type, default_img });
-  //   setList(newList);
-  //   console.log(newList);
-  // }
-
-  // function handleNameChange(event) {
-  //   setName(event.target.value);
-  // }
-
-  // function handleTypeChange(event) {
-  //   setType(event.target.value);
-  // }
 
   return (
     <div className='home-container' >

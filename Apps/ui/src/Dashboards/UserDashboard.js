@@ -18,7 +18,9 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 import { Checkbox, FormControlLabel, TextField } from '@material-ui/core';
-
+import ViewActivityByType from '../App/components/ViewActivityByType';
+import Carousel from '../App/components/Carousel';
+import Activity from '../App/components/Activity';
 
 //Source: gridList modelled from example @ https://material-ui.com/components/grid-list/
 
@@ -116,6 +118,7 @@ function UserDashboard() {
 
     //TODO: these values will be retrieved, not set here
     const [showPw, setShowPw] = useState(false);
+    
 
     const [settingsOpen, setSettingsOpen] = useState(false);
 
@@ -136,7 +139,16 @@ function UserDashboard() {
 
             <div >
                 <p>Your upcoming events: </p>
-                <div className={classes.rootGrid}>
+                <div>
+                    <Carousel show={3}>
+                        {(user.current).map((item) => (
+                            <div style= {{padding: 8}}>
+                                <Activity _id = {item._id} activityTitle={item.title} activityType={item.type} activityImg={item.image} activityLocation={item.location} activityDesc={item.desc} location={item.location} start = {item.start} duration = {item.duration} description = {item.desc}/> 
+                            </div>
+                        ))}
+                    </Carousel>
+                </div>
+                {/* <div className={classes.rootGrid}>
                     <GridList cellHeight={180} className={classes.gridList}>
                         <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
                             <ListSubheader component="div"></ListSubheader>
@@ -156,7 +168,7 @@ function UserDashboard() {
                             </GridListTile>
                         ))}
                     </GridList>
-                </div>
+                </div> */}
             </div>
 
 
