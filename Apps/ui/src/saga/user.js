@@ -76,7 +76,6 @@ export function* updateUser(action) {
 
 
 export function* enlistActivity(action) {
-    console.log(action.body);
     try {
         let result;
         yield fetch('http://localhost:3001/users/enlist', {
@@ -85,9 +84,9 @@ export function* enlistActivity(action) {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(action)
-        }).then(response => result = response.status);
-        yield put(enlistActivitySuccess(result));
+        }).then(res => res.text()).then(res => result = JSON.parse(res));
         console.log(result);
+        yield put(enlistActivitySuccess(result));
     } catch (err) {
         yield put(openSnackbar('Unknown Error', 'error'));
         yield put(updateFailure());
@@ -95,7 +94,6 @@ export function* enlistActivity(action) {
 }
 
 export function* removeActivity(action) {
-    console.log(action.body);
     try {
         let result;
         yield fetch('http://localhost:3001/users/remove', {
@@ -104,9 +102,9 @@ export function* removeActivity(action) {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(action)
-        }).then(response => result = response.status);
-        yield put(removeActivitySuccess(result));
+        }).then(res => res.text()).then(res => result = JSON.parse(res));
         console.log(result);
+        yield put(removeActivitySuccess(result));
     } catch (err) {
         yield put(openSnackbar('Unknown Error', 'error'));
         yield put(updateFailure());
