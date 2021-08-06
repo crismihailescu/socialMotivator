@@ -19,6 +19,7 @@ export function* rootSaga() {
         takeEvery("GET_ACTIVITY", get),
         takeEvery("GET_GROUPS", getGroupsPlease),
         takeEvery("ENLIST_ACTIVITY", enlistActivity),
+        // takeEvery("GET_PASSED", getPassedActs),
         takeEvery("REMOVE_ACTIVITY", removeActivity)
 
     ]);

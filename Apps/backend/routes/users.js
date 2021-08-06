@@ -153,3 +153,17 @@ router.put('/remove', async function (req, res, next) {
   }
 })
 module.exports = router;
+
+
+// router.put('/passed', async function (req, res, next) {
+//   let body = req.body;
+//   let user_id = body._id;
+//   const client = new MongoClient(uri, { useUnifiedTopology: true, useNewUrlParser: true });
+//   try {
+//     await client.connect();
+//     let user = await client.db('CATS').collection('users').findOne({ "_id": ObjectId(user_id.toString())});
+//     // 
+//   } finally {
+//     client.close();
+//   }
+// })

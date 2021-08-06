@@ -31,14 +31,14 @@ router.get('/', async function(req, res, next) {
             if (compareDates(activity.start)) {
                 for (let user of activity.users) {
                     await client.db('CATS').collection('users').updateOne({ "_id": ObjectId(user.toString()) },
-                    {$push: {"history": {"_id": activity._id}}});
+                    {$push: {"history":  activity}});
                     await client.db('CATS').collection('users').updateOne({ "_id": ObjectId(user.toString()) },
                     {$pull: {"current": {"_id": (activity._id).toString()}}});
                     await client.db('CATS').collection('users').updateOne({ "_id": ObjectId(user.toString()) },
                     {$inc: {participation: 1}});
                 }
              await client.db('CATS').collection('pastActivities').insertOne(activity);
-             await client.db('CATS').collection('activities').deleteOne({ _id: activity._id });
+             await client.db('CATS').collection('activities').deleteOne({ "_id": activity._id });
                 };
             }
         result = [];

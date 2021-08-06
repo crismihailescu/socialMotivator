@@ -12,7 +12,7 @@ import { useYupValidationResolver } from '../UserInput/Schema';
 import { Schema } from './Schema';
 import CustomSnackbar from '../App/components/Snackbar';
 import AccountSettings from './AccountSettings.js';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -122,6 +122,17 @@ function UserDashboard() {
 
     const [settingsOpen, setSettingsOpen] = useState(false);
 
+    // useEffect(() => {
+    //     async function getPassedActs() {
+    //         dispatch({
+    //             type: 'GET_PASSED',
+    //             _id: `${user._id}`
+    //           });
+    //     }
+    //     getPassedActs()
+    // }, []);
+
+
     function handleSettingsOpen() {
         setSettingsOpen(true);
     }
@@ -170,6 +181,20 @@ function UserDashboard() {
                     </GridList>
                 </div> */}
             </div>
+            
+            
+            <div >
+                <p>Your past events: </p>
+                <div>
+                    <Carousel show={3}>
+                        {(user.history).map((item) => (
+                            <div style= {{padding: 8}}>
+                                <Activity _id = {item._id} activityTitle={item.title} activityType={item.type} activityImg={item.image} activityLocation={item.location} activityDesc={item.desc} location={item.location} start = {item.start} duration = {item.duration} description = {item.desc}/> 
+                            </div>
+                        ))}
+                    </Carousel>
+                </div>
+                </div>
 
 
             <div className='past-events'>
