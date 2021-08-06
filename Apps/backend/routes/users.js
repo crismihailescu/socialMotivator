@@ -123,6 +123,9 @@ router.put('/enlist', async function (req, res, next) {
     if (!found) {
     await client.db('CATS').collection('users').updateOne({"_id": ObjectId(user_id.toString()) },
     {$push: {"current": activity} })
+    await client.db('CATS').collection('activities').updateOne({"_id": ObjectId((body.activity_id).toString())}, 
+    {$push: {"users": user_id}}
+    );
     }
     let result = await client.db('CATS').collection('users').findOne({ "_id": ObjectId(user_id.toString())});
     res.send(result);
@@ -141,6 +144,8 @@ router.put('/remove', async function (req, res, next) {
     await client.connect();
     await client.db('CATS').collection('users').updateOne({"_id": ObjectId(user_id.toString()) },
     {$pull: {"current": {"_id": activity_id}}})
+    await client.db('CATS').collection('activities').updateOne({"_id": ObjectId(activity_id.toString()) },
+    {$pull: {"users":  user_id}});
     let result = await client.db('CATS').collection('users').findOne({ "_id": ObjectId(user_id.toString())});
     res.send(result);
   } finally {

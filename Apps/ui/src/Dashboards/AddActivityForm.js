@@ -163,7 +163,8 @@ function AddActivityForm() {
                                         desc: desc,
                                         location: location,
                                         start: dateFormat,
-                                        duration: {hours: 3, minutes: 0}
+                                        duration: {hours: 3, minutes: 0},
+                                        users: [],
                                     }
                                 });
                                 
