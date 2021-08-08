@@ -197,7 +197,7 @@ function UserDashboard() {
                 </div>
 
 
-            <div className='past-events'>
+            {/* <div className='past-events'>
                 <p>Your past events: </p>
                 <div className={classes.rootGrid}>
                     <GridList cellHeight={180} className={classes.gridList}>
@@ -220,7 +220,7 @@ function UserDashboard() {
                         ))}
                     </GridList>
                 </div>
-            </div>
+            </div> */}
         </div>
 
         <Dialog open={settingsOpen} onBackdropClick={handleSettingsClose} className={classes.root}>
