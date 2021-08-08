@@ -1,5 +1,5 @@
 import { put } from "redux-saga/effects";
-import { addActivity, addActivitySuccess, getActivitySuccess } from "../actions/activities";
+import { addActivity, addActivitySuccess, getActivitySuccess, getPastActivitySuccess } from "../actions/activities";
 
 const DUPLICATE = 409;
 const INSERTED = 201;

@@ -3,6 +3,7 @@ import { all, takeEvery } from "redux-saga/effects";
 import { addGroup, getGroup } from "./group";
 import { enlistActivity, getUsers, removeActivity, signIn, signUp, updateUser } from "./user";
 import { add, get } from "./activities";
+import { getPastActivities } from "./pastActivities";
 import { getGroupsPlease } from "./groups";
 
 
@@ -17,6 +18,7 @@ export function* rootSaga() {
         takeEvery("GET_GROUP", getGroup),
         takeEvery("ADD_ACTIVITY", add),
         takeEvery("GET_ACTIVITY", get),
+        takeEvery("GET_PAST_ACTIVITY", getPastActivities),
         takeEvery("GET_GROUPS", getGroupsPlease),
         takeEvery("ENLIST_ACTIVITY", enlistActivity),
         // takeEvery("GET_PASSED", getPassedActs),

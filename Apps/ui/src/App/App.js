@@ -24,6 +24,7 @@ function App() {
   const dispatch = useDispatch();
   const user = useSelector(state => state.userInfo);
   const acts = useSelector(state => state.activities);
+  const pastActs = useSelector(state => state.pastActivities);
   
 
 useEffect(() => {
@@ -33,6 +34,15 @@ useEffect(() => {
     });
 }
     setNewList()  
+}, []);
+
+useEffect(() => {
+  async function setOldList() {
+    dispatch({
+        type: 'GET_PAST_ACTIVITY'
+    });
+}
+    setOldList()  
 }, []);
 
 
