@@ -163,7 +163,9 @@ function Home() {
     <div className='home-container' >
       <div className='home-body'>
         <Search activities={JSON.parse(acts)} />
-        <Recommendation pastEvents={pastActs} userData={usrs} activities={JSON.parse(acts)}/>
+        {usrs.history!==undefined &&
+          <Recommendation pastEvents={pastActs} userData={usrs} activities={JSON.parse(acts)}/>
+          }
         <ViewActivityByType acts = {JSON.parse(acts)} />
         <div className='whitespace' />
       </div>

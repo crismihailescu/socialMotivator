@@ -6,20 +6,44 @@ import Activity from './Activity';
 
 function Recommendation({activities, userData, pastEvents}) {
 
-    console.log("Userlist: " + JSON.stringify(userData))
-    console.log("Past events: " + JSON.stringify(pastEvents))
-    console.log("Current Activities: " + JSON.stringify(activities))
-
-    // FIX: Change once user data is being received from state
-    let typeList = ['Outdoor ', 'Indoor ', 'Indoor ', 'Indoor ', 'Delivery ', 'Delivery ', 'School ', 'Indoor ', 'School ', 'School ', 'Indoor '];
-    let locationList = ['Vancouver ', 'Vancouver ', 'Kelowna ', 'Vancouver ', 'East Vancouver ', 'Surrey ', 'Surrey ', 'Vancouver ', 'Kelowna ', 'Coquitlam '];
-    let keywords = ['Park ', 'Cleanup ', 'Beach ', 'Cleanup ', 'Fundraising ', 'Soup ', 'Kitchen ', 'Volunteer ', 'Driver ', 'Miller ', 'Park ', 'Cleanup ', 'School ', 'Driver '];
-    let groupLists = [typeList, locationList, keywords]
+    let groupList = [];
     let reccoList = [];
     let searchResults;
+
+    // Go through user history and past events and make an array with the events that the user has attended by matching 
+        let pastEventObj = JSON.parse(pastEvents)
+        let userHistory = userData.history
+        let userHistoryEventList = []
+        for (let pastUserEvent of userHistory) {
+            for (let pastEvent of pastEventObj) {
+                if (pastUserEvent._id === pastEvent._id) {
+                    userHistoryEventList.push(pastEvent)
+                }
+            }
+        }
+        let userHistoryEvents = userHistoryEventList
+    
+    // Go through the new array of the user's past events, and compile the type, location, and keywords into the below lists
+        let typeList =[]
+        let locationList = []
+        let keywords = []
+
+        for (let event of userHistoryEvents) {
+            typeList.push(event.type)
+            locationList.push(event.location)
+            for (let word of event.title.split(" ")){
+                keywords.push(word)
+            }
+        }
+        groupList = [typeList, locationList, keywords]
+
+    // let typeList = ['Outdoor ', 'Indoor ', 'Indoor ', 'Indoor ', 'Delivery ', 'Delivery ', 'School ', 'Indoor ', 'School ', 'School ', 'Indoor '];
+    // let locationList = ['Vancouver ', 'Vancouver ', 'Kelowna ', 'Vancouver ', 'East Vancouver ', 'Surrey ', 'Surrey ', 'Vancouver ', 'Kelowna ', 'Coquitlam '];
+    // let keywords = ['Park ', 'Cleanup ', 'Beach ', 'Cleanup ', 'Fundraising ', 'Soup ', 'Kitchen ', 'Volunteer ', 'Driver ', 'Miller ', 'Park ', 'Cleanup ', 'School ', 'Driver '];
     
     // https://stackoverflow.com/questions/1053843/get-the-element-with-the-highest-occurrence-in-an-array
     function mode(array) {
+
         if (array.length == 0)
             return null;
         var modeMap = {};
@@ -51,7 +75,7 @@ function Recommendation({activities, userData, pastEvents}) {
     let topKeywords = [];
 
     // Get top three keywords
-    for (let list of groupLists) {
+    for (let list of groupList) {
         for (let i = 0; i<3; i++) {
             let tempMode = mode(list)
             topKeywords.push(tempMode)
@@ -79,11 +103,11 @@ function Recommendation({activities, userData, pastEvents}) {
         <div>
             <h1>Recommended Activities:</h1>
             <Carousel show={3}>
-                <div style={{padding: 8}}>
-                    {reccoList.map(item => 
-                        <Activity _id={item._id} activityTitle={item.title} activityType={item.type} activityImg={item.image} activityLocation={item.location} activityDesc={item.desc} location={item.location} start = {item.start} duration = {item.duration} description = {item.desc}/>
-                    )}
-                </div>
+                    {reccoList.map(item => (
+                        <div style={{padding: 8}}>
+                            <Activity _id={item._id} activityTitle={item.title} activityType={item.type} activityImg={item.image} activityLocation={item.location} activityDesc={item.desc} location={item.location} start = {item.start} duration = {item.duration} description = {item.desc}/>
+                        </div>
+                    ))}
             </Carousel>
         </div>
     )
