@@ -1,10 +1,11 @@
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch } from 'react-redux';
-import { Box, TextField, Typography, Button, Paper, Select, MenuItem } from '@material-ui/core';
+import { Box, TextField, Typography, Button, Paper, Select, MenuItem, FormControlLabel, Checkbox } from '@material-ui/core';
 import { Link, withRouter } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { useYupValidationResolver, signUpSchema } from './Schema';
 import CustomSnackbar from '../App/components/Snackbar';
+import { useState } from 'react';
 
 const useStyles = makeStyles({
     paper: {
@@ -23,6 +24,9 @@ const useStyles = makeStyles({
         width: 200,
         height: 50,
         color: '#2196f3',
+    },
+    checkbox: {
+        marginLeft: 40,
     },
     textField: {
         marginTop: 20,
@@ -45,6 +49,7 @@ function SignUp(props) {
     const classes = useStyles();
     const { handleSubmit, formState: { errors }, register, getValues } = useForm({ resolver });
     const dispatch = useDispatch();
+    const [showPw, setShowPw] = useState(false);
     return (
         <Box>
             <Paper className={classes.paper} variant='outlined'>
@@ -93,6 +98,7 @@ function SignUp(props) {
                     label='Password'
                     className={errors.password ? classes.textField2 : classes.textField}
                     variant='outlined'
+                    type={showPw ? "text" : "password"}
                     InputLabelProps={{
                         shrink: true,
                     }}
@@ -101,6 +107,12 @@ function SignUp(props) {
                     error={errors && errors.password}
                     helperText={errors && errors.password ? 'Must Contain 8 Characters, 1 Uppercase, 1 Lowercase, 1 Number and 1 special case character' : ''}
                 />
+                <Box className={classes.checkbox}>
+                    <FormControlLabel
+                        control={<Checkbox checked={showPw} onChange={() => setShowPw(!showPw)} />}
+                        label={<Typography variant='body2'>Show Password</Typography>}
+                    />
+                </Box>
                 <TextField
                     id='email'
                     label='Email'

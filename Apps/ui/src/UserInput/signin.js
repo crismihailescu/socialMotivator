@@ -1,10 +1,11 @@
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch } from 'react-redux';
-import { Box, TextField, Typography, Button, Paper } from '@material-ui/core';
+import { Box, TextField, Typography, Button, Paper, FormControlLabel, Checkbox } from '@material-ui/core';
 import { Link, withRouter } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { useYupValidationResolver, signInSchema } from './Schema';
 import CustomSnackbar from '../App/components/Snackbar';
+import { useState } from 'react';
 
 const useStyles = makeStyles({
     paper: {
@@ -24,6 +25,9 @@ const useStyles = makeStyles({
         height: 50,
         color: '#2196f3',
     },
+    checkbox: {
+        marginLeft: 40,
+    },
     textField: {
         marginTop: 40,
         width: '80%',
@@ -39,6 +43,7 @@ function SignIn(props) {
     const classes = useStyles();
     const { handleSubmit, formState: { errors }, register, getValues } = useForm({ resolver });
 
+    const [showPw, setShowPw] = useState(false);
     const dispatch = useDispatch();
     return (
         <Box>
@@ -65,11 +70,18 @@ function SignIn(props) {
                     InputLabelProps={{
                         shrink: true,
                     }}
+                    type={showPw ? "text" : "password"}
                     autoFocus
                     {...register('password')}
                     error={errors && errors.password}
                     helperText={errors && errors.password ? 'Required' : ''}
                 />
+                <Box className={classes.checkbox}>
+                    <FormControlLabel
+                        control={<Checkbox checked={showPw} onChange={() => setShowPw(!showPw)} />}
+                        label={<Typography variant='body2'>Show Password</Typography>}
+                    />
+                </Box>
                 <Box mx={5} mb={2}>
                     <Typography variant='body2'>
                         Don't have an account? Click
