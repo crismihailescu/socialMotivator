@@ -1,6 +1,4 @@
 import * as JsSearch from 'js-search';
-import { makeStyles } from '@material-ui/core/styles';
-import { useState } from 'react';
 import Carousel from './Carousel';
 import Activity from './Activity';
 
