@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const { MongoClient } = require("mongodb");
+var ObjectId = require('mongodb').ObjectID;
 const { checkout } = require('./users');
 const uri = "mongodb+srv://m001-student:m001-mongodb-basics@sandbox.3zspm.mongodb.net/CATS?retryWrites=true&w=majority";
 
@@ -28,8 +29,16 @@ router.get('/', async function(req, res, next) {
         await activities.forEach(activity => result.push(activity));
         for (let activity of result) {
             if (compareDates(activity.start)) {
-                let Insertmessage = await client.db('CATS').collection('pastActivities').insertOne(activity);
-                let Deletemessage = await client.db('CATS').collection('activities').deleteOne({ _id: activity._id });
+                for (let user of activity.users) {
+                    await client.db('CATS').collection('users').updateOne({ "_id": ObjectId(user.toString()) },
+                    {$push: {"history":  activity}});
+                    await client.db('CATS').collection('users').updateOne({ "_id": ObjectId(user.toString()) },
+                    {$pull: {"current": {"_id": (activity._id).toString()}}});
+                    await client.db('CATS').collection('users').updateOne({ "_id": ObjectId(user.toString()) },
+                    {$inc: {participation: 1}});
+                }
+             await client.db('CATS').collection('pastActivities').insertOne(activity);
+             await client.db('CATS').collection('activities').deleteOne({ "_id": activity._id });
                 };
             }
         result = [];

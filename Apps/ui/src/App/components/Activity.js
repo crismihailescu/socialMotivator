@@ -1,5 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 import Enlist from '../components/Enlist'
+import { useSelector } from 'react-redux';
 
 const activityStyles = makeStyles({
     activity: {
@@ -31,6 +32,7 @@ const activityStyles = makeStyles({
 });
 
 function Activity(props) {
+    const user = useSelector(state => state.userInfo);
     const classes = activityStyles();
     return (
     <div>

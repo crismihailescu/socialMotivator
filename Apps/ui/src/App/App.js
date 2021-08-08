@@ -24,6 +24,7 @@ function App() {
   const dispatch = useDispatch();
   const user = useSelector(state => state.userInfo);
   const acts = useSelector(state => state.activities);
+  const pastActs = useSelector(state => state.pastActivities);
   
 
 useEffect(() => {
@@ -35,26 +36,22 @@ useEffect(() => {
     setNewList()  
 }, []);
 
+useEffect(() => {
+  async function setOldList() {
+    dispatch({
+        type: 'GET_PAST_ACTIVITY'
+    });
+}
+    setOldList()  
+}, []);
+
 
   return (
     <Router>
       <div>
-        {/* <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/SignUp">About</Link>
-            </li>
-          </ul>
-        </nav> */}
 
         <Nav />
 
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
         <Switch>
           <Route path="/SignIn">
             <SignIn />

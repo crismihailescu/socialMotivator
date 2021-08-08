@@ -4,8 +4,8 @@ import ViewActivityByType from '../App/components/ViewActivityByType';
 import AddActivity from '../App/components/AddActivity';
 import { useDispatch } from 'react-redux';
 import '../App/styles/Home.css';
+import Recommendation from '../App/components/Recommendation';
 import Search from '../App/components/Search';
-
 
 const initialActivities = [
   {
@@ -156,32 +156,16 @@ const initialActivities = [
 
 function Home() {
   const acts = useSelector(state => state.activities)
-  // const dispatch = useDispatch();
-  // const [other, setOther] = useState([]);
-  // const [ready, setReady] = useState(false);
-  // const [activities, setList] = useState([{"default": "default"}]);
-  // const [name, setName] = useState('');
-  // const [type, setType] = useState('');
-  // const default_img = 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Larix_decidua_Aletschwald.jpg/330px-Larix_decidua_Aletschwald.jpg';
-
-  // function addActivity() {
-  //   const newList = activities.concat({ name, type, default_img });
-  //   setList(newList);
-  //   console.log(newList);
-  // }
-
-  // function handleNameChange(event) {
-  //   setName(event.target.value);
-  // }
-
-  // function handleTypeChange(event) {
-  //   setType(event.target.value);
-  // }
+  const usrs = useSelector(state => state.userInfo)
+  const pastActs = useSelector(state => state.pastActivities)
 
   return (
     <div className='home-container' >
       <div className='home-body'>
         <Search activities={JSON.parse(acts)} />
+        {usrs.history!==undefined &&
+          <Recommendation pastEvents={pastActs} userData={usrs} activities={JSON.parse(acts)}/>
+          }
         <ViewActivityByType acts = {JSON.parse(acts)} />
         <div className='whitespace' />
       </div>

@@ -106,6 +106,7 @@ function Enlist(props) {
     const [open, setOpen] = useState(false);
     const [pic, setPic] = useState(props.picture[0]);
     const [calEvent, setCalEvent] = useState('');
+    const user = useSelector(state => state.userInfo);
     const dispatch = useDispatch();
 
     const Open = () => {
@@ -121,9 +122,26 @@ function Enlist(props) {
     const Join = () => {
               dispatch({
                   type: 'ENLIST_ACTIVITY',
-                  body: `${props._id}`,
+                  activity_id: `${props._id}`,
+                  title: `${props.name}`,
+                  activityType : `${props.type}`,
+                  image: `${pic}`,
+                  description: `${props.description}`,
+                  location: `${props.location}`,
+                  start: `${props.start}`,
+                  duration: `${props.duration}`, 
+                  user_id: `${user._id}`,
               });
               console.log('clicked join')
+    }
+
+    const Remove = () => {
+        dispatch({
+            type: 'REMOVE_ACTIVITY',
+            user_id: `${user._id}`,
+            activity_id: `${props._id}`,
+        });
+        console.log('clicked join')
     }
 
 
@@ -138,10 +156,21 @@ function Enlist(props) {
         })
     }
 
+    function alreadyJoined(given_id) {
+        if (user._id !== undefined ) {
+        for (let element of user.current) {
+            if (element._id === given_id) {
+                return false
+            }
+        }
+    }
+        return true;
+    }
+
     return (
         <div className={dialogStyle.main}>
             <Button className={dialogStyle.openBtn} onClick={() => { Open(); createCalEvent(); }}>
-                Sign Up
+                More Info
             </Button>
             <Dialog open={open} onClose={Close} className={dialogStyle.dialog}>
                 <Button className={dialogStyle.closeBtn} onClick={Close}>X</Button>
@@ -156,7 +185,13 @@ function Enlist(props) {
                     <br />
                     <MapBox className={mapStyling.sizing} location={props.location} />
                     <br />
+                    { alreadyJoined(props._id) &&
                     <Button onClick={Join} className={dialogStyle.joinBtn}>Join</Button>
+                    }
+
+                    {(!alreadyJoined(props._id)) && (user._id !== undefined) && 
+                    <Button onClick={Remove} className={dialogStyle.joinBtn}>Remove</Button>
+                    }
                     <br />
                     <br />
                     <a className={dialogStyle.link} href={calEvent} download={`${props.name}.ics`}>

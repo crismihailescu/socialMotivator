@@ -99,20 +99,71 @@ router.put('/', async function (req, res, next) {
 
 router.put('/enlist', async function (req, res, next) {
   let body = req.body;
-  res.header("Access-Control-Allow-Origin", '*');
-  console.log(body);
-  // const client = new MongoClient(uri, { useUnifiedTopology: true, useNewUrlParser: true });
-  // try {
-  //   await client.connect();
-  //   // await client.db('CATS').collection('users').updateOne({ "_id": ObjectId(id.toString()) },
-  //   //   { $set: { "username": username, "email": email, "password": body.password, "firstname": body.firstname, "lastname": body.lastname } }, { upsert: true });
-  //   // await client.db('CATS').collection('groups').updateMany({ "members._id": id },
-  //   //   { "$set": { "members.$.username": username, "members.$.firstname": body.firstname, "members.$.lastname": body.lastname } });
-  //     // res.send(OK);
-  //   }
-  //    finally {
-  //   client.close()
-  // }
+  let user_id = body.user_id;
+  let activity = {
+    "_id": body.activity_id,
+    "title": body.title,
+    "type": body.activityType,
+    "image": body.image,
+    "desc": body.description,
+    "location": body.location,
+    "start": body.start,
+    "duration": body.duration,
+  }
+  const client = new MongoClient(uri, { useUnifiedTopology: true, useNewUrlParser: true });
+  try {
+    await client.connect();
+    const already = await client.db('CATS').collection('users').findOne({ "_id": ObjectId(user_id.toString())});
+    let found = 0;
+    for (let element of already.current) {
+      if (element._id === body.activity_id) {
+        found = 1
+      }
+    }
+    if (!found) {
+    await client.db('CATS').collection('users').updateOne({"_id": ObjectId(user_id.toString()) },
+    {$push: {"current": activity} })
+    await client.db('CATS').collection('activities').updateOne({"_id": ObjectId((body.activity_id).toString())}, 
+    {$push: {"users": user_id}}
+    );
+    }
+    let result = await client.db('CATS').collection('users').findOne({ "_id": ObjectId(user_id.toString())});
+    res.send(result);
+    }
+     finally {
+    client.close();
+  }
 });
 
+router.put('/remove', async function (req, res, next) {
+  let body = req.body;
+  let user_id = body.user_id;
+  let activity_id = body.activity_id;
+  const client = new MongoClient(uri, { useUnifiedTopology: true, useNewUrlParser: true });
+  try {
+    await client.connect();
+    await client.db('CATS').collection('users').updateOne({"_id": ObjectId(user_id.toString()) },
+    {$pull: {"current": {"_id": activity_id}}})
+    await client.db('CATS').collection('activities').updateOne({"_id": ObjectId(activity_id.toString()) },
+    {$pull: {"users":  user_id}});
+    let result = await client.db('CATS').collection('users').findOne({ "_id": ObjectId(user_id.toString())});
+    res.send(result);
+  } finally {
+    client.close();
+  }
+})
 module.exports = router;
+
+
+// router.put('/passed', async function (req, res, next) {
+//   let body = req.body;
+//   let user_id = body._id;
+//   const client = new MongoClient(uri, { useUnifiedTopology: true, useNewUrlParser: true });
+//   try {
+//     await client.connect();
+//     let user = await client.db('CATS').collection('users').findOne({ "_id": ObjectId(user_id.toString())});
+//     // 
+//   } finally {
+//     client.close();
+//   }
+// })

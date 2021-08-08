@@ -1,6 +1,6 @@
 import { put } from "redux-saga/effects";
 import { openSnackbar } from "../actions/snackbar";
-import { signInFailure, signInSuccess, signUpSuccess, updateFailure, updateSuccess } from "../actions/userInfo";
+import { removeActivitySuccess, enlistActivitySuccess, signInFailure, signInSuccess, signUpSuccess, updateFailure, updateSuccess, getPassedActsSuccess } from "../actions/userInfo";
 import { getUsersSuccess } from "../actions/users";
 
 const DUPLICATE = 409;
@@ -76,7 +76,6 @@ export function* updateUser(action) {
 
 
 export function* enlistActivity(action) {
-    console.log(action.body);
     try {
         let result;
         yield fetch('http://localhost:3001/users/enlist', {
@@ -84,11 +83,48 @@ export function* enlistActivity(action) {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(action.body)
-        }).then(response => result = response.status);
+            body: JSON.stringify(action)
+        }).then(res => res.text()).then(res => result = JSON.parse(res));
         console.log(result);
+        yield put(enlistActivitySuccess(result));
     } catch (err) {
         yield put(openSnackbar('Unknown Error', 'error'));
         yield put(updateFailure());
     }
 }
+
+export function* removeActivity(action) {
+    try {
+        let result;
+        yield fetch('http://localhost:3001/users/remove', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(action)
+        }).then(res => res.text()).then(res => result = JSON.parse(res));
+        console.log(result);
+        yield put(removeActivitySuccess(result));
+    } catch (err) {
+        yield put(openSnackbar('Unknown Error', 'error'));
+        yield put(updateFailure());
+    }
+}
+
+
+// export function* getPassedActs(action) {
+//     try {
+//         let result;
+//         yield fetch('http://localhost:3001/users/passed', {
+//             method: 'PUT',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//             },
+//             body: JSON.stringify(action)
+//         }).then(res => res.text()).then(res => result = JSON.parse(res));
+//         yield put(getPassedActsSuccess(result));
+//     } catch (err) {
+//         yield put(openSnackbar('Unknown Error', 'error'));
+//         yield put(updateFailure());
+//     }
+// }

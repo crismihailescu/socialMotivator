@@ -72,9 +72,37 @@ export const enlistActivity = (body) => {
     }
 }
 
+export const getPassedActs = (body) => {
+    return {
+        type: 'GET_PASSED',
+        body
+    }
+}
+
+export const getPassedActsSuccess = (user) => {
+    return {
+        type: 'GET_PASSED_SUCCESS',
+        user
+    }
+}
+
 export const enlistActivitySuccess = (user) => {
     return {
         type: 'ENLIST_ACTIVITY_SUCCESS',
+        user
+    }
+}
+
+export const removeActivity = (body) => {
+    return {
+        type: 'REMOVE_ACTIVITY',
+        body
+    }
+}
+
+export const removeActivitySuccess = (user) => {
+    return {
+        type: 'REMOVE_ACTIVITY_SUCCESS',
         user
     }
 }
