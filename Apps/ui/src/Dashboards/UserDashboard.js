@@ -119,10 +119,6 @@ function UserDashboard() {
 
     const [settingsOpen, setSettingsOpen] = useState(false);
 
-    function handleSettingsOpen() {
-        setSettingsOpen(true);
-    }
-
     function handleSettingsClose() {
         setSettingsOpen(false);
     }
