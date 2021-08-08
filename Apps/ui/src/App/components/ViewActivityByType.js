@@ -1,7 +1,6 @@
 import Activity from './Activity';
 import '../styles/ActivityByType.css';
 import Carousel from '../components/Carousel'
-import { useEffect } from 'react';
 
 function ViewActivityByType(props) {
 

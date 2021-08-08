@@ -49,22 +49,9 @@ useEffect(() => {
   return (
     <Router>
       <div>
-        {/* <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/SignUp">About</Link>
-            </li>
-          </ul>
-        </nav> */}
 
         <Nav />
 
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
         <Switch>
           <Route path="/SignIn">
             <SignIn />
