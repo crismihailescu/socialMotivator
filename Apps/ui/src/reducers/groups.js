@@ -4,7 +4,7 @@ const groupsReducer = (state = {}, action) => {
             state = action.group;
             return state;
         case 'GET_GROUP_SUCCESS':
-            state = action.group;
+            state = action.groups;
             return state;
         default:
             return state;

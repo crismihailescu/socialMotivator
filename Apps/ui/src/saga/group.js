@@ -29,5 +29,6 @@ export function* getGroup() {
         yield fetch(`/groups`).then(res => res.text()).then(res => groups = JSON.parse(res));
         yield put(getGroupSuccess(groups));
     } catch (err) {
+        yield put(openSnackbar('Failed to retrive groups', 'error'));
     }
 }
