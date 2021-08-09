@@ -9,6 +9,13 @@ import '../App/styles/UserDashboard.css';
 import AccountSettings from './AccountSettings.js';
 import { getActivities } from '../actions/activities';
 import { useDispatch } from 'react-redux';
+import ActivityInfoView from './ActivityInfoView';
+import Dialog from '@material-ui/core/Dialog';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import { getThemeProps } from '@material-ui/styles';
+
+
 
 const orgUpcomingActivities = [
     {
@@ -80,11 +87,11 @@ const useStyles = makeStyles((theme) => ({
 
 function OrganizationDashboard() {
     const user = useSelector(state => state.userInfo);
-    const acts = useSelector(state => state.activities)
+    const acts = useSelector(state => state.activities);
     const classes = useStyles();
     const dispatch = useDispatch();
 
-    const [activities, setList] = useState([{"default": "default"}]);
+    const [activities, setList] = useState([{ "default": "default" }]);
     const [other, setOther] = useState([]);
     const [name, setName] = useState('');
     const [type, setType] = useState('outdoors');
@@ -93,10 +100,21 @@ function OrganizationDashboard() {
 
 
     useEffect(() => {
-      newList = JSON.parse(acts);
-      console.log(newList);
-      setList(newList);
+        newList = JSON.parse(acts);
+        console.log(newList);
+        setList(newList);
     }, [])
+
+    const [values, setValues] = useState({
+        username: user.username,
+        firstname: user.firstname,
+        lastname: user.lastname
+    });
+
+    // const [values, setValues] = useState({
+    //     username: acts.name,
+    // });
+
 
 
     function addActivity() {
@@ -113,7 +131,15 @@ function OrganizationDashboard() {
         setType(event.target.value);
     }
 
+    const [activityInfoOpen, setActivityInfoOpen] = useState(false);
 
+    function handleActivityInfoOpen() {
+        setActivityInfoOpen(true);
+    }
+
+    function handleActivityInfoClose() {
+        setActivityInfoOpen(false);
+    }
 
     return <div className='dashboard-container'>
         <div className='dashboard'>
@@ -126,8 +152,6 @@ function OrganizationDashboard() {
                 <AddActivityModal />
             </div>
 
-            {/* <AddActivity name={name} type={type} handleAddActivity={addActivity} onNameChange={handleNameChange} onTypeChange={handleTypeChange} /> */}
-
             <div >
                 <p>Your upcoming events: </p>
                 <div className={classes.rootGrid}>
@@ -138,15 +162,7 @@ function OrganizationDashboard() {
                         {activities.map((tile) => (
                             <GridListTile key={tile.title}>
                                 <img src={tile.image} alt={tile.title} />
-                                <GridListTileBar
-                                    title={tile.title}
-                                    subtitle={<span>Type: {tile.type}</span>}
-                                    actionIcon={
-                                        <IconButton aria-label={`info about ${tile.title}`} className={classes.icon}>
-                                            <InfoIcon />
-                                        </IconButton>
-                                    }
-                                />
+                                <ActivityInfoView _id = {tile._id} picture= {[tile.image]} title={tile.title} type={tile.type} description = {tile.desc} location = {tile.location}/>
                             </GridListTile>
                         ))}
                     </GridList>
@@ -165,15 +181,7 @@ function OrganizationDashboard() {
                         {orgPastActivities.map((tile) => (
                             <GridListTile key={tile.title}>
                                 <img src={tile.image} alt={tile.title} />
-                                <GridListTileBar
-                                    title={tile.title}
-                                    subtitle={<span>Type: {tile.type}</span>}
-                                    actionIcon={
-                                        <IconButton aria-label={`info about ${tile.title}`} className={classes.icon}>
-                                            <InfoIcon />
-                                        </IconButton>
-                                    }
-                                />
+                                <ActivityInfoView _id = {tile._id} picture= {[tile.image]} title={tile.title} type={tile.type} description = {tile.desc} location = {tile.location}/>
                             </GridListTile>
                         ))}
                     </GridList>
