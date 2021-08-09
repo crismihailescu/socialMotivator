@@ -97,12 +97,12 @@ router.put('/', async function (req, res, next) {
   }
 });
 
-router.put('/completion', async function (req, res, next) {
+router.put('/complete', async function (req, res, next) {
   let user = req.body;
   const client = new MongoClient(uri, { useUnifiedTopology: true, useNewUrlParser: true });
   try {
     await client.connect();
-    await client.db('CATS').collection('users').updateOne({ "username": user.username }, user);
+    await client.db('CATS').collection('users').updateOne({ "username": user.username }, { $set: { "complete": user.complete } });
     res.send(OK);
   } finally {
     client.close()

@@ -111,6 +111,8 @@ const userPastActivities = [
 
 function UserDashboard() {
     const user = useSelector(state => state.userInfo);
+    const activities = useSelector(state => JSON.parse(state.activities));
+    const pastActivities = useSelector(state => JSON.parse(state.pastActivities));
     const dispatch = useDispatch();
     const classes = useStyles();
     const resolver = useYupValidationResolver(Schema);
@@ -152,11 +154,13 @@ function UserDashboard() {
                 <p>Your upcoming events: </p>
                 <div>
                     <Carousel show={3}>
-                        {(user.current).map((item) => (
-                            <div style={{ padding: 8 }}>
+                        {(user.current).map((event) => {
+                            const item = activities.find(act => act._id === event);
+                            return (<div style={{ padding: 8 }}>
                                 <Activity _id={item._id} activityTitle={item.title} activityType={item.type} activityImg={item.image} activityLocation={item.location} activityDesc={item.desc} location={item.location} start={item.start} duration={item.duration} description={item.desc} />
                             </div>
-                        ))}
+                            )
+                        })}
                     </Carousel>
                 </div>
                 {/* <div className={classes.rootGrid}>
@@ -187,11 +191,13 @@ function UserDashboard() {
                 <p>Your past events: </p>
                 <div>
                     <Carousel show={3}>
-                        {(user.history).map((item) => (
-                            <div style={{ padding: 8 }}>
+                        {user.history.map((event) => {
+                            const item = pastActivities.find(act => act._id === event);
+                            return (<div style={{ padding: 8 }}>
                                 <Activity _id={item._id} activityTitle={item.title} activityType={item.type} activityImg={item.image} activityLocation={item.location} activityDesc={item.desc} location={item.location} start={item.start} duration={item.duration} description={item.desc} code={item.code} submit={true} />
                             </div>
-                        ))}
+                            )
+                        })}
                     </Carousel>
                 </div>
             </div>

@@ -91,23 +91,23 @@ function Submit(props) {
                     <Grid container justify="flex-end">
                         <Button className={dialogStyle.submitBtn} onClick={() => {
                             if (code === props.code) {
-                                if (user.complete.contains(code)) {
-                                    openSnackbar('Code has already been submitted', 'error')
+                                if (user.complete.includes(props._id)) {
+                                    dispatch(openSnackbar('Code has already been submitted', 'error'))
                                 } else {
-                                    user.complete.push(code);
+                                    user.complete.push(props._id);
                                     dispatch(addCompletion(user))
                                 }
                             }
                             else {
-                                openSnackbar('Code does not match', 'error')
+                                dispatch(openSnackbar('Code does not match', 'error'))
                             }
                         }}>
                             Submit
                         </Button>
                     </Grid>
                 </DialogContent>
+                <CustomSnackbar />
             </Dialog>
-            <CustomSnackbar />
         </div>
     );
 }

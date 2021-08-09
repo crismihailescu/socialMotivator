@@ -33,6 +33,7 @@ const activityStyles = makeStyles({
 
 function Activity(props) {
     const classes = activityStyles();
+    console.log(props._id)
     return (
         <div>
             <div className={classes.activity}>
