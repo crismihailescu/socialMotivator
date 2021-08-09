@@ -74,10 +74,10 @@ function Nav() {
     return (
         <nav className={navStyle.Nav}>
             <div className={navStyle.Logo}><DirectionsRunIcon /><DirectionsRunIcon /><DirectionsRunIcon /></div>
-            <div className = {navStyle.NavLinksMobile}>
-            {Object.keys(user).length !== 0 && <Box>
-                {`Hello ${user.username}`}
-            </Box>}
+            <div className={navStyle.NavLinksMobile}>
+                {Object.keys(user).length !== 0 && <Box>
+                    {`Hello ${user.username}`}
+                </Box>}
             </div>
             <div className={navStyle.Menu} onClick={openAction}>{open ? <CloseIcon /> : <MenuIcon />}</div>
             <ul className={largerThanPhone ? navStyle.NavLinksDesktop : navStyle.NavLinksMobile} >
@@ -96,17 +96,17 @@ function Nav() {
                 {/* <Link to = '/leaderboard'>
                     <li>Leaderboard</li>
                 </Link> */}
-                {Object.keys(user).length !== 0 && user.type == 'User' && <Link to='/UserDashboard' className={largerThanPhone ? navStyle.LinkDesktop : navStyle.LinkMobile} onClick={reset}>
+                {Object.keys(user).length !== 0 && user.type === 'User' && <Link to='/UserDashboard' className={largerThanPhone ? navStyle.LinkDesktop : navStyle.LinkMobile} onClick={reset}>
                     <li>My Account</li>
                 </Link>
                 }
-                {Object.keys(user).length !== 0 && user.type == 'Company' && <Link to='/OrganizationDashboard' className={largerThanPhone ? navStyle.LinkDesktop : navStyle.LinkMobile} onClick={reset}>
+                {Object.keys(user).length !== 0 && user.type === 'Company' && <Link to='/OrganizationDashboard' className={largerThanPhone ? navStyle.LinkDesktop : navStyle.LinkMobile} onClick={reset}>
                     <li>My Account</li>
                 </Link>
                 }
-                <Link to='/Groups' className={largerThanPhone ? navStyle.LinkDesktop : navStyle.LinkMobile} onClick={reset}>
+                {Object.keys(user).length !== 0 && user.type === 'User' && <Link to='/Groups' className={largerThanPhone ? navStyle.LinkDesktop : navStyle.LinkMobile} onClick={reset}>
                     <li>Groups</li>
-                </Link>
+                </Link>}
             </ul>
         </nav >
     );

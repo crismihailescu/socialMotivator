@@ -118,7 +118,7 @@ function UserDashboard() {
 
     //TODO: these values will be retrieved, not set here
     const [showPw, setShowPw] = useState(false);
-    
+
 
     const [settingsOpen, setSettingsOpen] = useState(false);
 
@@ -153,8 +153,8 @@ function UserDashboard() {
                 <div>
                     <Carousel show={3}>
                         {(user.current).map((item) => (
-                            <div style= {{padding: 8}}>
-                                <Activity _id = {item._id} activityTitle={item.title} activityType={item.type} activityImg={item.image} activityLocation={item.location} activityDesc={item.desc} location={item.location} start = {item.start} duration = {item.duration} description = {item.desc}/> 
+                            <div style={{ padding: 8 }}>
+                                <Activity _id={item._id} activityTitle={item.title} activityType={item.type} activityImg={item.image} activityLocation={item.location} activityDesc={item.desc} location={item.location} start={item.start} duration={item.duration} description={item.desc} />
                             </div>
                         ))}
                     </Carousel>
@@ -181,20 +181,20 @@ function UserDashboard() {
                     </GridList>
                 </div> */}
             </div>
-            
-            
+
+
             <div >
                 <p>Your past events: </p>
                 <div>
                     <Carousel show={3}>
                         {(user.history).map((item) => (
-                            <div style= {{padding: 8}}>
-                                <Activity _id = {item._id} activityTitle={item.title} activityType={item.type} activityImg={item.image} activityLocation={item.location} activityDesc={item.desc} location={item.location} start = {item.start} duration = {item.duration} description = {item.desc}/> 
+                            <div style={{ padding: 8 }}>
+                                <Activity _id={item._id} activityTitle={item.title} activityType={item.type} activityImg={item.image} activityLocation={item.location} activityDesc={item.desc} location={item.location} start={item.start} duration={item.duration} description={item.desc} code={item.code} submit={true} />
                             </div>
                         ))}
                     </Carousel>
                 </div>
-                </div>
+            </div>
 
 
             {/* <div className='past-events'>

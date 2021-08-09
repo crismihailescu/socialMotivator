@@ -13,6 +13,9 @@ const userInfoReducer = (state = {}, action) => {
         case 'SIGN_OUT':
             state = {};
             return state;
+        case 'ADD_COMPLETION_SUCCESS':
+            state = action.user;
+            return state;
         case 'UPDATE_SUCCESS':
             console.log("triggered");
             state = action.user;

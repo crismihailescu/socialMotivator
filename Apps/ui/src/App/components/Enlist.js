@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
+import { Button, Dialog, Box } from '@material-ui/core';
+import Submit from './Submit'
 import DialogContent from '@material-ui/core/DialogContent';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -45,7 +45,9 @@ function Enlist(props) {
             background: ' #4CAF50',
             fontFamily: 'verdana',
             color: 'white',
-
+            width: 70,
+            fontSize: 10,
+            height: 30,
         },
         joinBtn: {
             margin: 'auto',
@@ -120,19 +122,19 @@ function Enlist(props) {
 
 
     const Join = () => {
-              dispatch({
-                  type: 'ENLIST_ACTIVITY',
-                  activity_id: `${props._id}`,
-                  title: `${props.name}`,
-                  activityType : `${props.type}`,
-                  image: `${pic}`,
-                  description: `${props.description}`,
-                  location: `${props.location}`,
-                  start: `${props.start}`,
-                  duration: `${props.duration}`, 
-                  user_id: `${user._id}`,
-              });
-              console.log('clicked join')
+        dispatch({
+            type: 'ENLIST_ACTIVITY',
+            activity_id: `${props._id}`,
+            title: `${props.name}`,
+            activityType: `${props.type}`,
+            image: `${pic}`,
+            description: `${props.description}`,
+            location: `${props.location}`,
+            start: `${props.start}`,
+            duration: `${props.duration}`,
+            user_id: `${user._id}`,
+        });
+        console.log('clicked join')
     }
 
     const Remove = () => {
@@ -157,21 +159,23 @@ function Enlist(props) {
     }
 
     function alreadyJoined(given_id) {
-        if (user._id !== undefined ) {
-        for (let element of user.current) {
-            if (element._id === given_id) {
-                return false
+        if (user._id !== undefined) {
+            for (let element of user.current) {
+                if (element._id === given_id) {
+                    return false
+                }
             }
         }
-    }
         return true;
     }
 
     return (
         <div className={dialogStyle.main}>
-            <Button className={dialogStyle.openBtn} onClick={() => { Open(); createCalEvent(); }}>
+            <Box> <Button className={dialogStyle.openBtn} onClick={() => { Open(); createCalEvent(); }}>
                 More Info
             </Button>
+                {props.submit && <Submit code={props.code} _id={props._id} />}
+            </Box>
             <Dialog open={open} onClose={Close} className={dialogStyle.dialog}>
                 <Button className={dialogStyle.closeBtn} onClick={Close}>X</Button>
                 <DialogContent className={dialogStyle.dialogContent}>
@@ -185,12 +189,12 @@ function Enlist(props) {
                     <br />
                     <MapBox className={mapStyling.sizing} location={props.location} />
                     <br />
-                    { alreadyJoined(props._id) &&
-                    <Button onClick={Join} className={dialogStyle.joinBtn}>Join</Button>
+                    {alreadyJoined(props._id) &&
+                        <Button onClick={Join} className={dialogStyle.joinBtn}>Join</Button>
                     }
 
-                    {(!alreadyJoined(props._id)) && (user._id !== undefined) && 
-                    <Button onClick={Remove} className={dialogStyle.joinBtn}>Remove</Button>
+                    {(!alreadyJoined(props._id)) && (user._id !== undefined) &&
+                        <Button onClick={Remove} className={dialogStyle.joinBtn}>Remove</Button>
                     }
                     <br />
                     <br />
