@@ -1,7 +1,7 @@
 import { put } from "redux-saga/effects";
 import { openSnackbar } from "../actions/snackbar";
 import { removeActivitySuccess, enlistActivitySuccess, signInFailure, signInSuccess, signUpSuccess, updateFailure, updateSuccess, getPassedActsSuccess } from "../actions/userInfo";
-import { getUsersSuccess } from "../actions/users";
+import { addCompletionSuccess, getUsersSuccess } from "../actions/users";
 
 const DUPLICATE = 409;
 const NOT_FOUND = 404;
@@ -71,6 +71,22 @@ export function* updateUser(action) {
     } catch (err) {
         yield put(openSnackbar('Unknown Error', 'error'));
         yield put(updateFailure());
+    }
+}
+
+export function* userCompletion(action) {
+    try {
+        yield fetch('/users/complete', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(action.user)
+        });
+        yield put(openSnackbar('Successfully Submitted', 'success'));
+        yield put(addCompletionSuccess(action.user));
+    } catch (err) {
+        yield put(openSnackbar('Unknown Error', 'error'));
     }
 }
 

@@ -46,9 +46,10 @@ router.get('/:username/:password', async function (req, res, next) {
 router.post('/', async function (req, res, next) {
   let body = req.body;
   if (body.type === "User") {
-  body.history = [];
-  body.current = [];
-  body.participation = 0;
+    body.history = [];
+    body.current = [];
+    body.complete = [];
+    body.participation = 0;
   }
   let result;
   const username = body.username;
@@ -96,6 +97,18 @@ router.put('/', async function (req, res, next) {
   }
 });
 
+router.put('/complete', async function (req, res, next) {
+  let user = req.body;
+  const client = new MongoClient(uri, { useUnifiedTopology: true, useNewUrlParser: true });
+  try {
+    await client.connect();
+    await client.db('CATS').collection('users').updateOne({ "username": user.username }, { $set: { "complete": user.complete } });
+    res.send(OK);
+  } finally {
+    client.close()
+  }
+});
+
 
 router.put('/enlist', async function (req, res, next) {
   let body = req.body;
@@ -113,7 +126,7 @@ router.put('/enlist', async function (req, res, next) {
   const client = new MongoClient(uri, { useUnifiedTopology: true, useNewUrlParser: true });
   try {
     await client.connect();
-    const already = await client.db('CATS').collection('users').findOne({ "_id": ObjectId(user_id.toString())});
+    const already = await client.db('CATS').collection('users').findOne({ "_id": ObjectId(user_id.toString()) });
     let found = 0;
     for (let element of already.current) {
       if (element._id === body.activity_id) {
@@ -121,16 +134,16 @@ router.put('/enlist', async function (req, res, next) {
       }
     }
     if (!found) {
-    await client.db('CATS').collection('users').updateOne({"_id": ObjectId(user_id.toString()) },
-    {$push: {"current": activity} })
-    await client.db('CATS').collection('activities').updateOne({"_id": ObjectId((body.activity_id).toString())}, 
-    {$push: {"users": user_id}}
-    );
+      await client.db('CATS').collection('users').updateOne({ "_id": ObjectId(user_id.toString()) },
+        { $push: { "current": activity } })
+      await client.db('CATS').collection('activities').updateOne({ "_id": ObjectId((body.activity_id).toString()) },
+        { $push: { "users": user_id } }
+      );
     }
-    let result = await client.db('CATS').collection('users').findOne({ "_id": ObjectId(user_id.toString())});
+    let result = await client.db('CATS').collection('users').findOne({ "_id": ObjectId(user_id.toString()) });
     res.send(result);
-    }
-     finally {
+  }
+  finally {
     client.close();
   }
 });
@@ -142,11 +155,11 @@ router.put('/remove', async function (req, res, next) {
   const client = new MongoClient(uri, { useUnifiedTopology: true, useNewUrlParser: true });
   try {
     await client.connect();
-    await client.db('CATS').collection('users').updateOne({"_id": ObjectId(user_id.toString()) },
-    {$pull: {"current": {"_id": activity_id}}})
-    await client.db('CATS').collection('activities').updateOne({"_id": ObjectId(activity_id.toString()) },
-    {$pull: {"users":  user_id}});
-    let result = await client.db('CATS').collection('users').findOne({ "_id": ObjectId(user_id.toString())});
+    await client.db('CATS').collection('users').updateOne({ "_id": ObjectId(user_id.toString()) },
+      { $pull: { "current": { "_id": activity_id } } })
+    await client.db('CATS').collection('activities').updateOne({ "_id": ObjectId(activity_id.toString()) },
+      { $pull: { "users": user_id } });
+    let result = await client.db('CATS').collection('users').findOne({ "_id": ObjectId(user_id.toString()) });
     res.send(result);
   } finally {
     client.close();

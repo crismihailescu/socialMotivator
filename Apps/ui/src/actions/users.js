@@ -11,3 +11,17 @@ export const getUsersSuccess = (users) => {
     }
 }
 
+export const addCompletion = (user) => {
+    return {
+        type: 'ADD_COMPLETION',
+        user
+    }
+}
+
+export const addCompletionSuccess = (user) => {
+    return {
+        type: 'ADD_COMPLETION_SUCCESS',
+        user
+    }
+}
+
