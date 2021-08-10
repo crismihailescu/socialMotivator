@@ -9,7 +9,7 @@ const NOT_FOUND = 404;
 export function* getUsers(action) {
     try {
         let user;
-        yield fetch(`/users`).then(res => res.text()).then(res => user = JSON.parse(res));
+        yield fetch(`http://localhost:3001/users`).then(res => res.text()).then(res => user = JSON.parse(res));
         yield put(getUsersSuccess(user));
     } catch (err) {
         yield put(openSnackbar('Unknown error getting users', 'error'));
@@ -19,7 +19,7 @@ export function* getUsers(action) {
 export function* signIn(action) {
     try {
         let user;
-        yield fetch(`/users/${action.username}/${action.password}`).then(res => res.text()).then(res => user = JSON.parse(res));
+        yield fetch(`http://localhost:3001/users/${action.username}/${action.password}`).then(res => res.text()).then(res => user = JSON.parse(res));
         if (!user || user === NOT_FOUND) {
             yield put(signInFailure())
             yield put(openSnackbar('Incorrect Username or Password', 'error'));
@@ -36,7 +36,7 @@ export function* signIn(action) {
 export function* signUp(action) {
     try {
         let result;
-        yield fetch('/users/', {
+        yield fetch('http://localhost:3001/users/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -54,7 +54,7 @@ export function* signUp(action) {
 export function* updateUser(action) {
     try {
         let result;
-        yield fetch('/users/', {
+        yield fetch('http://localhost:3001/users/', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -94,7 +94,7 @@ export function* userCompletion(action) {
 export function* enlistActivity(action) {
     try {
         let result;
-        yield fetch('/users/enlist', {
+        yield fetch('http://localhost:3001/users/enlist', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -112,7 +112,7 @@ export function* enlistActivity(action) {
 export function* removeActivity(action) {
     try {
         let result;
-        yield fetch('/users/remove', {
+        yield fetch('http://localhost:3001/users/remove', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
