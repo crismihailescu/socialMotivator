@@ -1,8 +1,8 @@
 import { all, takeEvery } from "redux-saga/effects";
 
 import { addGroup, getGroup } from "./group";
-import { deleteActivity, enlistActivity, getUsers, removeActivity, signIn, signUp, updateUser, userCompletion } from "./user";
-import { add, get } from "./activities";
+import { add, deleteActivity, enlistActivity, getUsers, removeActivity, signIn, signUp, updateUser, userCompletion } from "./user";
+import {  get } from "./activities";
 import { getPastActivities } from "./pastActivities";
 import { getGroupsPlease } from "./groups";
 

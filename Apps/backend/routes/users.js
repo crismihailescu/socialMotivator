@@ -192,6 +192,30 @@ router.put('/delete', async function (req, res, next) {
   }
 });
 
+
+// Add activity
+router.post('/add', async function (req, res, next) {
+  const activityName = req.body;
+  const creator = req.body.creator;
+  const client = new MongoClient(uri, {useUnifiedTopology: true, useNewUrlParser: true });
+  try {
+      await client.connect();
+      await client.db('CATS').collection('users').updateOne({"_id": ObjectId(creator.toString())}, 
+      {$push: {"planned": activityName}})
+      await client.db('CATS').collection('activities').insertOne(activityName);
+      // const activities = await client.db('CATS').collection('activities').find();
+      // result = [];
+      // await activities.forEach(activity => result.push(activity));
+      // res.send(result);
+      let user = await client.db('CATS').collection('users').findOne({ "_id": ObjectId((req.body.creator).toString())});
+      console.log(`user is ${user}`);
+      res.send(user);
+    } finally {
+      client.close();
+      console.log("client closed");
+  }
+});
+
 // router.put('/passed', async function (req, res, next) {
 //   let body = req.body;
 //   let user_id = body._id;

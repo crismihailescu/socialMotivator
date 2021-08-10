@@ -131,7 +131,7 @@ function OrganizationDashboard() {
                         <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
                             <ListSubheader component="div"></ListSubheader>
                         </GridListTile>
-                        {activities.map((tile) => (
+                        {(user.planned).map((tile) => (
                             <GridListTile key={tile.title}>
                                 <img src={tile.image} alt={tile.title} />
                                 <ActivityInfoView _id={tile._id} picture={[tile.image]} title={tile.title} type={tile.type} description={tile.desc} location={tile.location} />

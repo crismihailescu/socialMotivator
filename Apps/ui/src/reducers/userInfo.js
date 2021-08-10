@@ -35,6 +35,9 @@ const userInfoReducer = (state = {}, action) => {
         case 'DELETE_ACTIVITY_SUCCESS':
             state = action.user;
             return state;
+        case 'ADD_ACTIVITY_SUCCESS': 
+            state = action.activity;
+            return state;
         default:
             return state;
     }
