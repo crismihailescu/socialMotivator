@@ -1,14 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import AddActivity from '../App/components/AddActivity';
 import AddActivityModal from './AddActivityModal';
 import { makeStyles } from '@material-ui/core/styles';
-import { Box, GridList, GridListTile, GridListTileBar, ListSubheader, IconButton } from '@material-ui/core';
-import InfoIcon from '@material-ui/icons/Info';
+import { GridList, GridListTile, ListSubheader } from '@material-ui/core';
 import '../App/styles/UserDashboard.css';
 import AccountSettings from './AccountSettings.js';
-import { getActivities } from '../actions/activities';
 import { useDispatch } from 'react-redux';
+import ActivityInfoView from './ActivityInfoView';
 
 const orgUpcomingActivities = [
     {
@@ -84,7 +82,7 @@ function OrganizationDashboard() {
     const classes = useStyles();
     const dispatch = useDispatch();
 
-    const [activities, setList] = useState([{"default": "default"}]);
+    const [activities, setList] = useState([{ "default": "default" }]);
     const [other, setOther] = useState([]);
     const [name, setName] = useState('');
     const [type, setType] = useState('outdoors');
@@ -93,9 +91,9 @@ function OrganizationDashboard() {
 
 
     useEffect(() => {
-      newList = JSON.parse(acts);
-      console.log(newList);
-      setList(newList);
+        newList = JSON.parse(acts);
+        console.log(newList);
+        setList(newList);
     }, [])
 
 
@@ -126,8 +124,6 @@ function OrganizationDashboard() {
                 <AddActivityModal />
             </div>
 
-            {/* <AddActivity name={name} type={type} handleAddActivity={addActivity} onNameChange={handleNameChange} onTypeChange={handleTypeChange} /> */}
-
             <div >
                 <p>Your upcoming events: </p>
                 <div className={classes.rootGrid}>
@@ -138,15 +134,7 @@ function OrganizationDashboard() {
                         {activities.map((tile) => (
                             <GridListTile key={tile.title}>
                                 <img src={tile.image} alt={tile.title} />
-                                <GridListTileBar
-                                    title={tile.title}
-                                    subtitle={<span>Type: {tile.type}</span>}
-                                    actionIcon={
-                                        <IconButton aria-label={`info about ${tile.title}`} className={classes.icon}>
-                                            <InfoIcon />
-                                        </IconButton>
-                                    }
-                                />
+                                <ActivityInfoView _id={tile._id} picture={[tile.image]} title={tile.title} type={tile.type} description={tile.desc} location={tile.location} />
                             </GridListTile>
                         ))}
                     </GridList>
@@ -165,15 +153,7 @@ function OrganizationDashboard() {
                         {orgPastActivities.map((tile) => (
                             <GridListTile key={tile.title}>
                                 <img src={tile.image} alt={tile.title} />
-                                <GridListTileBar
-                                    title={tile.title}
-                                    subtitle={<span>Type: {tile.type}</span>}
-                                    actionIcon={
-                                        <IconButton aria-label={`info about ${tile.title}`} className={classes.icon}>
-                                            <InfoIcon />
-                                        </IconButton>
-                                    }
-                                />
+                                <ActivityInfoView _id = {tile._id} picture= {[tile.image]} title={tile.title} type={tile.type} description = {tile.desc} location = {tile.location}/>
                             </GridListTile>
                         ))}
                     </GridList>
