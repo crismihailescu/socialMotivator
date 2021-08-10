@@ -54,9 +54,13 @@ router.get('/', async function(req, res, next) {
 // Add activity
 router.post('/', async function (req, res, next) {
     const activityName = req.body;
+    const creator = req.body.creator;
+    console.log(`The req body is ${req.body._id}`);
     const client = new MongoClient(uri, {useUnifiedTopology: true, useNewUrlParser: true });
     try {
         await client.connect();
+        await client.db('CATS').collection('users').updateOne({"_id": ObjectId(creator.toString())}, 
+        {$push: {"planned": activityName}})
         let result = await client.db('CATS').collection('activities').insertOne(activityName);
         const activities = await client.db('CATS').collection('activities').find();
         result = [];

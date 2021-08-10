@@ -106,3 +106,10 @@ export const removeActivitySuccess = (user) => {
         user
     }
 }
+
+export const deleteActivitySuccess = (user) => {
+    return {
+        type: 'DELETE_ACTIVITY_SUCCESS',
+        user
+    }
+}
