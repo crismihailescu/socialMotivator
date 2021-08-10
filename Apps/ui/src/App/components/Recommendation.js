@@ -79,11 +79,11 @@ function Recommendation({activities, userData, pastEvents}) {
         <div>
             <h1>Recommended Activities:</h1>
             <Carousel show={3}>
-                <div style={{padding: 8}}>
                     {reccoList.map(item => 
+                    <div style={{padding: 8}}>
                         <Activity _id={item._id} activityTitle={item.title} activityType={item.type} activityImg={item.image} activityLocation={item.location} activityDesc={item.desc} location={item.location} start = {item.start} duration = {item.duration} description = {item.desc}/>
+                        </div>
                     )}
-                </div>
             </Carousel>
         </div>
     )

@@ -100,7 +100,7 @@ function OrganizationDashboard() {
 
 
     useEffect(() => {
-        newList = JSON.parse(acts);
+        newList = user.planned;
         console.log(newList);
         setList(newList);
     }, [])

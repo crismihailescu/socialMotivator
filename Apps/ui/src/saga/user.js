@@ -1,6 +1,6 @@
 import { put } from "redux-saga/effects";
 import { openSnackbar } from "../actions/snackbar";
-import { removeActivitySuccess, enlistActivitySuccess, signInFailure, signInSuccess, signUpSuccess, updateFailure, updateSuccess, getPassedActsSuccess } from "../actions/userInfo";
+import { removeActivitySuccess, enlistActivitySuccess, signInFailure, signInSuccess, signUpSuccess, updateFailure, updateSuccess, getPassedActsSuccess, deleteActivitySuccess } from "../actions/userInfo";
 import { getUsersSuccess } from "../actions/users";
 
 const DUPLICATE = 409;
@@ -105,6 +105,23 @@ export function* removeActivity(action) {
         }).then(res => res.text()).then(res => result = JSON.parse(res));
         console.log(result);
         yield put(removeActivitySuccess(result));
+    } catch (err) {
+        yield put(openSnackbar('Unknown Error', 'error'));
+        yield put(updateFailure());
+    }
+}
+
+export function* deleteActivity(action) {
+    try {
+        let result;
+        yield fetch('http://localhost:3001/users/delete', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(action)
+        }).then(res => res.text()).then(res => result = JSON.parse(res));
+        yield put(deleteActivitySuccess(result));
     } catch (err) {
         yield put(openSnackbar('Unknown Error', 'error'));
         yield put(updateFailure());

@@ -50,6 +50,9 @@ router.post('/', async function (req, res, next) {
   body.current = [];
   body.participation = 0;
   }
+  if (body.type === "Company") {
+    body.planned = [];
+  }
   let result;
   const username = body.username;
   const email = body.email;
@@ -153,6 +156,30 @@ router.put('/remove', async function (req, res, next) {
   }
 })
 module.exports = router;
+
+
+
+router.put('/delete', async function (req, res, next) {
+  const client = new MongoClient(uri, { useUnifiedTopology: true, useNewUrlParser: true });
+  try {
+    await client.connect();
+    const namedActs = await client.db('CATS').collection('activities').find({"title": (req.body.activity_title)});
+    let result = [];
+    await namedActs.forEach(act => result.push(act));
+    console.log(result);
+    for (let activity of result) {
+      if (activity.creator === req.body.user_id) {
+        await client.db('CATS').collection('activities').deleteOne({"_id": ObjectId((activity._id).toString())});
+        await client.db('CATS').collection('users').updateOne({"_id": ObjectId((req.body.user_id).toString()) },
+        {$pull: {"planned": {"title": (req.body.activity_title)}}})
+      }
+    }
+    let user = await client.db('CATS').collection('users').findOne({ "_id": ObjectId((req.body.user_id).toString())});
+    res.send(user);
+  } finally {
+    client.close()
+  }
+});
 
 
 // router.put('/passed', async function (req, res, next) {

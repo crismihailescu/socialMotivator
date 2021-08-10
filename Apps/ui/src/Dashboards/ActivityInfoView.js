@@ -139,9 +139,9 @@ function ActivityInfoView(props) {
 
     const Remove = () => {
         dispatch({
-            type: 'REMOVE_ACTIVITY',
+            type: 'DELETE_ACTIVITY',
             user_id: `${user._id}`,
-            activity_id: `${props._id}`,
+            activity_title: `${props.title}`,
         });
         console.log('clicked join')
     }
@@ -183,7 +183,7 @@ function ActivityInfoView(props) {
                 <br />
                 <MapBox className={mapStyling.sizing} location={props.location} />
                 <br />
-                <Button onClick={Remove} className={dialogStyle.joinBtn}>Remove</Button>
+                <Button onClick={Remove} className={dialogStyle.joinBtn}>Delete</Button>
                 <br />
                 <br />
                 <a className={dialogStyle.link} href={calEvent} download={`${props.name}.ics`}>

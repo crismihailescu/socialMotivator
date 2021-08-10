@@ -165,8 +165,10 @@ function AddActivityForm() {
                                         start: dateFormat,
                                         duration: {hours: 3, minutes: 0},
                                         users: [],
+                                        creator: currentUser._id,
                                     }
                                 });
+                                
                                 
                             }
                         }>Submit</button>

@@ -38,7 +38,8 @@ function Enlist(props) {
             height: 500,
             width: 500,
             textAlign: 'center',
-            objectFit: 'contain'
+            objectFit: 'contain',
+            padding: 8,
         },
         openBtn: {
             variant: 'contained',
@@ -157,7 +158,7 @@ function Enlist(props) {
     }
 
     function alreadyJoined(given_id) {
-        if (user._id !== undefined ) {
+        if (user._id !== undefined && user.type !== "Company" ) {
         for (let element of user.current) {
             if (element._id === given_id) {
                 return false
@@ -185,15 +186,14 @@ function Enlist(props) {
                     <br />
                     <MapBox className={mapStyling.sizing} location={props.location} />
                     <br />
-                    { alreadyJoined(props._id) &&
+                    { alreadyJoined(props._id) && (user.type !== "Company") &&
                     <Button onClick={Join} className={dialogStyle.joinBtn}>Join</Button>
                     }
-
-                    {(!alreadyJoined(props._id)) && (user._id !== undefined) && 
+                    {alreadyJoined(props._id) && (user.type !== "Company") && <br></br>}
+                    {(!alreadyJoined(props._id)) && (user._id !== undefined) && (user.type !== "Company") &&
                     <Button onClick={Remove} className={dialogStyle.joinBtn}>Remove</Button>
                     }
-                    <br />
-                    <br />
+                    {(!alreadyJoined(props._id)) && (user._id !== undefined) && (user.type !== "Company") && <br></br> && <br></br>}
                     <a className={dialogStyle.link} href={calEvent} download={`${props.name}.ics`}>
                         <Button className={dialogStyle.calendarBtn}>Add to calendar</Button>
                     </a>
