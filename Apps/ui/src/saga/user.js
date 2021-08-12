@@ -19,7 +19,7 @@ export function* getUsers(action) {
 export function* signIn(action) {
     try {
         let user;
-        yield fetch(`/${action.username}/${action.password}`).then(res => res.text()).then(res => user = JSON.parse(res));
+        yield fetch(`/users/${action.username}/${action.password}`).then(res => res.text()).then(res => user = JSON.parse(res));
         if (!user || user === NOT_FOUND) {
             yield put(signInFailure())
             yield put(openSnackbar('Incorrect Username or Password', 'error'));
