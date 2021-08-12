@@ -33,11 +33,16 @@ const activityStyles = makeStyles({
 function Activity(props) {
     const classes = activityStyles();
 
-    // let date = props.start
-    // let returnedDate = date.substring(0, date.length - 4)
-    // let returnedTime = date.substring(date.length - 4, date.length + 1)
-    // returnedDate = returnedDate.substring(0,4) + ", " + returnedDate.substring(4,5) + ", " + returnedDate.substring(5,6) + " at " + returnedTime.substring(0,2) + ":" + returnedTime.substring(2,4)
-
+    let date = props.start.toString()
+    console.log("Initial: " + props.start)
+    console.log("Date: " + date)
+    let returnedDate = date.substring(0, date.length - 4)
+    let returnedTime = date.substring(date.length - 4, date.length + 1)
+    if (returnedDate.length === 6) {
+      returnedDate = returnedDate.substring(0,4) + "/" + returnedDate.substring(4,5) + "/" + returnedDate.substring(5,6) + " at " + returnedTime.substring(0,2) + ":" + returnedTime.substring(2,4)
+    } else {
+      returnedDate = returnedDate.substring(0,4) + "/" + returnedDate.substring(4,5) + "/" + returnedDate.substring(5,7) + " at " + returnedTime.substring(0,2) + ":" + returnedTime.substring(2,4)
+    }
     return (
         <div>
             <div className={classes.activity}>
