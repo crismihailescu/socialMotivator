@@ -14,16 +14,17 @@ import { Box } from '@material-ui/core';
 function Nav() {
 
     const user = useSelector(state => state.userInfo);
-    const largerThanPhone = useMediaQuery('(min-width:600px)');
+    const largerThanPhone = useMediaQuery('(min-width:800px)');
 
     const [open, setOpen] = React.useState(false);
 
     const useStyles = makeStyles({
         Nav: {
             display: 'flex',
+            flexDirection: 'row',
             alignItems: 'center',
-            justifyContent: 'space-between',
             background: '#4c8bf5',
+            justifyContent: 'space-between'
         },
         Logo: {
             paddingLeft: '20px',
@@ -58,6 +59,9 @@ function Nav() {
             paddingRight: '30px',
             paddingBottom: '10px',
         },
+        greetings: {
+            justifyContent: 'space-around',
+        }
     })
 
     const navStyle = useStyles()
@@ -74,12 +78,13 @@ function Nav() {
     return (
         <nav className={navStyle.Nav}>
             <div className={navStyle.Logo}><DirectionsRunIcon /><DirectionsRunIcon /><DirectionsRunIcon /></div>
-            <div className={navStyle.NavLinksMobile}>
-                {Object.keys(user).length !== 0 && <Box>
+            <div className = {navStyle.greetings}>
+            {Object.keys(user).length !== 0 && <Box>
                     {`Hello ${user.firstname}`}
                 </Box>}
             </div>
-            <div className={navStyle.Menu} onClick={openAction}>{open ? <CloseIcon /> : <MenuIcon />}</div>
+            <div className={navStyle.NavLinksMobile}>
+            </div>
             <ul className={largerThanPhone ? navStyle.NavLinksDesktop : navStyle.NavLinksMobile} >
                 <Link to='/' className={largerThanPhone ? navStyle.LinkDesktop : navStyle.LinkMobile} onClick={reset}>
                     <li>Home</li>
@@ -108,6 +113,7 @@ function Nav() {
                     <li>Groups</li>
                 </Link>}
             </ul>
+            <div className={navStyle.Menu} onClick={openAction}>{open ? <CloseIcon /> : <MenuIcon />}</div>
         </nav >
     );
 }
