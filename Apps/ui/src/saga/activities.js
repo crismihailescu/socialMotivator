@@ -10,7 +10,7 @@ const NOT_FOUND = 404;
 export function* get(action) {
     try {
         let result;
-        yield fetch('/activities', {
+        yield fetch('http://localhost:3001/activities', {
             method: 'GET',
             headers: {
                 'Content-type': 'application/json',

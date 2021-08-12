@@ -90,6 +90,7 @@ function Submit(props) {
                     </div>
                     <Grid container justify="flex-end">
                         <Button className={dialogStyle.submitBtn} onClick={() => {
+                            console.log(props.code);
                             if (code === props.code) {
                                 if (user.complete.includes(props._id)) {
                                     dispatch(openSnackbar('Code has already been submitted', 'error'))
@@ -99,7 +100,7 @@ function Submit(props) {
                                 }
                             }
                             else {
-                                dispatch(openSnackbar('Code does not match', 'error'))
+                                dispatch(openSnackbar('Error', 'error'))
                             }
                         }}>
                             Submit

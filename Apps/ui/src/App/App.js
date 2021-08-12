@@ -32,6 +32,10 @@ useEffect(() => {
     dispatch({
         type: 'GET_ACTIVITY'
     });
+
+    dispatch({
+      type: 'GET_USERS'
+    });
 }
     setNewList()  
 }, []);

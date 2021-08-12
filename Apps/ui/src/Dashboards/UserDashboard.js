@@ -21,6 +21,7 @@ import { Checkbox, FormControlLabel, TextField } from '@material-ui/core';
 import ViewActivityByType from '../App/components/ViewActivityByType';
 import Carousel from '../App/components/Carousel';
 import Activity from '../App/components/Activity';
+import Leaderboard from '../App/components/Leaderboard';
 
 //Source: gridList modelled from example @ https://material-ui.com/components/grid-list/
 
@@ -109,18 +110,36 @@ const userPastActivities = [
     },
 ];
 
+function bubbleSort(arr) {
+    console.log(arr);
+    let len = arr.length;
+    for (let i = len-1; i>=0; i--) {
+        for (let j = 1; j<=i; j++) {
+            if((arr[j-1]).points > (arr[j]).points) {
+                let temp = arr[j-1];
+                arr[j-1] = arr[j];
+                arr[j] = temp
+            }
+        }
+    }
+    return arr;
+} 
+
 function UserDashboard() {
     const user = useSelector(state => state.userInfo);
+    const users = useSelector(state => state.users)
 
-    // useEffect(() => {
-    //     async function getPassedActs() {
-    //         dispatch({
-    //             type: 'GET_PASSED',
-    //             _id: `${user._id}`
-    //           });
-    //     }
-    //     getPassedActs()
-    // }, []);
+    function makeArray() {
+        let rows = [];
+        users.forEach(u => {
+            if (u.type !== "Company") {
+                rows.push({username: u.username, points: u.complete.length});
+            }
+        });
+        console.log(bubbleSort(rows));
+        return (bubbleSort(rows)).reverse();
+    }
+
 
     return <div className='dashboard-container'>
         <div className='dashboard'>
@@ -141,27 +160,6 @@ function UserDashboard() {
                         })}
                     </Carousel>
                 </div>
-                {/* <div className={classes.rootGrid}>
-                    <GridList cellHeight={180} className={classes.gridList}>
-                        <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
-                            <ListSubheader component="div"></ListSubheader>
-                        </GridListTile>
-                        {userUpcomingActivities.map((tile) => (
-                            <GridListTile key={tile.title}>
-                                <img src={tile.image} alt={tile.title} />
-                                <GridListTileBar
-                                    title={tile.title}
-                                    subtitle={<span>Type: {tile.type}</span>}
-                                    actionIcon={
-                                        <IconButton aria-label={`info about ${tile.title}`} className={classes.icon}>
-                                            <InfoIcon />
-                                        </IconButton>
-                                    }
-                                />
-                            </GridListTile>
-                        ))}
-                    </GridList>
-                </div> */}
             </div>
 
 
@@ -171,6 +169,7 @@ function UserDashboard() {
                     <Carousel show={3}>
                         {user.history.map((item) => {
                             return (<div style={{ padding: 8 }}>
+                                {console.log(`item code is ${item.code}`)}
                                 <Activity _id={item._id} activityTitle={item.title} activityType={item.type} activityImg={item.image} activityLocation={item.location} activityDesc={item.desc} location={item.location} start={item.start} duration={item.duration} description={item.desc} code={item.code} submit={true} />
                             </div>
                             )
@@ -179,31 +178,7 @@ function UserDashboard() {
                 </div>
             </div>
 
-
-            {/* <div className='past-events'>
-                <p>Your past events: </p>
-                <div className={classes.rootGrid}>
-                    <GridList cellHeight={180} className={classes.gridList}>
-                        <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
-                            <ListSubheader component="div"></ListSubheader>
-                        </GridListTile>
-                        {userPastActivities.map((tile) => (
-                            <GridListTile key={tile.title}>
-                                <img src={tile.image} alt={tile.title} />
-                                <GridListTileBar
-                                    title={tile.title}
-                                    subtitle={<span>Type: {tile.type}</span>}
-                                    actionIcon={
-                                        <IconButton aria-label={`info about ${tile.title}`} className={classes.icon}>
-                                            <InfoIcon />
-                                        </IconButton>
-                                    }
-                                />
-                            </GridListTile>
-                        ))}
-                    </GridList>
-                </div>
-            </div> */}
+            <Leaderboard rows = {makeArray()}></Leaderboard>
         </div>
     </div>
 }

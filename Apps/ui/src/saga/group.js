@@ -6,7 +6,7 @@ const DUPLICATE = 409;
 export function* addGroup(action) {
     try {
         let result;
-        yield fetch('/groups', {
+        yield fetch('http://localhost:3001/groups', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -26,7 +26,7 @@ export function* addGroup(action) {
 export function* getGroup() {
     try {
         let groups;
-        yield fetch(`/groups`).then(res => res.text()).then(res => groups = JSON.parse(res));
+        yield fetch(`http://localhost:3001/groups`).then(res => res.text()).then(res => groups = JSON.parse(res));
         yield put(getGroupSuccess(groups));
     } catch (err) {
         yield put(openSnackbar('Failed to retrive groups', 'error'));
