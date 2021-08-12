@@ -4,7 +4,7 @@ import { put } from "redux-saga/effects";
 export function* getPastActivities(action) {
     try {
         let result;
-        yield fetch('http://localhost:3001/pastActivities', {
+        yield fetch('/pastActivities', {
             method: 'GET',
             headers: {
                 'Content-type': 'application/json',
@@ -12,7 +12,7 @@ export function* getPastActivities(action) {
             body: JSON.stringify(action.body)
         }).then(res => res.text()).then(res => result = res);
         yield put(getPastActivitiesSuccess(result));
-    } catch(err) {
+    } catch (err) {
         console.log(err);
     }
 }
