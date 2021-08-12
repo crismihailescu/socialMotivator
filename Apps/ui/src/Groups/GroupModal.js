@@ -4,6 +4,8 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import GroupForm from './GroupForm'
+import { useDispatch } from 'react-redux';
+import { getGroup } from '../actions/groups';
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -35,12 +37,14 @@ const useStyles = makeStyles((theme) => ({
 function TransitionsModal() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const dispatch = useDispatch();
 
   const handleOpen = async () => {
     setOpen(true);
   };
 
   const handleClose = () => {
+    dispatch(getGroup());
     setOpen(false);
   };
 
