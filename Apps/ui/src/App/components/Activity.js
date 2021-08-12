@@ -37,6 +37,7 @@ function Activity(props) {
             <div className={classes.activity}>
                 <img alt="Render" style={{ width: '100%', height: '300px', objectFit: 'cover' }} src={props.activityImg} />
                 <h3 className={classes.topLeft}>{props.activityLocation}</h3>
+                <h4 className={classes.bottomLeft}>{props.start} </h4>
             </div>
             <div className={classes.sideWrapper}>
                 <h4 className={classes.sideBySize}>{props.activityTitle}</h4>
