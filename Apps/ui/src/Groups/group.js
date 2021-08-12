@@ -88,7 +88,7 @@ function Group(props) {
             {groups.map((value, index) => (
                 <Grid key={index} item xs={4} className={classes.grid}>
                     <Paper className={classes.paper} variant='outlined' onClick={() => { dispatch(chooseGroup(value)); props.history.push(`/Groups/${value.name}`); }}>
-                        <img alt="Render" style={{ width: '100%', height: '60%', objectFit: 'cover' }} src={value.image} />
+                        <img alt="Render" style={{ width: '100%', height: '60%', objectFit: 'cover' }} src={value.url} />
                         <Typography gutterBottom variant='h6' className={classes.text}>
                             {value.name}
                         </Typography>
