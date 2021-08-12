@@ -9,7 +9,7 @@ const NOT_FOUND = 404;
 export function* getGroupsPlease(action) {
     try {
         let result;
-        yield fetch(`http://localhost:3001/groups/${action.username}`, {
+        yield fetch(`/groups/${action.username}`, {
             method: 'GET',
             headers: {
                 'Content-type': 'application/json',
