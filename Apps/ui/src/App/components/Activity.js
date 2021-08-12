@@ -32,12 +32,18 @@ const activityStyles = makeStyles({
 
 function Activity(props) {
     const classes = activityStyles();
+
+    let date = props.start
+    let returnedDate = date.substring(0, date.length - 4)
+    let returnedTime = date.substring(date.length - 4, date.length + 1)
+    returnedDate = returnedDate.substring(0,4) + ", " + returnedDate.substring(4,5) + ", " + returnedDate.substring(5,6) + " at " + returnedTime.substring(0,2) + ":" + returnedTime.substring(2,4)
+
     return (
         <div>
             <div className={classes.activity}>
                 <img alt="Render" style={{ width: '100%', height: '300px', objectFit: 'cover' }} src={props.activityImg} />
                 <h3 className={classes.topLeft}>{props.activityLocation}</h3>
-                <h4 className={classes.bottomLeft}>{props.start} </h4>
+                <h4 className={classes.bottomLeft}> {returnedDate} </h4>
             </div>
             <div className={classes.sideWrapper}>
                 <h4 className={classes.sideBySize}>{props.activityTitle}</h4>
