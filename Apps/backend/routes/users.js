@@ -51,6 +51,9 @@ router.post('/', async function (req, res, next) {
     body.complete = [];
     body.participation = 0;
   }
+  if (body.type === "Company") {
+    body.planned = [];
+  }
   let result;
   const username = body.username;
   const email = body.email;
@@ -167,6 +170,51 @@ router.put('/remove', async function (req, res, next) {
 })
 module.exports = router;
 
+router.put('/delete', async function (req, res, next) {
+  const client = new MongoClient(uri, { useUnifiedTopology: true, useNewUrlParser: true });
+  try {
+    await client.connect();
+    const namedActs = await client.db('CATS').collection('activities').find({"title": (req.body.activity_title)});
+    let result = [];
+    await namedActs.forEach(act => result.push(act));
+    console.log(result);
+    for (let activity of result) {
+      if (activity.creator === req.body.user_id) {
+        await client.db('CATS').collection('activities').deleteOne({"_id": ObjectId((activity._id).toString())});
+        await client.db('CATS').collection('users').updateOne({"_id": ObjectId((req.body.user_id).toString()) },
+        {$pull: {"planned": {"title": (req.body.activity_title)}}})
+      }
+    }
+    let user = await client.db('CATS').collection('users').findOne({ "_id": ObjectId((req.body.user_id).toString())});
+    res.send(user);
+  } finally {
+    client.close()
+  }
+});
+
+
+// Add activity
+router.post('/add', async function (req, res, next) {
+  const activityName = req.body;
+  const creator = req.body.creator;
+  const client = new MongoClient(uri, {useUnifiedTopology: true, useNewUrlParser: true });
+  try {
+      await client.connect();
+      await client.db('CATS').collection('users').updateOne({"_id": ObjectId(creator.toString())}, 
+      {$push: {"planned": activityName}})
+      await client.db('CATS').collection('activities').insertOne(activityName);
+      // const activities = await client.db('CATS').collection('activities').find();
+      // result = [];
+      // await activities.forEach(activity => result.push(activity));
+      // res.send(result);
+      let user = await client.db('CATS').collection('users').findOne({ "_id": ObjectId((req.body.creator).toString())});
+      console.log(`user is ${user}`);
+      res.send(user);
+    } finally {
+      client.close();
+      console.log("client closed");
+  }
+});
 
 // router.put('/passed', async function (req, res, next) {
 //   let body = req.body;

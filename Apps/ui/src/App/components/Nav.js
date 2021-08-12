@@ -76,7 +76,7 @@ function Nav() {
             <div className={navStyle.Logo}><DirectionsRunIcon /><DirectionsRunIcon /><DirectionsRunIcon /></div>
             <div className={navStyle.NavLinksMobile}>
                 {Object.keys(user).length !== 0 && <Box>
-                    {`Hello ${user.username}`}
+                    {`Hello ${user.firstname}`}
                 </Box>}
             </div>
             <div className={navStyle.Menu} onClick={openAction}>{open ? <CloseIcon /> : <MenuIcon />}</div>

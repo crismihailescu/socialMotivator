@@ -1,3 +1,17 @@
+export const addActivity = (activity) => {
+    return {
+        type: 'ADD_ACTIVITY',
+        activity
+    }
+}
+
+export const addActivitySuccess = (activity) => {
+    return {
+        type: 'ADD_ACTIVITY_SUCCESS',
+        activity
+    }
+}
+
 export const signIn = (username, password) => {
     return {
         type: 'SIGN_IN',
@@ -103,6 +117,13 @@ export const removeActivity = (body) => {
 export const removeActivitySuccess = (user) => {
     return {
         type: 'REMOVE_ACTIVITY_SUCCESS',
+        user
+    }
+}
+
+export const deleteActivitySuccess = (user) => {
+    return {
+        type: 'DELETE_ACTIVITY_SUCCESS',
         user
     }
 }

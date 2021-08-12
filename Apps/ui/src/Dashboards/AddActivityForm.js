@@ -171,6 +171,7 @@ function AddActivityForm() {
                                     code: code,
                                     duration: { hours: 3, minutes: 0 },
                                     users: [],
+                                    creator: currentUser._id,
                                 }
                             });
 
