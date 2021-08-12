@@ -1,10 +1,14 @@
 import React, { useRef, useEffect } from 'react';
-import mapboxgl from 'mapbox-gl';
 import Geocode from "react-geocode";
 
 import '../styles/MapBox.css';
 
-mapboxgl.accessToken = process.env.MAPBOX_KEY;
+import 'mapbox-gl/dist/mapbox-gl.css';
+import mapboxgl from 'mapbox-gl';
+
+// eslint-disable-next-line import/no-webpack-loader-syntax
+mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
+mapboxgl.accessToken = 'pk.eyJ1IjoiY3JpczEyd2U0IiwiYSI6ImNrcjF0YWE4ZTEwcm4yc3J4bHg3aGg5M28ifQ.0gL0Gp5H7E5vkabdVehgmw';
 
 Geocode.setApiKey("AIzaSyDn-Zlc6aC9cHq8z1CxxSKMdbqd_4-bmDQ");
 Geocode.setLanguage("en");
