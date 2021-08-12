@@ -160,7 +160,7 @@ function Enlist(props) {
     }
 
     function alreadyJoined(given_id) {
-        if (user._id !== undefined && user.type !== "Company" ) {
+        if (user._id !== undefined && user.type !== "Company") {
             for (let element of user.current) {
                 if (element._id === given_id) {
                     return false
@@ -172,10 +172,9 @@ function Enlist(props) {
 
     return (
         <div className={dialogStyle.main}>
-            <Box> <Button className={dialogStyle.openBtn} onClick={() => { Open(); createCalEvent(); }}>
+            <Box> {props.submit ? <Submit code={props.code} _id={props._id} /> : <Button className={dialogStyle.openBtn} onClick={() => { Open(); createCalEvent(); }}>
                 More Info
-            </Button>
-                {props.submit && <Submit code={props.code} _id={props._id} />}
+            </Button>}
             </Box>
             <Dialog open={open} onClose={Close} className={dialogStyle.dialog}>
                 <Button className={dialogStyle.closeBtn} onClick={Close}>X</Button>
@@ -190,7 +189,7 @@ function Enlist(props) {
                     <br />
                     <MapBox className={mapStyling.sizing} location={props.location} />
                     <br />
-                    { alreadyJoined(props._id) && (user.type !== "Company") &&
+                    {alreadyJoined(props._id) && (user.type !== "Company") &&
                         <Button onClick={Join} className={dialogStyle.joinBtn}>Join</Button>
                     }
 
