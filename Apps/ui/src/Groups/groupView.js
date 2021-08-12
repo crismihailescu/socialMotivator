@@ -66,7 +66,7 @@ function GroupView() {
         <>
             <Box className={classes.root}>
                 <Card className={classes.card}>
-                    <CardMedia image={group.image} className={classes.media} />
+                    <CardMedia image={group.url} className={classes.media} />
                     <div className={classes.overlay}>
                         {group.name}
                     </div>
