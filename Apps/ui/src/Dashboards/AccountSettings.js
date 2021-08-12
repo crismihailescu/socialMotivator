@@ -11,6 +11,8 @@ import TextField from '@material-ui/core/TextField';
 import { Checkbox, FormControlLabel } from '@material-ui/core';
 import SettingsIcon from '@material-ui/icons/Settings';
 import Button from '@material-ui/core/Button';
+import { updateUser } from '../actions/userInfo';
+import CustomSnackbar from '../App/components/Snackbar';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -51,7 +53,7 @@ function AccountSettings() {
     const user = useSelector(state => state.userInfo);
     const classes = useStyles();
     const resolver = useYupValidationResolver(Schema);
-    const { handleSubmit, formState: { errors }, register, getValues } = useForm({ resolver, defaultValues: { email: user.email, password: user.password }, });
+    const { handleSubmit, formState: { errors }, register, getValues, setValue } = useForm({ resolver, defaultValues: { email: user.email, password: user.password, firstname: user.firstname, lastname: user.lastname, username: user.username } });
 
     const [showPw, setShowPw] = useState(false);
     const [values, setValues] = useState({
@@ -87,28 +89,37 @@ function AccountSettings() {
                     id="firstname"
                     label="First Name"
                     type="firstname"
-                    value={values.firstname}
                     variant="outlined"
+                    defaultValue={user.firstname}
                     className={classes.textField}
-                    onChange={handleChange('firstname')}
+                    {...register('firstname')}
+                    onChange={(event) => { setValue('firstname', event.target.value); user.firstname = event.target.value }}
+                    error={errors && errors.firstname}
+                    helperText={errors && errors.firstname ? 'Firstname cannot be empty' : ''}
                 />
                 <TextField
                     id="lastname"
                     label="Last Name"
                     type="lastname"
-                    value={values.lastname}
                     variant="outlined"
+                    defaultValue={user.lastname}
                     className={classes.textField}
-                    onChange={handleChange('lastname')}
+                    {...register('lastname')}
+                    onChange={(event) => { setValue('lastname', event.target.value); user.lastname = event.target.value }}
+                    error={errors && errors.lastname}
+                    helperText={errors && errors.lastname ? 'Lastname cannot be empty' : ''}
                 />
                 <TextField
                     id="username"
                     label="Username"
                     type="username"
-                    value={values.username}
                     variant="outlined"
+                    defaultValue={user.username}
                     className={classes.textField}
-                    onChange={handleChange('username')}
+                    {...register('username')}
+                    onChange={(event) => { setValue('username', event.target.value); user.username = event.target.value }}
+                    error={errors && errors.username}
+                    helperText={errors && errors.username ? 'Username cannot be empty' : ''}
                 />
                 <TextField
                     id="email"
@@ -118,8 +129,9 @@ function AccountSettings() {
                     variant="outlined"
                     className={classes.textField}
                     {...register('email')}
-                    error={errors && errors.password}
-                    helperText={errors && errors.password ? 'Valid Email Required' : ''}
+                    onChange={(event) => { setValue('email', event.target.value); user.email = event.target.value }}
+                    error={errors && errors.email}
+                    helperText={errors && errors.email ? 'Valid Email Required' : ''}
                 />
                 <TextField
                     id="password"
@@ -129,6 +141,7 @@ function AccountSettings() {
                     className={classes.textField}
                     defaultValue={user.password}
                     {...register('password')}
+                    onChange={(event) => { setValue('password', event.target.value); user.password = event.target.value }}
                     error={errors && errors.password}
                     helperText={errors && errors.password ? 'Must Contain 8 Characters, 1 Uppercase, 1 Lowercase, 1 Number and 1 special case character' : ''}
                 />
@@ -140,14 +153,14 @@ function AccountSettings() {
             <Button className={classes.button} onClick={handleSubmit(() => {
                 dispatch({
                     type: 'UPDATE_USER', body: {
-                        ...user, password: getValues('password'),
-                        firstname: values.firstname, lastname: values.lastname, username: values.username, email: getValues('email')
+                        ...user,
+                        password: getValues('password'),
+                        firstname: getValues('firstname'), lastname: getValues('lastname'), username: getValues('username'), email: getValues('email')
                     }
                 })
-                setSettingsOpen(false);
             })}>Update</Button>
         </Dialog>
-
+        <CustomSnackbar />
     </div>
 }
 
