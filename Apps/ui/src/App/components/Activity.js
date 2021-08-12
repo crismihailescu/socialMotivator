@@ -34,6 +34,7 @@ function Activity(props) {
     const classes = activityStyles();
 
     let date = props.start.toString()
+    date =  date.replace(/,/g,'')
     console.log("Initial: " + props.start)
     console.log("Date: " + date)
     let returnedDate = date.substring(0, date.length - 4)
