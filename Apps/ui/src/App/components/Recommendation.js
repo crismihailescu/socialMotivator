@@ -35,10 +35,6 @@ function Recommendation({ activities, userData, pastEvents }) {
     }
     groupList = [typeList, locationList, keywords]
 
-    // let typeList = ['Outdoor ', 'Indoor ', 'Indoor ', 'Indoor ', 'Delivery ', 'Delivery ', 'School ', 'Indoor ', 'School ', 'School ', 'Indoor '];
-    // let locationList = ['Vancouver ', 'Vancouver ', 'Kelowna ', 'Vancouver ', 'East Vancouver ', 'Surrey ', 'Surrey ', 'Vancouver ', 'Kelowna ', 'Coquitlam '];
-    // let keywords = ['Park ', 'Cleanup ', 'Beach ', 'Cleanup ', 'Fundraising ', 'Soup ', 'Kitchen ', 'Volunteer ', 'Driver ', 'Miller ', 'Park ', 'Cleanup ', 'School ', 'Driver '];
-
     // https://stackoverflow.com/questions/1053843/get-the-element-with-the-highest-occurrence-in-an-array
     function mode(array) {
 
