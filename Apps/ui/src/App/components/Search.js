@@ -12,27 +12,27 @@ import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme) => ({
     search: {
-      '& > *': {
-        margin: theme.spacing(1),
-        width: '85%',
-      },
-      display: 'flex',
-      marginRight: '5px',
-      flex: '4 0 0',
+        '& > *': {
+            margin: theme.spacing(1),
+            width: '85%',
+        },
+        display: 'flex',
+        marginRight: '5px',
+        flex: '4 0 0',
     },
     button: {
         '& > *': {
-          margin: theme.spacing(1),
+            margin: theme.spacing(1),
         },
         height: '35px',
         width: '70px',
         position: 'relative',
         right: 40,
         top: 20,
-      },
+    },
     root: {
         display: 'flex',
-      },
+    },
     modal: {
         display: 'flex',
         alignItems: 'center',
@@ -56,9 +56,9 @@ const useStyles = makeStyles((theme) => ({
     activityGrid: {
         display: 'flex',
     }
-  }));
+}));
 
-function Search( {activities} ) {
+function Search({ activities }) {
     const [input, setInput] = useState('')
     const [results, setResults] = useState([]);
 
@@ -82,9 +82,9 @@ function Search( {activities} ) {
                     <p>
                         Correct text showing!
                     </p>
-                        {setResults(searchResults)}
+                    {setResults(searchResults)}
                 </div>
-                
+
             ))
         )
 
@@ -99,6 +99,7 @@ function Search( {activities} ) {
 
     const handleClose = () => {
         setOpen(false);
+        setResults([]);
     };
 
     const classes = useStyles();
@@ -107,7 +108,7 @@ function Search( {activities} ) {
         let resultsList = JSON.parse(intake);
         let returnList = [];
         for (let item of resultsList) {
-            returnList.push(<Activity activityTitle={item.title} activityType={item.type} activityImg={item.image} activityLocation={item.location} activityDesc={item.desc} location={item.location} start = {item.start} duration = {item.duration}></Activity>);
+            returnList.push(<Activity activityTitle={item.title} activityType={item.type} activityImg={item.image} activityLocation={item.location} activityDesc={item.desc} location={item.location} start={item.start} duration={item.duration}></Activity>);
             returnList.push(<br></br>)
             returnList.push(<br></br>)
         }
@@ -131,32 +132,32 @@ function Search( {activities} ) {
                 >
                     <Fade in={open}>
                         <div className={classes.paper}>
-                            <h2>Search results for {input}</h2> 
+                            <h2>Search results for {input}</h2>
                             <Grid className={classes.activityGridContainer}>
                                 <>
-                                {/* {format(JSON.stringify(results))} */}
+                                    {/* {format(JSON.stringify(results))} */}
 
-                                {(results).map((act) => ( 
-                                    <div style = {{padding: 8}}>
-                                        <ResultsBox activity = {act}></ResultsBox>
-                                    </div>
-                                ))}
-                                {/* <ResultsBox activities = {format(JSON.stringify(results))}></ResultsBox> */}
+                                    {(results).map((act) => (
+                                        <div style={{ padding: 8 }}>
+                                            <ResultsBox activity={act}></ResultsBox>
+                                        </div>
+                                    ))}
+                                    {/* <ResultsBox activities = {format(JSON.stringify(results))}></ResultsBox> */}
 
                                 </>
-                                { body }
+                                {body}
                             </Grid>
                         </div>
                     </Fade>
                 </Modal>
             </div>
             <form action="/" method="get" className={classes.search} noValidate autoComplete="on">
-                <TextField 
-                    label="Search Events" 
+                <TextField
+                    label="Search Events"
                     type="text"
                     id="searchBar"
                     placeholder="e.g. Beach Cleanup"
-                    name="s" 
+                    name="s"
                     onInput={e => setInput(e.target.value)}
                 />
             </form>
